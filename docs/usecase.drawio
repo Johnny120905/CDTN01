@@ -1,0 +1,81 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Trang-1" id="s_kFRAf3-hP1zK3kDxa8">
+    <mxGraphModel dx="1414" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-1" edge="1" parent="1" source="Xk0wNEwlTulCfSuJkAfZ-2" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" target="Xk0wNEwlTulCfSuJkAfZ-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Nhân viên vật tư&lt;div&gt;[ACT-02]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="60" x="90" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-3" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="Ranh giới hệ thống phận hệ kho linh kiện luồng 05" vertex="1">
+          <mxGeometry height="1080" width="680" x="240" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-4" parent="Xk0wNEwlTulCfSuJkAfZ-3" style="ellipse;whiteSpace=wrap;html=1;" value="UC-06: Thiết lập Ngưỡng an toàn (Cấu hình &lt;code&gt;min_threshold&lt;/code&gt;)." vertex="1">
+          <mxGeometry height="110" width="190" x="40" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-5" parent="Xk0wNEwlTulCfSuJkAfZ-3" style="ellipse;whiteSpace=wrap;html=1;" value="UC-07: Xem Cảnh báo thiếu hàng (Nhận thông báo cờ đỏ)." vertex="1">
+          <mxGeometry height="110" width="190" x="40" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-6" parent="Xk0wNEwlTulCfSuJkAfZ-3" style="ellipse;whiteSpace=wrap;html=1;" value="UC-05: Xem Nhật ký Giao dịch (Audit Log)" vertex="1">
+          <mxGeometry height="110" width="190" x="40" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-7" parent="Xk0wNEwlTulCfSuJkAfZ-3" style="ellipse;whiteSpace=wrap;html=1;" value="UC-01: Nhập linh kiện kho" vertex="1">
+          <mxGeometry height="110" width="190" x="40" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-8" parent="Xk0wNEwlTulCfSuJkAfZ-3" style="ellipse;whiteSpace=wrap;html=1;" value="UC-04: Tra cứu tồn kho Real-time" vertex="1">
+          <mxGeometry height="110" width="190" x="40" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-9" parent="Xk0wNEwlTulCfSuJkAfZ-3" style="ellipse;whiteSpace=wrap;html=1;" value="UC-03:&amp;nbsp;Hoàn trả linh kiện kho (Bù trừ số lượng)." vertex="1">
+          <mxGeometry height="110" width="190" x="40" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-10" parent="Xk0wNEwlTulCfSuJkAfZ-3" style="ellipse;whiteSpace=wrap;html=1;" value="UC-02: Xuất kho hợp lệ (Bắt buộc kèm mã phiếu)" vertex="1">
+          <mxGeometry height="110" width="190" x="40" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-11" parent="Xk0wNEwlTulCfSuJkAfZ-3" style="ellipse;whiteSpace=wrap;html=1;" value="UC-99: Xác thực mã phiếu" vertex="1">
+          <mxGeometry height="110" width="190" x="460" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-12" edge="1" parent="Xk0wNEwlTulCfSuJkAfZ-3" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Xk0wNEwlTulCfSuJkAfZ-11" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" width="160" x="0.1809" y="13" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="230" y="234.38" as="sourcePoint" />
+            <mxPoint x="470" y="304" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-13" edge="1" parent="Xk0wNEwlTulCfSuJkAfZ-3" source="Xk0wNEwlTulCfSuJkAfZ-8" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="Xk0wNEwlTulCfSuJkAfZ-11" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" width="160" x="0.1505" y="-26" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="230" y="320" as="sourcePoint" />
+            <mxPoint x="450" y="321" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-14" edge="1" parent="1" source="Xk0wNEwlTulCfSuJkAfZ-17" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Xk0wNEwlTulCfSuJkAfZ-10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-15" edge="1" parent="1" source="Xk0wNEwlTulCfSuJkAfZ-17" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="Xk0wNEwlTulCfSuJkAfZ-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-16" edge="1" parent="1" source="Xk0wNEwlTulCfSuJkAfZ-17" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="Xk0wNEwlTulCfSuJkAfZ-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-17" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Nhân viên kỹ thuật&lt;div&gt;[ACT-01]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="60" x="90" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-18" edge="1" parent="1" source="Xk0wNEwlTulCfSuJkAfZ-21" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="Xk0wNEwlTulCfSuJkAfZ-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-19" edge="1" parent="1" source="Xk0wNEwlTulCfSuJkAfZ-21" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="Xk0wNEwlTulCfSuJkAfZ-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-20" edge="1" parent="1" source="Xk0wNEwlTulCfSuJkAfZ-21" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="Xk0wNEwlTulCfSuJkAfZ-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xk0wNEwlTulCfSuJkAfZ-21" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Quản lý kho&lt;div&gt;[ACT-03]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="60" x="90" y="815" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
