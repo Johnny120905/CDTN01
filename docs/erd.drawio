@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Trang-1" id="nQS1mMcIU1GXTKw33Ted">
-    <mxGraphModel dx="2175" dy="1248" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1937" dy="1111" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -290,7 +290,7 @@
           </mxCell>
         </UserObject>
         <mxCell id="czV4DLJykt-3LAyvxWVA-105" parent="1" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;fixedHeader=1;tableRender=collapsed;align=left;verticalAlign=top;" value="" vertex="1">
-          <mxGeometry height="595.1599999999999" width="760" x="40" y="520.21" as="geometry" />
+          <mxGeometry height="604.9499999999998" width="760" x="40" y="520.21" as="geometry" />
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-106" parent="czV4DLJykt-3LAyvxWVA-105" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fixedHeader=1;" value="" vertex="1">
           <mxGeometry height="46" width="760" as="geometry" />
@@ -419,25 +419,25 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-134" parent="czV4DLJykt-3LAyvxWVA-105" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fixedHeader=1;align=left;verticalAlign=top;" value="" vertex="1">
-          <mxGeometry height="48" width="760" y="342" as="geometry" />
+          <mxGeometry height="58" width="760" y="342" as="geometry" />
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-135" parent="czV4DLJykt-3LAyvxWVA-134" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;pointerEvents=1;align=left;verticalAlign=top;" value="&amp;lt;&amp;lt;PK, FK&amp;gt;&amp;gt;" vertex="1">
-          <mxGeometry height="48" width="160" as="geometry">
-            <mxRectangle height="48" width="160" as="alternateBounds" />
+          <mxGeometry height="58" width="160" as="geometry">
+            <mxRectangle height="58" width="160" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-136" parent="czV4DLJykt-3LAyvxWVA-134" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;pointerEvents=1;align=left;verticalAlign=top;" value="Composite Key (Khóa phức hợp)" vertex="1">
-          <mxGeometry height="48" width="200" x="160" as="geometry">
-            <mxRectangle height="48" width="200" as="alternateBounds" />
+          <mxGeometry height="58" width="200" x="160" as="geometry">
+            <mxRectangle height="58" width="200" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-137" parent="czV4DLJykt-3LAyvxWVA-134" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;pointerEvents=1;align=left;verticalAlign=top;" value="Trường hợp đặc biệt (như ở bảng &lt;code&gt;part_stock&lt;/code&gt;). Cột này vừa là một phần của Khóa chính (kết hợp với cột khác để chống trùng lặp), vừa là Khóa ngoại tham chiếu đến bảng danh mục gốc." vertex="1">
-          <mxGeometry height="48" width="400" x="360" as="geometry">
-            <mxRectangle height="48" width="400" as="alternateBounds" />
+          <mxGeometry height="58" width="400" x="360" as="geometry">
+            <mxRectangle height="58" width="400" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-138" parent="czV4DLJykt-3LAyvxWVA-105" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fixedHeader=1;align=left;verticalAlign=top;" value="" vertex="1">
-          <mxGeometry height="45" width="760" y="390" as="geometry" />
+          <mxGeometry height="45" width="760" y="400" as="geometry" />
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-139" parent="czV4DLJykt-3LAyvxWVA-138" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;pointerEvents=1;align=left;verticalAlign=top;" value="&lt;code&gt;VARCHAR&lt;/code&gt;, &lt;code&gt;INT&lt;/code&gt;..." vertex="1">
           <mxGeometry height="45" width="160" as="geometry">
@@ -455,7 +455,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-142" parent="czV4DLJykt-3LAyvxWVA-105" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fixedHeader=1;align=left;verticalAlign=top;" value="" vertex="1">
-          <mxGeometry height="46" width="760" y="435" as="geometry" />
+          <mxGeometry height="46" width="760" y="445" as="geometry" />
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-143" parent="czV4DLJykt-3LAyvxWVA-142" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;pointerEvents=1;align=left;verticalAlign=top;" value="Đường thẳng nét đứt" vertex="1">
           <mxGeometry height="46" width="160" as="geometry">
@@ -473,7 +473,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-146" parent="czV4DLJykt-3LAyvxWVA-105" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fixedHeader=1;align=left;verticalAlign=top;" value="" vertex="1">
-          <mxGeometry height="46" width="760" y="481" as="geometry" />
+          <mxGeometry height="46" width="760" y="491" as="geometry" />
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-147" parent="czV4DLJykt-3LAyvxWVA-146" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;pointerEvents=1;align=left;verticalAlign=top;" value="Hai gạch dọc" vertex="1">
           <mxGeometry height="46" width="160" as="geometry">
@@ -491,7 +491,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-150" parent="czV4DLJykt-3LAyvxWVA-105" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fixedHeader=1;align=left;verticalAlign=top;" value="" vertex="1">
-          <mxGeometry height="68" width="760" y="527" as="geometry" />
+          <mxGeometry height="68" width="760" y="537" as="geometry" />
         </mxCell>
         <mxCell id="czV4DLJykt-3LAyvxWVA-151" parent="czV4DLJykt-3LAyvxWVA-150" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;pointerEvents=1;align=left;verticalAlign=top;" value="Vòng tròn &amp;amp; chân chim" vertex="1">
           <mxGeometry height="68" width="160" as="geometry">
