@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "6addb13c7dce9c6704a1dda2",
+    "email": "quanlykho.test@gmail.com",
+    "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+    "full_name": "Trần Văn Quản Lý",
+    "role": "MANAGER",
+    "center_id": "L5-WH-890",
+    "is_verified": false,
+    "otp_code": "812045",
+    "otp_expires_at": "2026-10-25T14:30:00.000Z",
+    "is_active": true,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNmFkZGIxM2M3ZGNlOWM2NzA0YTFkZGEyIiwiZW1haWwiOiJxdWFubHlraG8udGVzdEBnbWFpbC5jb20iLCJmdWxsX25hbWUiOiJUclx1MWVhN24gVlx1MDEwM24gUXVcdTFlYTNuIExcdTAwZmQiLCJyb2xlIjoiTUFOQUdFUiIsImNlbnRlcl9pZCI6Ikw1LVdILTg5MCIsImV4cCI6MTc5MzI3MTk4NSwiaWF0IjoxNzkzMTg1NTg1fQ.zfAgVSKEy5928FYBjnsQDp_Cta9THpUVgxiwfTkr8Vw",
+    "active": 1,
+    "status": "ONLINE"
+  },
+  {
+    "_id": "6addb13c7dce9c6704a1dda3",
+    "email": "vattu.test@gmail.com",
+    "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+    "full_name": "Nguyễn Thị Vật Tư",
+    "role": "MATERIAL_STAFF",
+    "center_id": "L5-WH-890",
+    "is_verified": false,
+    "otp_code": "458921",
+    "otp_expires_at": "2026-10-25T14:30:00.000Z",
+    "is_active": true
+  },
+  {
+    "_id": "6addb13c7dce9c6704a1dda4",
+    "email": "kythuat.test@gmail.com",
+    "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+    "full_name": "Lê Văn Kỹ Thuật",
+    "role": "TECH_STAFF",
+    "center_id": "L5-WH-890",
+    "is_verified": false,
+    "otp_code": "739102",
+    "otp_expires_at": "2026-10-25T14:30:00.000Z",
+    "is_active": true,
+    "status": "OFF_SHIFT"
+  },
+  {
+    "_id": "6adf1714537e5d17773ef86f",
+    "email": "vuthelong1009@gmail.com",
+    "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+    "full_name": "Vũ Thế Long",
+    "role": "TECH_STAFF",
+    "center_id": "L5-WH-890",
+    "is_active": true,
+    "status": "OFF_SHIFT"
+  },
+  {
+    "_id": "6ae097d0af614e8aaf3299d3",
+    "email": "anhpham712002@gmail.com",
+    "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+    "full_name": "Phạm Nguyễn Hoàng Anh",
+    "role": "MATERIAL_STAFF",
+    "center_id": "L5-WH-890",
+    "is_active": false,
+    "status": "TERMINATED"
+  }
+]

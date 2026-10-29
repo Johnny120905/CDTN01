@@ -1,0 +1,38 @@
+# ==============================================================================
+# File: .dockerignore
+# Dự án: Hệ thống Smart CRM – Mekong Mobile (Luồng 05: Kho linh kiện thay thế)
+# Mục đích: Loại bỏ các thư mục môi trường ảo, cache và lịch sử Git khi build Docker Image
+# ==============================================================================
+
+# Môi trường ảo Python
+venv/
+.venv/
+env/
+ENV/
+
+# Bộ nhớ đệm Python & Pytest
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node.js / Frontend build cache
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+
+# Hệ thống quản lý phiên bản & IDE
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Tệp tạm hệ điều hành
+.DS_Store
+Thumbs.db
+*.log
+

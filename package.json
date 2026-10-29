@@ -1,0 +1,22 @@
+{
+  "name": "cdtn01-smart-crm-inventory",
+  "version": "1.0.0",
+  "description": "Smart CRM Mekong Mobile - Luồng 05: Quản lý Kho linh kiện thay thế",
+  "main": "src/app.py",
+  "scripts": {
+    "start": "python src/app.py",
+    "dev": "uvicorn src.app:app --reload --port 8000",
+    "seed": "python seeds/seed.py",
+    "test": "pytest",
+    "test:watch": "pytest -f"
+  },
+  "keywords": [
+    "smart-crm",
+    "mekong-mobile",
+    "inventory-management",
+    "nosql-mongodb",
+    "fastapi"
+  ],
+  "author": "Huỳnh Nguyễn Bảo Ngọc - 2374802010339",
+  "license": "ISC"
+}

@@ -1,0 +1,340 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Trang-1" id="fyKaBivM6CrDjvqPoYHX">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="" plantUmlData="{&#xa;  &quot;data&quot;: &quot;@startuml\n&#39; Cấu hình giao diện chuẩn học thuật, rõ nét, hỗ trợ Tiếng Việt\nskinparam defaultFontName \&quot;Segoe UI\&quot;, \&quot;DejaVu Sans\&quot;, Arial\nskinparam defaultFontSize 12\nskinparam shadowing false\nskinparam roundcorner 6\nskinparam packageStyle rectangle\nskinparam linetype ortho\nskinparam nodesep 25\nskinparam ranksep 35\n\nskinparam rectangle {\n    BackgroundColor #FFFFFF\n    BorderColor #222222\n    BorderThickness 1.5\n    FontColor #111111\n}\n\nskinparam database {\n    BackgroundColor #F8F9FA\n    BorderColor #222222\n    BorderThickness 1.5\n}\n\nskinparam arrow {\n    Color #111111\n    FontColor #111111\n    FontSize 11\n    Thickness 1.3\n}\n\ntitle &lt;b&gt;SƠ ĐỒ KIẾN TRÚC ĐÃ HIỆN THỰC (LAYERED CLEAN ARCHITECTURE - LUỒNG L5)&lt;/b&gt;\\n&lt;i&gt;Nguyên tắc Phụ thuộc một chiều (One-way Dependency Rule): Tầng trên gọi tầng dưới kế cận&lt;/i&gt;\n\n&#39; ================= TẦNG 1: PRESENTATION LAYER =================\nrectangle \&quot;&lt;b&gt;[1. TẦNG TRÌNH DIỄN - CLIENT PRESENTATION LAYER]&lt;/b&gt;\\n&lt;i&gt;Thư mục: src/static/ (Đồng bộ frontend/public/ &amp; backend/src/static/) [NFR-04]&lt;/i&gt;\&quot; as L1 #F8FAFC {\n    rectangle \&quot;&lt;b&gt;index.html&lt;/b&gt;\\nKhung SPA, Auth Split-Screen (Login/Register/Forgot)\\nWorkspace Shell (Header / Aside)\&quot; as HTML\n    rectangle \&quot;&lt;b&gt;styles.css&lt;/b&gt;\\nDesign Tokens Dark 3D Elevation, Glassmorphism\\n4 Semantic Status Badges\&quot; as CSS\n    rectangle \&quot;&lt;b&gt;app.js&lt;/b&gt;\\nBộ định tuyến ViewRouter (14 màn hình), Smart Autocomplete\\nOTP Timer, CSV/PDF Exporter (Xử lý đủ 3 trạng thái UI)\&quot; as APPJS\n}\n\n&#39; ================= TẦNG 2: ENTRY POINT &amp; ROUTING LAYER =================\nrectangle \&quot;&lt;b&gt;[2. TẦNG KHỞI CHẠY &amp; ĐIỀU PHỐI API - ENTRY POINT &amp; ROUTING LAYER]&lt;/b&gt;\\n&lt;i&gt;Thư mục: src/ &amp; src/routes/&lt;/i&gt;\&quot; as L2 #FFFFFF {\n    rectangle \&quot;&lt;b&gt;src/app.py&lt;/b&gt;\\nKhởi tạo FastAPI, CORS Middleware\\nGlobal Exception Handler (NFR-04), Static Mount\&quot; as APPPY\n    rectangle \&quot;&lt;b&gt;src/routes/__init__.py &amp; inventory.routes.py&lt;/b&gt;\\nGiải mã JWT Token, trích xuất center_id &amp; role (BR-04)\\nĐiều phối 16 API Endpoints &amp; dịch mã lỗi HTTP\&quot; as ROUTES\n}\n\n&#39; ================= TẦNG 3: INPUT VALIDATION LAYER =================\nrectangle \&quot;&lt;b&gt;[3. TẦNG KIỂM ĐỊNH ĐẦU VÀO - INPUT VALIDATION LAYER]&lt;/b&gt;\\n&lt;i&gt;Thư mục: src/validators/ (Tầng 1 Validation)&lt;/i&gt;\&quot; as L3 #FFFFFF {\n    rectangle \&quot;&lt;b&gt;src/validators/__init__.py &amp; inventory.validator.py&lt;/b&gt;\\nKiểm tra cấu trúc Payload, chuẩn hóa dữ liệu vào\\nRegex Email RFC, Mật khẩu 8 ký tự (4 nhóm), Bắt buộc Ticket ID (BR-02)\&quot; as VALIDATOR\n}\n\n&#39; ================= TẦNG 4: DOMAIN SERVICE &amp; ERROR LAYER =================\nrectangle \&quot;&lt;b&gt;[4. TẦNG NGHIỆP VỤ CỐT LÕI &amp; NGOẠI LỆ - DOMAIN SERVICE &amp; ERROR LAYER]&lt;/b&gt;\\n&lt;i&gt;Thư mục: src/services/ &amp; src/errors/ (Độc lập hoàn toàn với HTTP) [NFR-03]&lt;/i&gt;\&quot; as L4 #FFFBEB {\n    rectangle \&quot;&lt;b&gt;src/services/__init__.py &amp; inventory.service.py (InventoryService)&lt;/b&gt;\\n- Chặn âm kho (BR-01) &amp; Kiểm tra trạng thái Ticket (BR-02 / UC-99)\\n- Khóa lạc quan Optimistic Locking chống Race Condition (NFR-03 / EX-05)\\n- Đánh giá ngưỡng cảnh báo (BR-05 / FR-07) &amp; Phân quyền 3 vai trò (FR-06)\\n- Ghi sổ cái giao dịch bất biến Insert-only (BR-03)\&quot; as SERVICE\n    rectangle \&quot;&lt;b&gt;src/errors/AppError.py&lt;/b&gt;\\nĐịnh nghĩa lớp AppError &amp; 6 lớp ngoại lệ nghiệp vụ\\n(Ánh xạ mã lỗi chuẩn hóa, không chứa req/res HTTP)\&quot; as ERROR\n}\n\n&#39; ================= TẦNG 5: REPOSITORY &amp; DUAL-PERSISTENCE LAYER =================\nrectangle \&quot;&lt;b&gt;[5. TẦNG TRUY XUẤT &amp; LƯU TRỮ DỮ LIỆU KÉP - REPOSITORY &amp; DUAL-PERSISTENCE LAYER]&lt;/b&gt;\\n&lt;i&gt;Thư mục: src/repositories/, seeds/, data/ [NFR-01, NFR-02]&lt;/i&gt;\&quot; as L5 #F8FAFC {\n    rectangle \&quot;&lt;b&gt;src/repositories/__init__.py &amp; inventory.repository.py (InventoryRepository)&lt;/b&gt;\\nThực thi thao tác đọc/ghi nguyên tử (Atomic CRUD)\\nCơ chế tự động chuyển đổi dự phòng (Dual-Persistence Fallback)\&quot; as REPO\n\n    database \&quot;&lt;b&gt;MongoDB Atlas Cloud (6 Collections)&lt;/b&gt;\\n- users (Unique Index: email)\\n- service_center (Unique Index: center_id)\\n- part (Unique Index: part_code)\\n- ticket (Unique Index: ticket_id)\\n- part_stock (Compound Index: center_id + part_code)\\n- part_transaction (Compound Index: center_id + created_at)\&quot; as MONGO\n\n    database \&quot;&lt;b&gt;In-Memory &amp; Disk JSON Fallback&lt;/b&gt;\\n- seeds/001_seed_parts_demo.json\\n  (40 linh kiện, 75 bản ghi tồn kho)\\n- data/users_store.json\\n  (Lưu trữ bền vững cục bộ)\&quot; as JSONSTORE\n}\n\n&#39; ================= LUỒNG PHỤ THUỘC MỘT CHIỀU (ONE-WAY DEPENDENCY) =================\nAPPJS -down-&gt; APPPY : \&quot;&lt;b&gt;HTTP RESTful JSON&lt;/b&gt;\\n(Authorization: Bearer JWT)\&quot;\nAPPPY -right-&gt; ROUTES : \&quot;Chuyển tiếp Request\&quot;\nROUTES -down-&gt; VALIDATOR : \&quot;1. Gọi kiểm định Payload\&quot;\nROUTES -down-&gt; SERVICE : \&quot;2. Truyền dữ liệu sạch\&quot;\nVALIDATOR ..&gt; ERROR : \&quot;Ném lỗi định dạng\\n(HTTP 400 / 422)\&quot;\nSERVICE -right-&gt; ERROR : \&quot;Ném lỗi nghiệp vụ\\n(400 / 403 / 409 / 422)\&quot;\nSERVICE -down-&gt; REPO : \&quot;3. Gọi hàm đọc/ghi nguyên tử\\n(Không chứa SQL/NoSQL ở Service)\&quot;\nREPO -down-&gt; MONGO : \&quot;PyMongo Driver Query\\n(Index Lookup &lt; 500ms)\&quot;\nREPO -down-&gt; JSONSTORE : \&quot;Đồng bộ In-Memory &amp;\\nGhi Disk JSON Fallback\&quot;\n\n&#39; ================= GHI CHÚ NGOÀI PHẠM VI =================\nnote bottom of MONGO\n  &lt;b&gt;[Ngoài phạm vi - Out of Scope (WON&#39;T HAVE)]&lt;/b&gt;\n  - Không tích hợp API đồng bộ với hệ thống Kế toán / Hóa đơn VAT.\n  - Không tự động gửi email đặt hàng tới Nhà cung cấp ngoài.\nend note\n\n&#39; ================= BẢNG CHÚ THÍCH KÝ HIỆU (LEGEND BOX) =================\nlegend right\n  &lt;b&gt;BẢNG CHÚ THÍCH KÝ HIỆU (ARCHITECTURE LEGEND)&lt;/b&gt;\n  | &lt;b&gt;Ký hiệu (Symbol)&lt;/b&gt; | &lt;b&gt;Tên gọi (Name)&lt;/b&gt; | &lt;b&gt;Ý nghĩa kỹ thuật (Description)&lt;/b&gt; |\n  | Khung chữ nhật lớn | Architectural Layer | Tầng kiến trúc phân tách độc lập theo trách nhiệm (5 tầng từ UI xuống DB). |\n  | Khung chữ nhật nhỏ | Source File / Module | Tệp mã nguồn thực tế trong thư mục &lt;i&gt;src/&lt;/i&gt; đảm nhiệm logic của từng tầng. |\n  | Khối hình trụ (Cylinder) | Data Store | Hệ thống lưu trữ dữ liệu kép (MongoDB Atlas Cloud &amp; Disk JSON/Seed). |\n  | Mũi tên nét liền (───►) | One-way Dependency | Luồng gọi hàm/dữ liệu một chiều từ tầng trên xuống tầng dưới kế cận. |\n  | Mũi tên nét đứt (- - -►) | Exception Throw | Luồng phát sinh và ném ngoại lệ chuẩn hóa qua lớp &lt;i&gt;AppError&lt;/i&gt;. |\n  | Nhãn [BR-xx] / [NFR-xx] | Traceability Tag | Mã truy vết quy tắc nghiệp vụ và yêu cầu phi chức năng từ SRS (BT1). |\nendlegend\n\n@enduml&quot;,&#xa;  &quot;config&quot;: null&#xa;}" id="WrQ7vHYO2EwRVmCbK-XA-1">
+          <mxCell connectable="0" parent="1" style="group;transparentBounds=1;editIcon=1;lockedGroup=0;groupPadding=10;fontFamily=Tahoma;" vertex="1">
+            <mxGeometry as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;[1. TẦNG TRÌNH DIỄN - CLIENT PRESENTATION LAYER]&lt;/b&gt;&lt;br&gt;&lt;i&gt;Thư mục: src/static/ (Đồng bộ frontend/public/ &amp;amp; backend/src/static/) [NFR-04]&lt;/i&gt;" plantUmlId="c_0" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#F8FAFC;strokeColor=#222222;verticalAlign=top;align=center;spacingTop=-4;fontSize=12;fontStyle=1;whiteSpace=wrap;shadow=0;strokeWidth=1.5;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;[1. TẦNG TRÌNH DIỄN - CLIENT PRESENTATION LAYER]&lt;/b&gt;&lt;br&gt;&lt;i&gt;Thư mục: src/static/ (Đồng bộ frontend/public/ &amp;amp; backend/src/static/) [NFR-04]&lt;/i&gt;" id="WrQ7vHYO2EwRVmCbK-XA-63">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-1" style="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#F8FAFC;strokeColor=#222222;verticalAlign=top;align=center;spacingTop=-4;fontSize=12;fontStyle=1;whiteSpace=wrap;shadow=0;strokeWidth=1.5;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="123" width="1298" x="55.25" y="120" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;index.html&lt;/b&gt;&lt;br&gt;Khung SPA, Auth Split-Screen (Login/Register/Forgot)&lt;br&gt;Workspace Shell (Header / Aside)" plantUmlId="n_1" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;index.html&lt;/b&gt;&lt;br&gt;Khung SPA, Auth Split-Screen (Login/Register/Forgot)&lt;br&gt;Workspace Shell (Header / Aside)" id="WrQ7vHYO2EwRVmCbK-XA-64">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-63" style="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="62" width="392" x="15" y="49" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;styles.css&lt;/b&gt;&lt;br&gt;Design Tokens Dark 3D Elevation, Glassmorphism&lt;br&gt;4 Semantic Status Badges" plantUmlId="n_2" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;styles.css&lt;/b&gt;&lt;br&gt;Design Tokens Dark 3D Elevation, Glassmorphism&lt;br&gt;4 Semantic Status Badges" id="WrQ7vHYO2EwRVmCbK-XA-65">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-63" style="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="62" width="363" x="442" y="49" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;app.js&lt;/b&gt;&lt;br&gt;Bộ định tuyến ViewRouter (14 màn hình), Smart Autocomplete&lt;br&gt;OTP Timer, CSV/PDF Exporter (Xử lý đủ 3 trạng thái UI)" plantUmlId="n_3" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;app.js&lt;/b&gt;&lt;br&gt;Bộ định tuyến ViewRouter (14 màn hình), Smart Autocomplete&lt;br&gt;OTP Timer, CSV/PDF Exporter (Xử lý đủ 3 trạng thái UI)" id="WrQ7vHYO2EwRVmCbK-XA-66">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-63" style="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="62" width="443" x="840" y="49" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;[2. TẦNG KHỞI CHẠY &amp;amp; ĐIỀU PHỐI API - ENTRY POINT &amp;amp; ROUTING LAYER]&lt;/b&gt;&lt;br&gt;&lt;i&gt;Thư mục: src/ &amp;amp; src/routes/&lt;/i&gt;" plantUmlId="c_4" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#222222;verticalAlign=top;align=center;spacingTop=-4;fontSize=12;fontStyle=1;whiteSpace=wrap;shadow=0;strokeWidth=1.5;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;[2. TẦNG KHỞI CHẠY &amp;amp; ĐIỀU PHỐI API - ENTRY POINT &amp;amp; ROUTING LAYER]&lt;/b&gt;&lt;br&gt;&lt;i&gt;Thư mục: src/ &amp;amp; src/routes/&lt;/i&gt;" id="WrQ7vHYO2EwRVmCbK-XA-67">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-1" style="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#222222;verticalAlign=top;align=center;spacingTop=-4;fontSize=12;fontStyle=1;whiteSpace=wrap;shadow=0;strokeWidth=1.5;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="123" width="926" x="241" y="310" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;src/app.py&lt;/b&gt;&lt;br&gt;Khởi tạo FastAPI, CORS Middleware&lt;br&gt;Global Exception Handler (NFR-04), Static Mount" plantUmlId="n_5" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;src/app.py&lt;/b&gt;&lt;br&gt;Khởi tạo FastAPI, CORS Middleware&lt;br&gt;Global Exception Handler (NFR-04), Static Mount" id="WrQ7vHYO2EwRVmCbK-XA-68">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-67" style="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="62" width="349" x="15" y="49" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;src/routes/&lt;u&gt;init&lt;/u&gt;.py &amp;amp; inventory.routes.py&lt;/b&gt;&lt;br&gt;Giải mã JWT Token, trích xuất center_id &amp;amp; role (BR-04)&lt;br&gt;Điều phối 16 API Endpoints &amp;amp; dịch mã lỗi HTTP" plantUmlId="n_6" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;src/routes/&lt;u&gt;init&lt;/u&gt;.py &amp;amp; inventory.routes.py&lt;/b&gt;&lt;br&gt;Giải mã JWT Token, trích xuất center_id &amp;amp; role (BR-04)&lt;br&gt;Điều phối 16 API Endpoints &amp;amp; dịch mã lỗi HTTP" id="WrQ7vHYO2EwRVmCbK-XA-69">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-67" style="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="62" width="401" x="510" y="49" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;[3. TẦNG KIỂM ĐỊNH ĐẦU VÀO - INPUT VALIDATION LAYER]&lt;/b&gt;&lt;br&gt;&lt;i&gt;Thư mục: src/validators/ (Tầng 1 Validation)&lt;/i&gt;" plantUmlId="c_7" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#222222;verticalAlign=top;align=center;spacingTop=-4;fontSize=12;fontStyle=1;whiteSpace=wrap;shadow=0;strokeWidth=1.5;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;[3. TẦNG KIỂM ĐỊNH ĐẦU VÀO - INPUT VALIDATION LAYER]&lt;/b&gt;&lt;br&gt;&lt;i&gt;Thư mục: src/validators/ (Tầng 1 Validation)&lt;/i&gt;" id="WrQ7vHYO2EwRVmCbK-XA-70">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-1" style="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#222222;verticalAlign=top;align=center;spacingTop=-4;fontSize=12;fontStyle=1;whiteSpace=wrap;shadow=0;strokeWidth=1.5;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="123" width="527" x="634" y="500" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;src/validators/&lt;u&gt;init&lt;/u&gt;.py &amp;amp; inventory.validator.py&lt;/b&gt;&lt;br&gt;Kiểm tra cấu trúc Payload, chuẩn hóa dữ liệu vào&lt;br&gt;Regex Email RFC, Mật khẩu 8 ký tự (4 nhóm), Bắt buộc Ticket ID (BR-02)" plantUmlId="n_8" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;src/validators/&lt;u&gt;init&lt;/u&gt;.py &amp;amp; inventory.validator.py&lt;/b&gt;&lt;br&gt;Kiểm tra cấu trúc Payload, chuẩn hóa dữ liệu vào&lt;br&gt;Regex Email RFC, Mật khẩu 8 ký tự (4 nhóm), Bắt buộc Ticket ID (BR-02)" id="WrQ7vHYO2EwRVmCbK-XA-71">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-70" style="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="62" width="497" x="15" y="49" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;[4. TẦNG NGHIỆP VỤ CỐT LÕI &amp;amp; NGOẠI LỆ - DOMAIN SERVICE &amp;amp; ERROR LAYER]&lt;/b&gt;&lt;br&gt;&lt;i&gt;Thư mục: src/services/ &amp;amp; src/errors/ (Độc lập hoàn toàn với HTTP) [NFR-03]&lt;/i&gt;" plantUmlId="c_9" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#FFFBEB;strokeColor=#222222;verticalAlign=top;align=center;spacingTop=-4;fontSize=12;fontStyle=1;whiteSpace=wrap;shadow=0;strokeWidth=1.5;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;[4. TẦNG NGHIỆP VỤ CỐT LÕI &amp;amp; NGOẠI LỆ - DOMAIN SERVICE &amp;amp; ERROR LAYER]&lt;/b&gt;&lt;br&gt;&lt;i&gt;Thư mục: src/services/ &amp;amp; src/errors/ (Độc lập hoàn toàn với HTTP) [NFR-03]&lt;/i&gt;" id="WrQ7vHYO2EwRVmCbK-XA-72">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-1" style="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#FFFBEB;strokeColor=#222222;verticalAlign=top;align=center;spacingTop=-4;fontSize=12;fontStyle=1;whiteSpace=wrap;shadow=0;strokeWidth=1.5;fontColor=#111111;fontFamily=Tahoma;html=1;" vertex="1">
+            <mxGeometry height="155" width="1111" x="50" y="680" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;src/services/&lt;u&gt;init&lt;/u&gt;.py &amp;amp; inventory.service.py (InventoryService)&lt;/b&gt;&lt;br&gt;- Chặn âm kho (BR-01) &amp;amp; Kiểm tra trạng thái Ticket (BR-02 / UC-99)&lt;br&gt;- Khóa lạc quan Optimistic Locking chống Race Condition (NFR-03 / EX-05)&lt;br&gt;- Đánh giá ngưỡng cảnh báo (BR-05 / FR-07) &amp;amp; Phân quyền 3 vai trò (FR-06)&lt;br&gt;- Ghi sổ cái giao dịch bất biến Insert-only (BR-03)" plantUmlId="n_10" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;src/services/&lt;u&gt;init&lt;/u&gt;.py &amp;amp; inventory.service.py (InventoryService)&lt;/b&gt;&lt;br&gt;- Chặn âm kho (BR-01) &amp;amp; Kiểm tra trạng thái Ticket (BR-02 / UC-99)&lt;br&gt;- Khóa lạc quan Optimistic Locking chống Race Condition (NFR-03 / EX-05)&lt;br&gt;- Đánh giá ngưỡng cảnh báo (BR-05 / FR-07) &amp;amp; Phân quyền 3 vai trò (FR-06)&lt;br&gt;- Ghi sổ cái giao dịch bất biến Insert-only (BR-03)" id="WrQ7vHYO2EwRVmCbK-XA-73">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-72" style="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="94" width="530" x="15" y="49" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;src/errors/AppError.py&lt;/b&gt;&lt;br&gt;Định nghĩa lớp AppError &amp;amp; 6 lớp ngoại lệ nghiệp vụ&lt;br&gt;(Ánh xạ mã lỗi chuẩn hóa, không chứa req/res HTTP)" plantUmlId="n_11" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;src/errors/AppError.py&lt;/b&gt;&lt;br&gt;Định nghĩa lớp AppError &amp;amp; 6 lớp ngoại lệ nghiệp vụ&lt;br&gt;(Ánh xạ mã lỗi chuẩn hóa, không chứa req/res HTTP)" id="WrQ7vHYO2EwRVmCbK-XA-74">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-72" style="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="62" width="384" x="712" y="65" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;[5. TẦNG TRUY XUẤT &amp;amp; LƯU TRỮ DỮ LIỆU KÉP - REPOSITORY &amp;amp; DUAL-PERSISTENCE LAYER]&lt;/b&gt;&lt;br&gt;&lt;i&gt;Thư mục: src/repositories/, seeds/, data/ [NFR-01, NFR-02]&lt;/i&gt;" plantUmlId="c_12" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#F8FAFC;strokeColor=#222222;verticalAlign=top;align=center;spacingTop=-4;fontSize=12;fontStyle=1;whiteSpace=wrap;shadow=0;strokeWidth=1.5;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;[5. TẦNG TRUY XUẤT &amp;amp; LƯU TRỮ DỮ LIỆU KÉP - REPOSITORY &amp;amp; DUAL-PERSISTENCE LAYER]&lt;/b&gt;&lt;br&gt;&lt;i&gt;Thư mục: src/repositories/, seeds/, data/ [NFR-01, NFR-02]&lt;/i&gt;" id="WrQ7vHYO2EwRVmCbK-XA-75">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-1" style="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#F8FAFC;strokeColor=#222222;verticalAlign=top;align=center;spacingTop=-4;fontSize=12;fontStyle=1;whiteSpace=wrap;shadow=0;strokeWidth=1.5;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="309" width="743" x="50" y="920" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;src/repositories/&lt;u&gt;init&lt;/u&gt;.py &amp;amp; inventory.repository.py (InventoryRepository)&lt;/b&gt;&lt;br&gt;Thực thi thao tác đọc/ghi nguyên tử (Atomic CRUD)&lt;br&gt;Cơ chế tự động chuyển đổi dự phòng (Dual-Persistence Fallback)" plantUmlId="n_13" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;src/repositories/&lt;u&gt;init&lt;/u&gt;.py &amp;amp; inventory.repository.py (InventoryRepository)&lt;/b&gt;&lt;br&gt;Thực thi thao tác đọc/ghi nguyên tử (Atomic CRUD)&lt;br&gt;Cơ chế tự động chuyển đổi dự phòng (Dual-Persistence Fallback)" id="WrQ7vHYO2EwRVmCbK-XA-76">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-75" style="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1.5;fillColor=#FFFFFF;strokeColor=#222222;whiteSpace=wrap;fontSize=12;shadow=0;fontColor=#111111;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="62" width="522" x="150.5" y="49" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;MongoDB Atlas Cloud (6 Collections)&lt;/b&gt;&lt;br&gt;- users (Unique Index: email)&lt;br&gt;- service_center (Unique Index: center_id)&lt;br&gt;- part (Unique Index: part_code)&lt;br&gt;- ticket (Unique Index: ticket_id)&lt;br&gt;- part_stock (Compound Index: center_id + part_code)&lt;br&gt;- part_transaction (Compound Index: center_id + created_at)" plantUmlId="n_14" plantUmlBaseStyle="shape=cylinder3;size=10;boundedLbl=1;backgroundOutline=1;fillColor=#F8F9FA;strokeColor=#222222;fontSize=12;whiteSpace=wrap;rounded=1;arcSize=6;absoluteArcSize=1;shadow=0;strokeWidth=1.5;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;MongoDB Atlas Cloud (6 Collections)&lt;/b&gt;&lt;br&gt;- users (Unique Index: email)&lt;br&gt;- service_center (Unique Index: center_id)&lt;br&gt;- part (Unique Index: part_code)&lt;br&gt;- ticket (Unique Index: ticket_id)&lt;br&gt;- part_stock (Compound Index: center_id + part_code)&lt;br&gt;- part_transaction (Compound Index: center_id + created_at)" id="WrQ7vHYO2EwRVmCbK-XA-77">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-75" style="shape=cylinder3;size=10;boundedLbl=1;backgroundOutline=1;fillColor=#F8F9FA;strokeColor=#222222;fontSize=12;whiteSpace=wrap;rounded=1;arcSize=6;absoluteArcSize=1;shadow=0;strokeWidth=1.5;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="126" width="419" x="15" y="171" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;In-Memory &amp;amp; Disk JSON Fallback&lt;/b&gt;&lt;br&gt;- seeds/001_seed_parts_demo.json&lt;br&gt;  (40 linh kiện, 75 bản ghi tồn kho)&lt;br&gt;- data/users_store.json&lt;br&gt;  (Lưu trữ bền vững cục bộ)" plantUmlId="n_15" plantUmlBaseStyle="shape=cylinder3;size=10;boundedLbl=1;backgroundOutline=1;fillColor=#F8F9FA;strokeColor=#222222;fontSize=12;whiteSpace=wrap;rounded=1;arcSize=6;absoluteArcSize=1;shadow=0;strokeWidth=1.5;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;In-Memory &amp;amp; Disk JSON Fallback&lt;/b&gt;&lt;br&gt;- seeds/001_seed_parts_demo.json&lt;br&gt;  (40 linh kiện, 75 bản ghi tồn kho)&lt;br&gt;- data/users_store.json&lt;br&gt;  (Lưu trữ bền vững cục bộ)" id="WrQ7vHYO2EwRVmCbK-XA-78">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-75" style="shape=cylinder3;size=10;boundedLbl=1;backgroundOutline=1;fillColor=#F8F9FA;strokeColor=#222222;fontSize=12;whiteSpace=wrap;rounded=1;arcSize=6;absoluteArcSize=1;shadow=0;strokeWidth=1.5;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="94" width="259" x="469" y="187" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;HTTP RESTful JSON&lt;/b&gt;&lt;br&gt;(Authorization: Bearer JWT)" plantUmlId="e_16" plantUmlBaseStyle="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="&lt;b&gt;HTTP RESTful JSON&lt;/b&gt;&lt;br&gt;(Authorization: Bearer JWT)" id="WrQ7vHYO2EwRVmCbK-XA-79">
+          <mxCell edge="1" parent="WrQ7vHYO2EwRVmCbK-XA-1" source="WrQ7vHYO2EwRVmCbK-XA-66" style="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="WrQ7vHYO2EwRVmCbK-XA-68">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1122" y="290" />
+                <mxPoint x="430.5" y="290" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Chuyển tiếp Request" plantUmlId="e_17" plantUmlBaseStyle="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="Chuyển tiếp Request" id="WrQ7vHYO2EwRVmCbK-XA-80">
+          <mxCell edge="1" parent="WrQ7vHYO2EwRVmCbK-XA-1" source="WrQ7vHYO2EwRVmCbK-XA-68" style="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="WrQ7vHYO2EwRVmCbK-XA-69">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="1. Gọi kiểm định Payload" plantUmlId="e_18" plantUmlBaseStyle="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="1. Gọi kiểm định Payload" id="WrQ7vHYO2EwRVmCbK-XA-81">
+          <mxCell edge="1" parent="WrQ7vHYO2EwRVmCbK-XA-1" source="WrQ7vHYO2EwRVmCbK-XA-69" style="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Tahoma;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="WrQ7vHYO2EwRVmCbK-XA-71">
+            <mxGeometry relative="1" x="-0.0104" as="geometry">
+              <mxPoint as="offset" />
+              <Array as="points">
+                <mxPoint x="1100" y="460" />
+                <mxPoint x="1100" y="460" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="2. Truyền dữ liệu sạch" plantUmlId="e_19" plantUmlBaseStyle="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="2. Truyền dữ liệu sạch" id="WrQ7vHYO2EwRVmCbK-XA-82">
+          <mxCell edge="1" parent="WrQ7vHYO2EwRVmCbK-XA-1" source="WrQ7vHYO2EwRVmCbK-XA-69" style="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="WrQ7vHYO2EwRVmCbK-XA-73">
+            <mxGeometry relative="1" x="-0.1916" as="geometry">
+              <mxPoint as="offset" />
+              <Array as="points">
+                <mxPoint x="920" y="480" />
+                <mxPoint x="330" y="480" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Ném lỗi định dạng&#xa;(HTTP 400 / 422)" plantUmlId="e_20" plantUmlBaseStyle="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;dashed=1;dashPattern=7 7;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="Ném lỗi định dạng&#xa;(HTTP 400 / 422)" id="WrQ7vHYO2EwRVmCbK-XA-83">
+          <mxCell edge="1" parent="WrQ7vHYO2EwRVmCbK-XA-1" source="WrQ7vHYO2EwRVmCbK-XA-71" style="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;dashed=1;dashPattern=7 7;strokeWidth=1.3;fontFamily=Tahoma;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="WrQ7vHYO2EwRVmCbK-XA-74">
+            <mxGeometry relative="1" x="-0.1513" y="-10" as="geometry">
+              <mxPoint as="offset" />
+              <Array as="points">
+                <mxPoint x="810" y="660" />
+                <mxPoint x="980" y="660" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Ném lỗi nghiệp vụ&#xa;(400 / 403 / 409 / 422)" plantUmlId="e_21" plantUmlBaseStyle="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="Ném lỗi nghiệp vụ&#xa;(400 / 403 / 409 / 422)" id="WrQ7vHYO2EwRVmCbK-XA-84">
+          <mxCell edge="1" parent="WrQ7vHYO2EwRVmCbK-XA-1" source="WrQ7vHYO2EwRVmCbK-XA-73" style="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Tahoma;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="WrQ7vHYO2EwRVmCbK-XA-74">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="3. Gọi hàm đọc/ghi nguyên tử&#xa;(Không chứa SQL/NoSQL ở Service)" plantUmlId="e_22" plantUmlBaseStyle="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="3. Gọi hàm đọc/ghi nguyên tử&#xa;(Không chứa SQL/NoSQL ở Service)" id="WrQ7vHYO2EwRVmCbK-XA-85">
+          <mxCell edge="1" parent="WrQ7vHYO2EwRVmCbK-XA-1" source="WrQ7vHYO2EwRVmCbK-XA-73" style="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Tahoma;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="WrQ7vHYO2EwRVmCbK-XA-76">
+            <mxGeometry relative="1" x="-0.168" as="geometry">
+              <mxPoint as="offset" />
+              <Array as="points">
+                <mxPoint x="330" y="896" />
+                <mxPoint x="850" y="896" />
+                <mxPoint x="850" y="1000" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="PyMongo Driver Query&#xa;(Index Lookup &amp;lt; 500ms)" plantUmlId="e_23" plantUmlBaseStyle="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="PyMongo Driver Query&#xa;(Index Lookup &amp;lt; 500ms)" id="WrQ7vHYO2EwRVmCbK-XA-86">
+          <mxCell edge="1" parent="WrQ7vHYO2EwRVmCbK-XA-1" source="WrQ7vHYO2EwRVmCbK-XA-76" style="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="WrQ7vHYO2EwRVmCbK-XA-77">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Đồng bộ In-Memory &amp;amp;&#xa;Ghi Disk JSON Fallback" plantUmlId="e_24" plantUmlBaseStyle="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Segoe UI, DejaVu Sans, Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="Đồng bộ In-Memory &amp;amp;&#xa;Ghi Disk JSON Fallback" id="WrQ7vHYO2EwRVmCbK-XA-87">
+          <mxCell edge="1" parent="WrQ7vHYO2EwRVmCbK-XA-1" source="WrQ7vHYO2EwRVmCbK-XA-76" style="strokeColor=#111111;fontColor=#111111;fontSize=11;html=1;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;endArrow=classicThin;endFill=1;strokeWidth=1.3;fontFamily=Tahoma;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="WrQ7vHYO2EwRVmCbK-XA-78">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;[Ngoài phạm vi - Out of Scope (WON&#39;T HAVE)]&lt;/b&gt;&lt;br&gt;- Không tích hợp API đồng bộ với hệ thống Kế toán / Hóa đơn VAT.&lt;br&gt;- Không tự động gửi email đặt hàng tới Nhà cung cấp ngoài." plantUmlId="note_25" plantUmlBaseStyle="shape=note;size=10;fillColor=#FEFFDD;strokeColor=#181818;fontSize=12;whiteSpace=wrap;align=left;spacingLeft=4;rounded=1;arcSize=6;absoluteArcSize=1;shadow=0;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" plantUmlBaseValue="&lt;b&gt;[Ngoài phạm vi - Out of Scope (WON&#39;T HAVE)]&lt;/b&gt;&lt;br&gt;- Không tích hợp API đồng bộ với hệ thống Kế toán / Hóa đơn VAT.&lt;br&gt;- Không tự động gửi email đặt hàng tới Nhà cung cấp ngoài." id="WrQ7vHYO2EwRVmCbK-XA-88">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-1" style="shape=note;size=10;fillColor=#FEFFDD;strokeColor=#181818;fontSize=12;whiteSpace=wrap;align=left;spacingLeft=4;rounded=1;arcSize=6;absoluteArcSize=1;shadow=0;fontFamily=Segoe UI, DejaVu Sans, Arial;html=1;" vertex="1">
+            <mxGeometry height="56" width="415" x="67.5" y="1252" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" plantUmlId="noteptr_26" plantUmlBaseStyle="shape=triangle;fillColor=#FEFFDD;strokeColor=#181818;strokeWidth=0.5;rounded=1;arcSize=6;absoluteArcSize=1;shadow=0;fontSize=12;fontFamily=Segoe UI, DejaVu Sans, Arial;direction=north;part=1;" plantUmlBaseValue="" id="WrQ7vHYO2EwRVmCbK-XA-89">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-88" style="shape=triangle;fillColor=#FEFFDD;strokeColor=#181818;strokeWidth=0.5;rounded=1;arcSize=6;absoluteArcSize=1;shadow=0;fontSize=12;fontFamily=Segoe UI, DejaVu Sans, Arial;direction=north;part=1;" vertex="1">
+            <mxGeometry height="36" width="8" x="203" y="-35" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;SƠ ĐỒ KIẾN TRÚC ĐÃ HIỆN THỰC (LAYERED CLEAN ARCHITECTURE - LUỒNG L5)&lt;/b&gt;&lt;br&gt;&lt;i&gt;Nguyên tắc Phụ thuộc một chiều (One-way Dependency Rule): Tầng trên gọi tầng dưới kế cận&lt;/i&gt;" plantUmlId="title_27" plantUmlBaseStyle="text;html=1;fillColor=none;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#000000;align=center;verticalAlign=middle;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue="&lt;b&gt;SƠ ĐỒ KIẾN TRÚC ĐÃ HIỆN THỰC (LAYERED CLEAN ARCHITECTURE - LUỒNG L5)&lt;/b&gt;&lt;br&gt;&lt;i&gt;Nguyên tắc Phụ thuộc một chiều (One-way Dependency Rule): Tầng trên gọi tầng dưới kế cận&lt;/i&gt;" id="WrQ7vHYO2EwRVmCbK-XA-90">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-1" style="text;html=1;fillColor=none;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#000000;align=center;verticalAlign=middle;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="44" width="697" x="361" y="50" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" plantUmlId="legend_0" plantUmlBaseStyle="rounded=1;absoluteArcSize=1;arcSize=6;fillColor=#DDDDDD;strokeColor=#000000;strokeWidth=1;fontColor=#000000;fontSize=14;fontFamily=Segoe UI, DejaVu Sans, Arial;align=left;verticalAlign=top;spacing=0;spacingLeft=5;spacingTop=1;whiteSpace=wrap;html=1;container=1;collapsible=0;" plantUmlBaseValue="" id="WrQ7vHYO2EwRVmCbK-XA-91">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-1" style="rounded=1;absoluteArcSize=1;arcSize=6;strokeWidth=1;fontSize=14;fontFamily=Tahoma;align=left;verticalAlign=top;spacing=0;spacingLeft=5;spacingTop=1;whiteSpace=wrap;html=1;container=1;collapsible=0;" vertex="1">
+            <mxGeometry height="145.91" width="864.96" x="50" y="1360" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;BẢNG CHÚ THÍCH KÝ HIỆU (ARCHITECTURE LEGEND)&lt;/b&gt;" plantUmlId="legendtext_1" plantUmlBaseStyle="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue="&lt;b&gt;BẢNG CHÚ THÍCH KÝ HIỆU (ARCHITECTURE LEGEND)&lt;/b&gt;" id="WrQ7vHYO2EwRVmCbK-XA-92">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-91" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="377.11" x="5" y="5" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" plantUmlId="legendtable_2" plantUmlBaseStyle="shape=table;childLayout=tableLayout;container=1;collapsible=0;startSize=0;rowLines=1;fixedRows=1;resizeLast=1;fillColor=none;strokeColor=#000000;strokeWidth=1;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue="" id="WrQ7vHYO2EwRVmCbK-XA-93">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-91" style="shape=table;childLayout=tableLayout;container=1;collapsible=0;startSize=0;rowLines=1;fixedRows=1;resizeLast=1;fillColor=none;strokeColor=#000000;strokeWidth=1;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="115.42" width="854.96" x="5" y="23.49" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" plantUmlId="legendrow_3" plantUmlBaseStyle="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" plantUmlBaseValue="" id="WrQ7vHYO2EwRVmCbK-XA-94">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-93" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" vertex="1">
+            <mxGeometry height="16.49" width="854.96" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" &lt;b&gt;Ký hiệu (Symbol)&lt;/b&gt; " plantUmlId="legendcell_4" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" &lt;b&gt;Ký hiệu (Symbol)&lt;/b&gt; " id="WrQ7vHYO2EwRVmCbK-XA-95">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-94" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" &lt;b&gt;Tên gọi (Name)&lt;/b&gt; " plantUmlId="legendcell_5" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" &lt;b&gt;Tên gọi (Name)&lt;/b&gt; " id="WrQ7vHYO2EwRVmCbK-XA-96">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-94" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="157.96" x="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" &lt;b&gt;Ý nghĩa kỹ thuật (Description)&lt;/b&gt; " plantUmlId="legendcell_6" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" &lt;b&gt;Ý nghĩa kỹ thuật (Description)&lt;/b&gt; " id="WrQ7vHYO2EwRVmCbK-XA-97">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-94" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="519.53" x="335.43" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" plantUmlId="legendrow_7" plantUmlBaseStyle="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" plantUmlBaseValue="" id="WrQ7vHYO2EwRVmCbK-XA-98">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-93" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" vertex="1">
+            <mxGeometry height="16.49" width="854.96" y="16.49" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Khung chữ nhật lớn " plantUmlId="legendcell_8" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Khung chữ nhật lớn " id="WrQ7vHYO2EwRVmCbK-XA-99">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-98" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Architectural Layer " plantUmlId="legendcell_9" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Architectural Layer " id="WrQ7vHYO2EwRVmCbK-XA-100">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-98" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="157.96" x="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Tầng kiến trúc phân tách độc lập theo trách nhiệm (5 tầng từ UI xuống DB). " plantUmlId="legendcell_10" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Tầng kiến trúc phân tách độc lập theo trách nhiệm (5 tầng từ UI xuống DB). " id="WrQ7vHYO2EwRVmCbK-XA-101">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-98" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="519.53" x="335.43" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" plantUmlId="legendrow_11" plantUmlBaseStyle="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" plantUmlBaseValue="" id="WrQ7vHYO2EwRVmCbK-XA-102">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-93" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" vertex="1">
+            <mxGeometry height="16.49" width="854.96" y="32.98" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Khung chữ nhật nhỏ " plantUmlId="legendcell_12" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Khung chữ nhật nhỏ " id="WrQ7vHYO2EwRVmCbK-XA-103">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-102" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Source File / Module " plantUmlId="legendcell_13" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Source File / Module " id="WrQ7vHYO2EwRVmCbK-XA-104">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-102" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="157.96" x="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Tệp mã nguồn thực tế trong thư mục &lt;i&gt;src/&lt;/i&gt; đảm nhiệm logic của từng tầng. " plantUmlId="legendcell_14" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Tệp mã nguồn thực tế trong thư mục &lt;i&gt;src/&lt;/i&gt; đảm nhiệm logic của từng tầng. " id="WrQ7vHYO2EwRVmCbK-XA-105">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-102" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="519.53" x="335.43" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" plantUmlId="legendrow_15" plantUmlBaseStyle="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" plantUmlBaseValue="" id="WrQ7vHYO2EwRVmCbK-XA-106">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-93" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" vertex="1">
+            <mxGeometry height="16.49" width="854.96" y="49.46" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Khối hình trụ (Cylinder) " plantUmlId="legendcell_16" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Khối hình trụ (Cylinder) " id="WrQ7vHYO2EwRVmCbK-XA-107">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-106" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Data Store " plantUmlId="legendcell_17" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Data Store " id="WrQ7vHYO2EwRVmCbK-XA-108">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-106" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="157.96" x="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Hệ thống lưu trữ dữ liệu kép (MongoDB Atlas Cloud &amp;amp; Disk JSON/Seed). " plantUmlId="legendcell_18" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Hệ thống lưu trữ dữ liệu kép (MongoDB Atlas Cloud &amp;amp; Disk JSON/Seed). " id="WrQ7vHYO2EwRVmCbK-XA-109">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-106" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="519.53" x="335.43" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" plantUmlId="legendrow_19" plantUmlBaseStyle="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" plantUmlBaseValue="" id="WrQ7vHYO2EwRVmCbK-XA-110">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-93" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" vertex="1">
+            <mxGeometry height="16.49" width="854.96" y="65.95" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Mũi tên nét liền (───►) " plantUmlId="legendcell_20" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Mũi tên nét liền (───►) " id="WrQ7vHYO2EwRVmCbK-XA-111">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-110" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" One-way Dependency " plantUmlId="legendcell_21" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" One-way Dependency " id="WrQ7vHYO2EwRVmCbK-XA-112">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-110" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="157.96" x="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Luồng gọi hàm/dữ liệu một chiều từ tầng trên xuống tầng dưới kế cận. " plantUmlId="legendcell_22" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Luồng gọi hàm/dữ liệu một chiều từ tầng trên xuống tầng dưới kế cận. " id="WrQ7vHYO2EwRVmCbK-XA-113">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-110" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="519.53" x="335.43" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" plantUmlId="legendrow_23" plantUmlBaseStyle="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" plantUmlBaseValue="" id="WrQ7vHYO2EwRVmCbK-XA-114">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-93" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" vertex="1">
+            <mxGeometry height="16.49" width="854.96" y="82.44" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Mũi tên nét đứt (- - -►) " plantUmlId="legendcell_24" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Mũi tên nét đứt (- - -►) " id="WrQ7vHYO2EwRVmCbK-XA-115">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-114" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Exception Throw " plantUmlId="legendcell_25" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Exception Throw " id="WrQ7vHYO2EwRVmCbK-XA-116">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-114" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="157.96" x="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Luồng phát sinh và ném ngoại lệ chuẩn hóa qua lớp &lt;i&gt;AppError&lt;/i&gt;. " plantUmlId="legendcell_26" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Luồng phát sinh và ném ngoại lệ chuẩn hóa qua lớp &lt;i&gt;AppError&lt;/i&gt;. " id="WrQ7vHYO2EwRVmCbK-XA-117">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-114" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="519.53" x="335.43" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" plantUmlId="legendrow_27" plantUmlBaseStyle="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" plantUmlBaseValue="" id="WrQ7vHYO2EwRVmCbK-XA-118">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-93" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;collapsible=0;dropTarget=0;strokeColor=#000000;strokeWidth=1;top=0;left=0;right=0;bottom=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=none;" vertex="1">
+            <mxGeometry height="16.49" width="854.96" y="98.93" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Nhãn [BR-xx] / [NFR-xx] " plantUmlId="legendcell_28" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Nhãn [BR-xx] / [NFR-xx] " id="WrQ7vHYO2EwRVmCbK-XA-119">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-118" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Traceability Tag " plantUmlId="legendcell_29" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Traceability Tag " id="WrQ7vHYO2EwRVmCbK-XA-120">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-118" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=1;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="157.96" x="177.47" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label=" Mã truy vết quy tắc nghiệp vụ và yêu cầu phi chức năng từ SRS (BT1). " plantUmlId="legendcell_30" plantUmlBaseStyle="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" plantUmlBaseValue=" Mã truy vết quy tắc nghiệp vụ và yêu cầu phi chức năng từ SRS (BT1). " id="WrQ7vHYO2EwRVmCbK-XA-121">
+          <mxCell parent="WrQ7vHYO2EwRVmCbK-XA-118" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;strokeColor=#000000;strokeWidth=1;html=1;align=left;verticalAlign=top;spacing=0;spacingTop=-4;fontSize=14;fontColor=#000000;fontFamily=Segoe UI, DejaVu Sans, Arial;" vertex="1">
+            <mxGeometry height="16.49" width="519.53" x="335.43" as="geometry" />
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

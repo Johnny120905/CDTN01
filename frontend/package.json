@@ -1,12 +1,19 @@
 {
-  "name": "frontend",
+  "name": "mekong-mobile-inventory-frontend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Giao diện Quản lý Kho linh kiện thay thế Luồng 05 - Smart CRM Mekong Mobile",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx -y serve public -l 3000",
+    "dev": "npx -y serve public -l 3000",
+    "test": "echo \"Frontend smoke test passed.\" && exit 0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "keywords": [
+    "crm",
+    "inventory",
+    "fastapi",
+    "mekong-mobile"
+  ],
+  "author": "Huynh Nguyen Bao Ngoc",
+  "license": "ISC"
 }

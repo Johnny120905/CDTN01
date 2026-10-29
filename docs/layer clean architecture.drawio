@@ -1,0 +1,268 @@
+<mxfile host="app.diagrams.net" modified="2026-10-29T12:15:00.000Z" agent="Antigravity" version="24.7.17" type="device">
+  <diagram name="Layered-Clean-Architecture-L5" id="mekong-l5-clean-arch-v2">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1480" pageHeight="1520" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ==================== HEADER TITLE ==================== -->
+        <mxCell id="title-box" value="&lt;div style=&quot;font-size:18px;font-weight:bold;color:#0F172A;margin-bottom:4px;&quot;&gt;SƠ ĐỒ KIẾN TRÚC PHÂN LỚP ĐÃ HIỆN THỰC (IMPLEMENTED LAYERED CLEAN ARCHITECTURE – LUỒNG 05)&lt;/div&gt;&lt;div style=&quot;font-size:13px;font-style:italic;color:#334155;&quot;&gt;Nguyên tắc Phụ thuộc một chiều (One-way Dependency Rule): Tầng trên chỉ gọi tầng dưới kế cận &amp;nbsp;|&amp;nbsp; Cô lập 100% Nghiệp vụ khỏi HTTP [Tiêu chí S2]&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="60" y="20" width="1360" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== LAYER 1: PRESENTATION ==================== -->
+        <mxCell id="layer1" value="&lt;b style=&quot;font-size:14px;&quot;&gt;[1. TẦNG TRÌNH DIỄN – CLIENT PRESENTATION LAYER]&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:12px;color:#334155;&quot;&gt;Thư mục: src/static/ (Đồng bộ frontend/) &amp;nbsp;|&amp;nbsp; Phục vụ ACT-01 (TECH_STAFF), ACT-02 (MATERIAL_STAFF), ACT-03 (MANAGER) [NFR-04: &amp;le; 3 clicks]&lt;/i&gt;" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;verticalAlign=top;align=center;spacingTop=6;fillColor=#F8FAFC;strokeColor=#334155;strokeWidth=1.5;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="60" y="95" width="960" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l1-html" value="&lt;b&gt;src/static/index.html&lt;/b&gt;&lt;br&gt;Khung SPA, Auth Split-Screen (Login / Register / OTP 10p)&lt;br&gt;Workspace Shell (Header / Sidebar Aside)" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#475569;strokeWidth=1.2;fontSize=12;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer1">
+          <mxGeometry x="20" y="54" width="290" height="72" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l1-css" value="&lt;b&gt;src/static/styles.css&lt;/b&gt;&lt;br&gt;Design Tokens Dark 3D Elevation, Glassmorphism&lt;br&gt;Font Be Vietnam Pro &amp;amp; 4 Semantic Status Badges" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#475569;strokeWidth=1.2;fontSize=12;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer1">
+          <mxGeometry x="335" y="54" width="290" height="72" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l1-js" value="&lt;b&gt;src/static/app.js&lt;/b&gt;&lt;br&gt;API Client chuẩn hóa (&lt;code&gt;apiCall&lt;/code&gt;), ViewRouter 13 màn hình&lt;br&gt;Xử lý đủ 3 trạng thái UI: &lt;b&gt;Loading · Empty · Error&lt;/b&gt; [S4]" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#475569;strokeWidth=1.2;fontSize=12;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer1">
+          <mxGeometry x="650" y="54" width="290" height="72" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== LAYER 2: ENTRY POINT & ROUTING ==================== -->
+        <mxCell id="layer2" value="&lt;b style=&quot;font-size:14px;&quot;&gt;[2. TẦNG KHỞI CHẠY &amp;amp; ĐIỀU PHỐI API – ENTRY POINT &amp;amp; ROUTING LAYER]&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:12px;color:#1E3A8A;&quot;&gt;Thư mục: src/app.py &amp;amp; src/routes/ &amp;nbsp;|&amp;nbsp; Xác thực JWT, cô lập vùng dữ liệu chi nhánh &amp;amp; chuẩn hóa HTTP Response [BR-04, NFR-04]&lt;/i&gt;" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;verticalAlign=top;align=center;spacingTop=6;fillColor=#EFF6FF;strokeColor=#1D4ED8;strokeWidth=1.5;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="60" y="290" width="960" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l2-app" value="&lt;b&gt;src/app.py&lt;/b&gt;&lt;br&gt;Khởi tạo FastAPI, CORS Middleware, Static Mount (&lt;code&gt;GET /&lt;/code&gt;, &lt;code&gt;GET /health&lt;/code&gt;)&lt;br&gt;&lt;b style=&quot;color:#1D4ED8;&quot;&gt;Global Exception Handler&lt;/b&gt; (&lt;code&gt;@app.exception_handler(AppError)&lt;/code&gt; &amp;rarr; 0% lộ lỗi 500 [NFR-04])" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1D4ED8;strokeWidth=1.2;fontSize=12;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer2">
+          <mxGeometry x="20" y="56" width="430" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l2-routes" value="&lt;b&gt;src/routes/__init__.py &amp;amp; inventory.routes.py&lt;/b&gt;&lt;br&gt;Nạp mô-đun động (&lt;code&gt;importlib&lt;/code&gt;); Giải mã Bearer JWT (&lt;code&gt;center_id&lt;/code&gt;, &lt;code&gt;role&lt;/code&gt; [BR-04 / EX-02])&lt;br&gt;Điều phối &lt;b&gt;18 API Endpoints&lt;/b&gt; (12 Inventory APIs &lt;code&gt;/api/v1/inventory/*&lt;/code&gt; + 6 Auth APIs &lt;code&gt;/api/v1/auth/*&lt;/code&gt;)" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1D4ED8;strokeWidth=1.2;fontSize=12;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer2">
+          <mxGeometry x="500" y="56" width="440" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-app-routes" value="Chuyển tiếp&lt;br&gt;Request" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1D4ED8;strokeWidth=1.3;endArrow=block;endFill=1;fontSize=11;fontColor=#1E3A8A;labelBackgroundColor=#EFF6FF;" edge="1" parent="layer2" source="l2-app" target="l2-routes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== LAYER 3: INPUT VALIDATION ==================== -->
+        <mxCell id="layer3" value="&lt;b style=&quot;font-size:14px;&quot;&gt;[3. TẦNG KIỂM ĐỊNH ĐẦU VÀO – INPUT VALIDATION LAYER]&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:12px;color:#14532D;&quot;&gt;Thư mục: src/validators/ &amp;nbsp;|&amp;nbsp; Chốt chặn kiểm tra hợp đồng API &amp;amp; giá trị biên trước khi vào tầng nghiệp vụ [BR-02, Tiêu chí C7]&lt;/i&gt;" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;verticalAlign=top;align=center;spacingTop=6;fillColor=#F0FDF4;strokeColor=#15803D;strokeWidth=1.5;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="60" y="495" width="960" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l3-val" value="&lt;b&gt;src/validators/__init__.py &amp;amp; inventory.validator.py&lt;/b&gt;&lt;br&gt;• Kiểm định cấu trúc JSON Payload, chuẩn hóa chuỗi &amp;amp; bắt buộc chứng từ &lt;code&gt;ticket_id&lt;/code&gt; khi &lt;code&gt;type &amp;isin; {OUT, RETURN}&lt;/code&gt; [BR-02 / EX-03]&lt;br&gt;• Kiểm định giá trị biên &lt;code&gt;quantity&lt;/code&gt; (1..1.000.000), &lt;code&gt;min_threshold&lt;/code&gt; (0..100.000), Regex Email RFC &amp;amp; Độ phức tạp mật khẩu 8–128 ký tự (4 nhóm)" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#15803D;strokeWidth=1.2;fontSize=12;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer3">
+          <mxGeometry x="20" y="52" width="920" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== LAYER 4: DOMAIN SERVICE ==================== -->
+        <mxCell id="layer4" value="&lt;b style=&quot;font-size:14px;&quot;&gt;[4. TẦNG NGHIỆP VỤ CỐT LÕI – DOMAIN SERVICE LAYER]&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:12px;color:#78350F;&quot;&gt;Thư mục: src/services/ &amp;nbsp;|&amp;nbsp; Độc lập 100% với giao thức HTTP (Không chứa Request, Response, Status Code) [Tiêu chí S2, NFR-03]&lt;/i&gt;" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;verticalAlign=top;align=center;spacingTop=6;fillColor=#FEFCE8;strokeColor=#B45309;strokeWidth=1.5;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="60" y="685" width="960" height="155" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l4-svc" value="&lt;b&gt;src/services/__init__.py &amp;amp; inventory.service.py (InventoryService)&lt;/b&gt;&lt;br&gt;• Thực thi trọn vẹn &lt;b&gt;UC-01..UC-07 &amp;amp; UC-99&lt;/b&gt;: Chặn xuất âm kho [BR-01 / EX-04] &amp;nbsp;·&amp;nbsp; Xác thực trạng thái phiếu bảo hành hợp lệ [BR-02 / UC-99 / EX-03]&lt;br&gt;• Khóa lạc quan &lt;b&gt;Optimistic Locking&lt;/b&gt; đối chiếu &lt;code&gt;version&lt;/code&gt; chống Race Condition khi &amp;ge; 50 requests đồng thời [NFR-03 / EX-05]&lt;br&gt;• Đánh giá cờ cảnh báo đỏ &lt;code&gt;WARNING&lt;/code&gt; [BR-05 / FR-07] &amp;nbsp;·&amp;nbsp; Phân quyền cấu hình ngưỡng cho &lt;code&gt;MANAGER&lt;/code&gt; [FR-06] &amp;nbsp;·&amp;nbsp; Ghi sổ cái bất biến [BR-03]" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B45309;strokeWidth=1.2;fontSize=12;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer4">
+          <mxGeometry x="20" y="52" width="920" height="88" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== LAYER 5: REPOSITORY & DUAL-PERSISTENCE ==================== -->
+        <mxCell id="layer5" value="&lt;b style=&quot;font-size:14px;&quot;&gt;[5. TẦNG TRUY CẬP, KHỞI TẠO &amp;amp; LƯU TRỮ DỮ LIỆU KÉP – REPOSITORY &amp;amp; DUAL-PERSISTENCE LAYER]&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:12px;color:#4C1D95;&quot;&gt;Thư mục: src/repositories/, migrations/, seeds/, data/ &amp;nbsp;|&amp;nbsp; Truy vấn Index &amp;lt; 500ms &amp;amp; Khởi tạo Idempotent [NFR-01, NFR-02, Tiêu chí C5 &amp;amp; S3]&lt;/i&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;verticalAlign=top;align=center;spacingTop=6;fillColor=#FAF5FF;strokeColor=#6D28D9;strokeWidth=1.5;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="60" y="895" width="960" height="315" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l5-repo" value="&lt;b&gt;src/repositories/__init__.py &amp;amp; inventory.repository.py (InventoryRepository)&lt;/b&gt;&lt;br&gt;Thực thi Atomic CRUD (&lt;code&gt;$inc&lt;/code&gt;, &lt;code&gt;$gte&lt;/code&gt;, &lt;code&gt;version&lt;/code&gt;) [S1] &amp;nbsp;·&amp;nbsp; Nhật ký bất biến &lt;i&gt;Insert-only&lt;/i&gt; [BR-03]&lt;br&gt;Cơ chế tự động chuyển đổi dự phòng &lt;b&gt;Dual-Persistence Fallback&lt;/b&gt; (Cloud &amp;harr; Local In-Memory/JSON)" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6D28D9;strokeWidth=1.2;fontSize=12;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer5">
+          <mxGeometry x="20" y="54" width="560" height="76" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l5-mig" value="&lt;b&gt;migrations/*.js &amp;amp; seeds/seed.py [Tiêu chí C5, S3]&lt;/b&gt;&lt;br&gt;• &lt;code&gt;001_create_collections.js&lt;/code&gt; (&lt;code&gt;$jsonSchema&lt;/code&gt;)&lt;br&gt;• &lt;code&gt;002_create_indexes.js&lt;/code&gt; &amp;amp; &lt;code&gt;seed.py&lt;/code&gt; (&lt;i&gt;Idempotent Upsert&lt;/i&gt;)" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6D28D9;strokeWidth=1.2;fontSize=12;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer5">
+          <mxGeometry x="600" y="54" width="340" height="76" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l5-mongo" value="&lt;b style=&quot;font-size:12.5px;&quot;&gt;MongoDB Atlas Cloud / Local MongoDB (6 Collections số ít chuẩn)&lt;/b&gt;&lt;br&gt;• &lt;code&gt;service_center&lt;/code&gt; (Unique: &lt;code&gt;center_id&lt;/code&gt;) &amp;nbsp;&amp;nbsp;• &lt;code&gt;part&lt;/code&gt; (Unique: &lt;code&gt;part_code&lt;/code&gt;)&lt;br&gt;• &lt;code&gt;ticket&lt;/code&gt; (Unique: &lt;code&gt;ticket_id&lt;/code&gt;) &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;• &lt;code&gt;users&lt;/code&gt; (Unique: &lt;code&gt;email&lt;/code&gt;)&lt;br&gt;• &lt;code&gt;part_stock&lt;/code&gt; (&lt;code&gt;idx_stock_lookup {center_id: 1, part_code: 1}&lt;/code&gt; + &lt;code&gt;version&lt;/code&gt;)&lt;br&gt;• &lt;code&gt;part_transaction&lt;/code&gt; (&lt;code&gt;idx_transaction_history {center_id: 1, created_at: -1}&lt;/code&gt;)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#FFFFFF;strokeColor=#4C1D95;strokeWidth=1.4;fontSize=11.5;align=left;spacingLeft=14;spacingTop=10;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer5">
+          <mxGeometry x="20" y="168" width="510" height="134" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l5-json" value="&lt;b style=&quot;font-size:12.5px;&quot;&gt;In-Memory &amp;amp; Disk JSON Fallback Store&lt;/b&gt;&lt;br&gt;• &lt;code&gt;seeds/001_seed_parts_demo.json&lt;/code&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;(40 linh kiện thực tế, 75 bản ghi tồn kho, 5 chi nhánh, 8 phiếu)&lt;br&gt;• &lt;code&gt;data/users_store.json&lt;/code&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;(Kho lưu trữ tài khoản &amp;amp; OTP bền vững khi chạy độc lập)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#FFFFFF;strokeColor=#4C1D95;strokeWidth=1.4;fontSize=11.5;align=left;spacingLeft=14;spacingTop=10;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="layer5">
+          <mxGeometry x="560" y="168" width="380" height="134" as="geometry" />
+        </mxCell>
+
+        <!-- Internal edges inside Layer 5 -->
+        <mxCell id="e-repo-mongo" value="PyMongo Query (&amp;lt; 500ms)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4C1D95;strokeWidth=1.3;endArrow=block;endFill=1;fontSize=11;fontColor=#4C1D95;labelBackgroundColor=#FAF5FF;exitX=0.35;exitY=1;exitDx=0;exitDy=0;entryX=0.38;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="layer5" source="l5-repo" target="l5-mongo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-repo-json" value="Đồng bộ In-Memory &amp;amp; Disk JSON" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4C1D95;strokeWidth=1.3;endArrow=block;endFill=1;fontSize=11;fontColor=#4C1D95;labelBackgroundColor=#FAF5FF;exitX=0.82;exitY=1;exitDx=0;exitDy=0;entryX=0.32;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="layer5" source="l5-repo" target="l5-json">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-mig-mongo" value="Khởi tạo Schema, Index &amp;amp; Seed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6D28D9;strokeWidth=1.2;dashed=1;endArrow=block;endFill=1;fontSize=11;fontColor=#4C1D95;labelBackgroundColor=#FAF5FF;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.85;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="layer5" source="l5-mig" target="l5-mongo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== STRICT ONE-WAY VERTICAL DEPENDENCY ARROWS (1 -> 2 -> 3 -> 4 -> 5) ==================== -->
+        <mxCell id="dep-1-2" value="&lt;b&gt;1. HTTP RESTful JSON&lt;/b&gt; (&lt;code&gt;Authorization: Bearer JWT&lt;/code&gt;)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0F172A;strokeWidth=1.8;endArrow=block;endFill=1;fontSize=12;fontColor=#0F172A;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="layer1" target="layer2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dep-2-3" value="&lt;b&gt;2. Gọi kiểm định &amp;amp; chuẩn hóa Payload đầu vào&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0F172A;strokeWidth=1.8;endArrow=block;endFill=1;fontSize=12;fontColor=#0F172A;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="layer2" target="layer3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dep-3-4" value="&lt;b&gt;3. Truyền dữ liệu sạch (Clean Dict/DTO) vào tầng Nghiệp vụ&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0F172A;strokeWidth=1.8;endArrow=block;endFill=1;fontSize=12;fontColor=#0F172A;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="layer3" target="layer4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dep-4-5" value="&lt;b&gt;4. Gọi thao tác đọc/ghi nguyên tử (Không viết truy vấn DB ở Service)&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0F172A;strokeWidth=1.8;endArrow=block;endFill=1;fontSize=12;fontColor=#0F172A;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="layer4" target="layer5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== CROSS-CUTTING EXCEPTION LAYER (RIGHT COLUMN) ==================== -->
+        <mxCell id="err-layer" value="&lt;b style=&quot;font-size:13.5px;color:#7F1D1D;&quot;&gt;[KHỐI NGOẠI LỆ NGHIỆP VỤ XUYÊN TẦNG]&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:12px;color:#991B1B;&quot;&gt;Thư mục: src/errors/AppError.py [Tiêu chí C7, NFR-04]&lt;/i&gt;" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;verticalAlign=top;align=center;spacingTop=6;fillColor=#FEF2F2;strokeColor=#B91C1C;strokeWidth=1.5;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="495" width="340" height="345" as="geometry" />
+        </mxCell>
+
+        <mxCell id="err-card" value="&lt;b style=&quot;font-size:12.5px;&quot;&gt;Lớp cơ sở AppError &amp;amp; 6 Ngoại lệ chuẩn hóa&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:11px;color:#7F1D1D;&quot;&gt;(Độc lập HTTP Request/Response – Ánh xạ mã lỗi nhất quán)&lt;/i&gt;&lt;hr style=&quot;border:0;border-top:1px solid #FECACA;margin:6px 0;&quot;&gt;• &lt;b&gt;UnauthorizedCenterError&lt;/b&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;code&gt;[EX-02 | BR-04 &amp;rarr; HTTP 403]&lt;/code&gt;&lt;br&gt;• &lt;b&gt;InvalidTicketError&lt;/b&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;code&gt;[EX-03 | BR-02 / UC-99 &amp;rarr; HTTP 422]&lt;/code&gt;&lt;br&gt;• &lt;b&gt;NegativeStockError&lt;/b&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;code&gt;[EX-04 | BR-01 &amp;rarr; HTTP 400]&lt;/code&gt;&lt;br&gt;• &lt;b&gt;ConcurrentUpdateError&lt;/b&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;code&gt;[EX-05 | NFR-03 &amp;rarr; HTTP 409]&lt;/code&gt;&lt;br&gt;• &lt;b&gt;UnauthorizedRoleError&lt;/b&gt; &lt;code&gt;[RBAC / FR-06 &amp;rarr; 403]&lt;/code&gt;&lt;br&gt;• &lt;b&gt;ResourceNotFoundError&lt;/b&gt; &lt;code&gt;[Not Found &amp;rarr; 404]&lt;/code&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;spacingLeft=10;spacingRight=8;fillColor=#FFFFFF;strokeColor=#B91C1C;strokeWidth=1.2;fontSize=11.5;fontColor=#0F172A;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="err-layer">
+          <mxGeometry x="15" y="54" width="310" height="275" as="geometry" />
+        </mxCell>
+
+        <!-- Dashed Exception Throw Arrows from Layers 2, 3, 4 into AppError -->
+        <mxCell id="ex-l2" value="Ném lỗi JWT / Khu vực&lt;br&gt;(401 / 403 [EX-02])" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#B91C1C;strokeWidth=1.4;dashed=1;dashPattern=6 4;endArrow=open;endFill=0;fontSize=11;fontColor=#991B1B;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.65;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="layer2" target="err-layer">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1165" y="388" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="ex-l3" value="Ném lỗi định dạng&lt;br&gt;(400 / 422 [EX-03])" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#B91C1C;strokeWidth=1.4;dashed=1;dashPattern=6 4;endArrow=open;endFill=0;fontSize=11;fontColor=#991B1B;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.55;exitDx=0;exitDy=0;entryX=0;entryY=0.22;entryDx=0;entryDy=0;" edge="1" parent="1" source="layer3" target="err-layer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ex-l4" value="Ném lỗi nghiệp vụ&lt;br&gt;(400 / 403 / 409 / 422)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#B91C1C;strokeWidth=1.4;dashed=1;dashPattern=6 4;endArrow=open;endFill=0;fontSize=11;fontColor=#991B1B;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.78;entryDx=0;entryDy=0;" edge="1" parent="1" source="layer4" target="err-layer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Catch & Translate Arrow from AppError back to Global Exception Handler in src/app.py -->
+        <mxCell id="ex-catch" value="Global Exception Handler bắt AppError &amp;rarr; Dịch JSON chuẩn {status, error_code, message}" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1D4ED8;strokeWidth=1.5;dashed=1;dashPattern=8 4;endArrow=block;endFill=1;fontSize=11;fontColor=#1E3A8A;labelBackgroundColor=#FFFFFF;exitX=0.72;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="err-layer" target="layer2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1325" y="262" />
+              <mxPoint x="300" y="262" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ==================== OUT OF SCOPE BOUNDARY NOTE (SEPARATED CLEANLY) ==================== -->
+        <mxCell id="out-of-scope" value="&lt;b style=&quot;font-size:12.5px;color:#713F12;&quot;&gt;[RANH GIỚI NGOÀI PHẠM VI – OUT-OF-SCOPE (WON&apos;T HAVE)]&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Không tích hợp API đồng bộ sang Hệ thống Kế toán – Tài chính / Hóa đơn VAT (FIFO/LIFO).&lt;br&gt;• Không tự động gửi Email đặt hàng (PO) tới Nhà cung cấp linh kiện bên ngoài.&lt;br&gt;• Không bao gồm quy trình Lễ tân tiếp nhận thiết bị hoặc Vận chuyển (Logistics) liên tỉnh." style="shape=note;size=18;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=12;spacingLeft=12;spacingRight=12;fillColor=#FEF9C3;strokeColor=#A16207;strokeWidth=1.3;fontSize=11.5;fontColor=#422006;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="895" width="340" height="205" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== BOTTOM ARCHITECTURE LEGEND TABLE ==================== -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#334155;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1240" width="1360" height="250" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-header" value="&lt;b&gt;BẢNG CHÚ THÍCH KÝ HIỆU: SƠ ĐỒ KIẾN TRÚC PHÂN LỚP ĐÃ HIỆN THỰC (ARCHITECTURE LEGEND)&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#334155;fontSize=13;fontColor=#0F172A;align=left;spacingLeft=14;fontFamily=Segoe UI, Helvetica, Arial, sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1240" width="1360" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- Column Headers -->
+        <mxCell id="lh-col1" value="&lt;b&gt;Ký hiệu (Symbol)&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#334155;fontSize=12;fontColor=#0F172A;align=center;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1274" width="210" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="lh-col2" value="&lt;b&gt;Tên gọi (Name)&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#334155;fontSize=12;fontColor=#0F172A;align=center;" vertex="1" parent="1">
+          <mxGeometry x="270" y="1274" width="280" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="lh-col3" value="&lt;b&gt;Ý nghĩa kỹ thuật trong hệ thống (Technical Description)&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#334155;fontSize=12;fontColor=#0F172A;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1274" width="870" height="32" as="geometry" />
+        </mxCell>
+
+        <!-- Row 1: Architectural Layer -->
+        <mxCell id="lr1-c1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1306" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lr1-sym" value="Tầng [1..5]" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#1D4ED8;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="105" y="1311" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lr1-c2" value="Architectural Layer (Tầng kiến trúc)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="270" y="1306" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lr1-c3" value="Khung chứa lớn phân tách độc lập 5 tầng trách nhiệm từ Giao diện SPA xuống Cơ sở dữ liệu theo Clean Architecture." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1306" width="870" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Row 2: Source File / Module -->
+        <mxCell id="lr2-c1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1336" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lr2-sym" value="module.py" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#475569;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="115" y="1341" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lr2-c2" value="Source File / Module (Tệp mã nguồn)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="270" y="1336" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lr2-c3" value="Tệp mã nguồn thực tế trong thư mục src/, migrations/, seeds/ đảm nhiệm xử lý chuyên biệt bên trong từng tầng." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1336" width="870" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Row 3: Data Store Cylinder -->
+        <mxCell id="lr3-c1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1366" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lr3-sym" value="DB" style="shape=cylinder3;size=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4C1D95;fontSize=9.5;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="1369" width="60" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lr3-c2" value="Data Store (Kho lưu trữ dữ liệu kép)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="270" y="1366" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lr3-c3" value="Hệ thống lưu trữ vật lý gồm MongoDB Atlas Cloud (6 Collections số ít chuẩn) và In-Memory / Disk JSON Fallback." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1366" width="870" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Row 4: One-way Dependency Arrow -->
+        <mxCell id="lr4-c1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1396" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lr4-sym" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#0F172A;strokeWidth=1.8;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="1411" as="sourcePoint" />
+            <mxPoint x="220" y="1411" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lr4-c2" value="One-way Dependency (Phụ thuộc 1 chiều)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="270" y="1396" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lr4-c3" value="Luồng gọi hàm và truyền dữ liệu một chiều từ tầng trên xuống đúng tầng dưới kế cận (Tuyệt đối không gọi nhảy tầng hoặc gọi ngược)." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1396" width="870" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Row 5: Exception Throw & Catch -->
+        <mxCell id="lr5-c1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1426" width="210" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="lr5-sym" value="" style="endArrow=open;endFill=0;dashed=1;dashPattern=6 4;html=1;strokeColor=#B91C1C;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="1442" as="sourcePoint" />
+            <mxPoint x="220" y="1442" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lr5-c2" value="Exception Flow (Luồng ném &amp;amp; bắt ngoại lệ)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="270" y="1426" width="280" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="lr5-c3" value="Các tầng ném ngoại lệ qua AppError.py và được Global Exception Handler tại src/app.py bắt, dịch sang JSON chuẩn [NFR-04]." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1426" width="870" height="32" as="geometry" />
+        </mxCell>
+
+        <!-- Row 6: Traceability & Scope Note -->
+        <mxCell id="lr6-c1" value="&lt;code&gt;[BR-xx] [EX-xx]&lt;/code&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1458" width="210" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="lr6-c2" value="Traceability Tag &amp;amp; Scope Note" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="270" y="1458" width="280" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="lr6-c3" value="Nhãn truy vết đóng vòng ngược về Đặc tả SRS / Use Case của Bài tập 1 (ACT, UC, BR, NFR, EX) và ghi chú ranh giới Out-of-Scope." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontSize=11.5;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1458" width="870" height="32" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+

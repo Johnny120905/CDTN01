@@ -1,0 +1,900 @@
+{
+  "service_center": [
+    {
+      "center_id": "L5-WH-890",
+      "center_name": "Trung tâm Bảo hành Mekong Mobile Quận 1",
+      "address": "123 Nguyễn Thị Minh Khai, Phường Bến Thành, Quận 1, TP.HCM",
+      "phone": "028.3910.8899"
+    },
+    {
+      "center_id": "L5-WH-102",
+      "center_name": "Trung tâm Bảo hành Mekong Mobile Cần Thơ",
+      "address": "45 Đại lộ Hòa Bình, Phường An Cư, Quận Ninh Kiều, Cần Thơ",
+      "phone": "029.2388.7766"
+    }
+  ],
+  "users": [
+    {
+      "_id": "6addb13c7dce9c6704a1dda2",
+      "email": "quanlykho.test@gmail.com",
+      "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+      "full_name": "Trần Văn Quản Lý",
+      "role": "MANAGER",
+      "center_id": "L5-WH-890",
+      "is_verified": false,
+      "otp_code": "812045",
+      "otp_expires_at": "2026-10-25T14:30:00.000Z",
+      "is_active": true,
+      "status": "ONLINE"
+    },
+    {
+      "_id": "6addb13c7dce9c6704a1dda3",
+      "email": "vattu.test@gmail.com",
+      "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+      "full_name": "Nguyễn Thị Vật Tư",
+      "role": "MATERIAL_STAFF",
+      "center_id": "L5-WH-890",
+      "is_verified": false,
+      "otp_code": "458921",
+      "otp_expires_at": "2026-10-25T14:30:00.000Z",
+      "is_active": true,
+      "status": "AWAY"
+    },
+    {
+      "_id": "6addb13c7dce9c6704a1dda4",
+      "email": "kythuat.test@gmail.com",
+      "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+      "full_name": "Lê Văn Kỹ Thuật",
+      "role": "TECH_STAFF",
+      "center_id": "L5-WH-890",
+      "is_verified": false,
+      "otp_code": "739102",
+      "otp_expires_at": "2026-10-25T14:30:00.000Z",
+      "is_active": true,
+      "status": "ONLINE"
+    },
+    {
+      "_id": "6adf1714537e5d17773ef86f",
+      "email": "vuthelong1009@gmail.com",
+      "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+      "full_name": "Vũ Thế Long",
+      "role": "TECH_STAFF",
+      "center_id": "L5-WH-890",
+      "is_active": true,
+      "status": "OFF_SHIFT"
+    },
+    {
+      "_id": "6ae097d0af614e8aaf3299d3",
+      "email": "anhpham712002@gmail.com",
+      "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+      "full_name": "Phạm Nguyễn Hoàng Anh",
+      "role": "MATERIAL_STAFF",
+      "center_id": "L5-WH-890",
+      "is_active": false,
+      "status": "TERMINATED"
+    }
+  ],
+  "part": [
+    {
+      "part_code": "SCR-IP14-01",
+      "part_name": "Màn hình OLED iPhone 14 Pro Max",
+      "category": "Màn hình",
+      "price": 3850000.0,
+      "min_threshold": 15
+    },
+    {
+      "part_code": "BAT-SS23-02",
+      "part_name": "Pin dung lượng cao Galaxy S23 Ultra (5000mAh)",
+      "category": "Pin & Nguồn",
+      "price": 950000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "CAM-IP14-03",
+      "part_name": "Cụm Camera sau TrueDepth iPhone 14 Pro",
+      "category": "Camera",
+      "price": 2450000.0,
+      "min_threshold": 8
+    },
+    {
+      "part_code": "SCR-SAM-S24",
+      "part_name": "Màn hình Dynamic AMOLED 2X Galaxy S24+",
+      "category": "Màn hình",
+      "price": 3990000.0,
+      "min_threshold": 12
+    },
+    {
+      "part_code": "BAT-IP13-05",
+      "part_name": "Pin zin bóc máy iPhone 13 Pro (3095mAh)",
+      "category": "Pin & Nguồn",
+      "price": 820000.0,
+      "min_threshold": 20
+    },
+    {
+      "part_code": "SPK-IP14-06",
+      "part_name": "Cụm loa ngoài Stereo iPhone 14 Pro Max",
+      "category": "Âm thanh",
+      "price": 480000.0,
+      "min_threshold": 15
+    },
+    {
+      "part_code": "GLS-XIA-13P",
+      "part_name": "Mặt kính lưng Ceramic Xiaomi 13 Pro",
+      "category": "Vỏ & Kính",
+      "price": 650000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "SCR-IP15PM-08",
+      "part_name": "Màn hình Super Retina XDR iPhone 15 Pro Max",
+      "category": "Màn hình",
+      "price": 4200000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "BAT-IP15-09",
+      "part_name": "Pin Polymer iPhone 15 (3349mAh)",
+      "category": "Pin & Nguồn",
+      "price": 890000.0,
+      "min_threshold": 15
+    },
+    {
+      "part_code": "CAM-SS24U-10",
+      "part_name": "Cụm Camera 200MP Galaxy S24 Ultra",
+      "category": "Camera",
+      "price": 3100000.0,
+      "min_threshold": 8
+    },
+    {
+      "part_code": "CHR-IP15-11",
+      "part_name": "Cổng sạc Type-C & Cáp nguồn iPhone 15 Series",
+      "category": "Cổng sạc & Cáp",
+      "price": 450000.0,
+      "min_threshold": 12
+    },
+    {
+      "part_code": "SCR-IP13-12",
+      "part_name": "Màn hình OLED Super Retina iPhone 13",
+      "category": "Màn hình",
+      "price": 2850000.0,
+      "min_threshold": 15
+    },
+    {
+      "part_code": "BAT-IP14-13",
+      "part_name": "Pin Li-ion iPhone 14 (3279mAh)",
+      "category": "Pin & Nguồn",
+      "price": 850000.0,
+      "min_threshold": 20
+    },
+    {
+      "part_code": "CAM-IP15PM-14",
+      "part_name": "Cụm Camera tiềm vọng 5X iPhone 15 Pro Max",
+      "category": "Camera",
+      "price": 3450000.0,
+      "min_threshold": 6
+    },
+    {
+      "part_code": "GLS-IP15PM-15",
+      "part_name": "Mặt kính lưng Ceramic Shield iPhone 15 Pro Max",
+      "category": "Vỏ & Kính",
+      "price": 950000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "SPK-SS23-16",
+      "part_name": "Cụm Loa ngoài AKG Stereo Galaxy S23 Ultra",
+      "category": "Âm thanh",
+      "price": 420000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "MIC-IP14-17",
+      "part_name": "Cụm Micro thu âm chống ồn & Cáp cảm biến iPhone 14",
+      "category": "Âm thanh",
+      "price": 380000.0,
+      "min_threshold": 12
+    },
+    {
+      "part_code": "SCR-XIA-14-18",
+      "part_name": "Màn hình AMOLED 1.5K 120Hz Xiaomi 14",
+      "category": "Màn hình",
+      "price": 2650000.0,
+      "min_threshold": 8
+    },
+    {
+      "part_code": "BAT-XIA-14-19",
+      "part_name": "Pin sạc nhanh 90W Xiaomi 14 (4610mAh)",
+      "category": "Pin & Nguồn",
+      "price": 680000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "FCD-IP14-20",
+      "part_name": "Cụm Cảm biến Face ID TrueDepth iPhone 14 Pro",
+      "category": "Bo mạch & Cảm biến",
+      "price": 1850000.0,
+      "min_threshold": 6
+    },
+    {
+      "part_code": "TAP-IP14-21",
+      "part_name": "Động cơ rung Haptic Taptic Engine iPhone 14 Series",
+      "category": "Linh kiện cơ học",
+      "price": 350000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "CHR-SS23-22",
+      "part_name": "Cụm bo sạc nhanh Type-C Galaxy S23",
+      "category": "Cổng sạc & Cáp",
+      "price": 410000.0,
+      "min_threshold": 15
+    },
+    {
+      "part_code": "ANT-IP15-23",
+      "part_name": "Cáp Ăng-ten sóng 5G mmWave iPhone 15 Pro",
+      "category": "Bo mạch & Cảm biến",
+      "price": 290000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "SCR-IPAD-M2-24",
+      "part_name": "Màn hình Liquid Retina XDR iPad Pro 11 inch M2",
+      "category": "Màn hình",
+      "price": 5200000.0,
+      "min_threshold": 5
+    },
+    {
+      "part_code": "BAT-IPAD-M2-25",
+      "part_name": "Pin Li-Po iPad Pro 11 inch M2 (7538mAh)",
+      "category": "Pin & Nguồn",
+      "price": 1450000.0,
+      "min_threshold": 6
+    },
+    {
+      "part_code": "CAM-IPAD-M2-26",
+      "part_name": "Cụm Camera Ultra Wide LiDAR iPad Pro M2",
+      "category": "Camera",
+      "price": 1950000.0,
+      "min_threshold": 4
+    },
+    {
+      "part_code": "PWR-IP14-27",
+      "part_name": "Dây cáp nguồn phím âm lượng & Gạt rung iPhone 14",
+      "category": "Cáp & Nút bấm",
+      "price": 280000.0,
+      "min_threshold": 15
+    },
+    {
+      "part_code": "GLS-SS24U-28",
+      "part_name": "Kính cường lực Gorilla Armor Galaxy S24 Ultra",
+      "category": "Vỏ & Kính",
+      "price": 890000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "SIM-IP14-29",
+      "part_name": "Khay sim kép khay đơn vật lý iPhone 14 Series",
+      "category": "Vỏ & Kính",
+      "price": 120000.0,
+      "min_threshold": 20
+    },
+    {
+      "part_code": "WCH-IP15-30",
+      "part_name": "Cụm cuộn sạc không dây MagSafe & Cảm biến nhiệt iPhone 15",
+      "category": "Cổng sạc & Cáp",
+      "price": 520000.0,
+      "min_threshold": 8
+    },
+    {
+      "part_code": "SCR-IP12-31",
+      "part_name": "Màn hình Super Retina OLED iPhone 12 / 12 Pro",
+      "category": "Màn hình",
+      "price": 2100000.0,
+      "min_threshold": 15
+    },
+    {
+      "part_code": "BAT-IP12-32",
+      "part_name": "Pin thay thế chính hãng iPhone 12 (2815mAh)",
+      "category": "Pin & Nguồn",
+      "price": 650000.0,
+      "min_threshold": 18
+    },
+    {
+      "part_code": "CAM-IP13-33",
+      "part_name": "Cụm Camera kép góc siêu rộng iPhone 13",
+      "category": "Camera",
+      "price": 1650000.0,
+      "min_threshold": 8
+    },
+    {
+      "part_code": "SPK-IP13-34",
+      "part_name": "Cụm loa trong và loa đàm thoại iPhone 13",
+      "category": "Âm thanh",
+      "price": 320000.0,
+      "min_threshold": 12
+    },
+    {
+      "part_code": "GLS-IP14-35",
+      "part_name": "Mặt kính lưng phủ nhám iPhone 14 Plus",
+      "category": "Vỏ & Kính",
+      "price": 550000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "IC-PWR-IP14-36",
+      "part_name": "IC Quản lý nguồn PMIC iPhone 14 Pro",
+      "category": "Bo mạch & Cảm biến",
+      "price": 780000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "IC-CHG-SS23-37",
+      "part_name": "IC Điều khiển sạc nhanh Qualcomm Galaxy S23",
+      "category": "Bo mạch & Cảm biến",
+      "price": 590000.0,
+      "min_threshold": 10
+    },
+    {
+      "part_code": "SCR-MAC-M1-38",
+      "part_name": "Cụm Màn hình Retina True Tone MacBook Air M1 13 inch",
+      "category": "Màn hình",
+      "price": 6800000.0,
+      "min_threshold": 4
+    },
+    {
+      "part_code": "BAT-MAC-M1-39",
+      "part_name": "Pin Li-Po MacBook Air M1 (49.9Wh)",
+      "category": "Pin & Nguồn",
+      "price": 1850000.0,
+      "min_threshold": 5
+    },
+    {
+      "part_code": "KBD-MAC-M1-40",
+      "part_name": "Bàn phím Magic Keyboard cơ chế cắt kéo MacBook Air M1",
+      "category": "Linh kiện cơ học",
+      "price": 1450000.0,
+      "min_threshold": 5
+    }
+  ],
+  "ticket": [
+    {
+      "ticket_id": "TK-2026-8892",
+      "status": "IN_PROGRESS",
+      "device_name": "iPhone 14 Pro Max",
+      "customer_name": "Phạm Tuấn Kiệt",
+      "reported_issue": "Màn hình sọc xanh dọc, mất cảm ứng góc phải"
+    },
+    {
+      "ticket_id": "TK-1092",
+      "status": "OPEN",
+      "device_name": "iPhone 14 Pro Max",
+      "customer_name": "Trần Minh Hoàng",
+      "reported_issue": "Hỏng màn hình do rơi rớt va đập mạnh"
+    },
+    {
+      "ticket_id": "TK-1093",
+      "status": "OPEN",
+      "device_name": "Samsung Galaxy S23 Ultra",
+      "customer_name": "Nguyễn Văn Đạt",
+      "reported_issue": "Chai pin nặng, sạc nóng máy không vào"
+    },
+    {
+      "ticket_id": "TK-1095",
+      "status": "IN_PROGRESS",
+      "device_name": "iPad Pro M2 11 inch",
+      "customer_name": "Lê Thu Hà",
+      "reported_issue": "Lỗi Face ID và cụm cảm biến trước"
+    },
+    {
+      "ticket_id": "TK-1098",
+      "status": "OPEN",
+      "device_name": "Xiaomi 13 Pro",
+      "customer_name": "Vũ Hoàng Long",
+      "reported_issue": "Nứt vỡ kính lưng, xước viền"
+    }
+  ],
+  "part_stock": [
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-IP14-01",
+      "quantity": 12,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "BAT-SS23-02",
+      "quantity": 25,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "CAM-IP14-03",
+      "quantity": 6,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-SAM-S24",
+      "quantity": 18,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "BAT-IP13-05",
+      "quantity": 9,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SPK-IP14-06",
+      "quantity": 30,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "GLS-XIA-13P",
+      "quantity": 14,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "SCR-IP14-01",
+      "quantity": 40,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "BAT-SS23-02",
+      "quantity": 35,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-IP15PM-08",
+      "quantity": 18,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "SCR-IP15PM-08",
+      "quantity": 26,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "BAT-IP15-09",
+      "quantity": 25,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "BAT-IP15-09",
+      "quantity": 33,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "CAM-SS24U-10",
+      "quantity": 5,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "CAM-SS24U-10",
+      "quantity": 13,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "CHR-IP15-11",
+      "quantity": 14,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "CHR-IP15-11",
+      "quantity": 22,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-IP13-12",
+      "quantity": 22,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "SCR-IP13-12",
+      "quantity": 30,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "BAT-IP14-13",
+      "quantity": 21,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "BAT-IP14-13",
+      "quantity": 29,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "CAM-IP15PM-14",
+      "quantity": 4,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "CAM-IP15PM-14",
+      "quantity": 12,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "GLS-IP15PM-15",
+      "quantity": 16,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "GLS-IP15PM-15",
+      "quantity": 24,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SPK-SS23-16",
+      "quantity": 15,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "SPK-SS23-16",
+      "quantity": 23,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "MIC-IP14-17",
+      "quantity": 28,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "MIC-IP14-17",
+      "quantity": 36,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-XIA-14-18",
+      "quantity": 10,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "SCR-XIA-14-18",
+      "quantity": 18,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "BAT-XIA-14-19",
+      "quantity": 19,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "BAT-XIA-14-19",
+      "quantity": 27,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "FCD-IP14-20",
+      "quantity": 5,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "FCD-IP14-20",
+      "quantity": 13,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "TAP-IP14-21",
+      "quantity": 18,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "TAP-IP14-21",
+      "quantity": 26,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "CHR-SS23-22",
+      "quantity": 17,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "CHR-SS23-22",
+      "quantity": 25,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "ANT-IP15-23",
+      "quantity": 24,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "ANT-IP15-23",
+      "quantity": 32,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-IPAD-M2-24",
+      "quantity": 7,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "SCR-IPAD-M2-24",
+      "quantity": 15,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "BAT-IPAD-M2-25",
+      "quantity": 8,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "BAT-IPAD-M2-25",
+      "quantity": 16,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "CAM-IPAD-M2-26",
+      "quantity": 3,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "CAM-IPAD-M2-26",
+      "quantity": 11,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "PWR-IP14-27",
+      "quantity": 32,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "PWR-IP14-27",
+      "quantity": 40,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "GLS-SS24U-28",
+      "quantity": 12,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "GLS-SS24U-28",
+      "quantity": 20,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SIM-IP14-29",
+      "quantity": 45,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "SIM-IP14-29",
+      "quantity": 53,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "WCH-IP15-30",
+      "quantity": 14,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "WCH-IP15-30",
+      "quantity": 22,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-IP12-31",
+      "quantity": 16,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "SCR-IP12-31",
+      "quantity": 24,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "BAT-IP12-32",
+      "quantity": 26,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "BAT-IP12-32",
+      "quantity": 34,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "CAM-IP13-33",
+      "quantity": 9,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "CAM-IP13-33",
+      "quantity": 17,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SPK-IP13-34",
+      "quantity": 20,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "SPK-IP13-34",
+      "quantity": 28,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "GLS-IP14-35",
+      "quantity": 15,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "GLS-IP14-35",
+      "quantity": 23,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "IC-PWR-IP14-36",
+      "quantity": 4,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "IC-PWR-IP14-36",
+      "quantity": 12,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "IC-CHG-SS23-37",
+      "quantity": 12,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "IC-CHG-SS23-37",
+      "quantity": 20,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-MAC-M1-38",
+      "quantity": 6,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "SCR-MAC-M1-38",
+      "quantity": 14,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "BAT-MAC-M1-39",
+      "quantity": 5,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "BAT-MAC-M1-39",
+      "quantity": 13,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-890",
+      "part_code": "KBD-MAC-M1-40",
+      "quantity": 8,
+      "version": 1
+    },
+    {
+      "center_id": "L5-WH-102",
+      "part_code": "KBD-MAC-M1-40",
+      "quantity": 16,
+      "version": 1
+    }
+  ],
+  "part_transaction": [
+    {
+      "transaction_id": 884910,
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-IP14-01",
+      "type": "IN",
+      "quantity": 20,
+      "ticket_id": null,
+      "created_by": "vattu.test@gmail.com",
+      "created_at": "2026-10-25T08:00:00.000Z"
+    },
+    {
+      "transaction_id": 884915,
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-IP14-01",
+      "type": "OUT",
+      "quantity": 5,
+      "ticket_id": "TK-1092",
+      "created_by": "kythuat.test@gmail.com",
+      "created_at": "2026-10-25T09:30:00.000Z"
+    },
+    {
+      "transaction_id": 884918,
+      "center_id": "L5-WH-890",
+      "part_code": "SCR-IP14-01",
+      "type": "OUT",
+      "quantity": 3,
+      "ticket_id": "TK-2026-8892",
+      "created_by": "kythuat.test@gmail.com",
+      "created_at": "2026-10-25T10:15:00.000Z"
+    },
+    {
+      "transaction_id": 884920,
+      "center_id": "L5-WH-890",
+      "part_code": "BAT-SS23-02",
+      "type": "IN",
+      "quantity": 30,
+      "ticket_id": null,
+      "created_by": "vattu.test@gmail.com",
+      "created_at": "2026-10-25T11:00:00.000Z"
+    },
+    {
+      "transaction_id": 884922,
+      "center_id": "L5-WH-890",
+      "part_code": "BAT-SS23-02",
+      "type": "OUT",
+      "quantity": 5,
+      "ticket_id": "TK-1093",
+      "created_by": "kythuat.test@gmail.com",
+      "created_at": "2026-10-25T11:45:00.000Z"
+    }
+  ]
+}

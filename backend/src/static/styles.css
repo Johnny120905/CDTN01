@@ -1,0 +1,473 @@
+/* 
+  File: src/static/styles.css
+  Dự án: Hệ thống Smart CRM – Mekong Mobile (Phân hệ Kho linh kiện)
+  Mục đích: Định nghĩa các lớp kiểu dáng 3D ĐẲNG CẤP TÔNG MÀU TỐI (Dark Slate / Deep Navy / Matte Black),
+            hiệu ứng chuyển động cơ học 3D, bo góc mềm mại, quy chuẩn font chữ Be Vietnam Pro,
+            và bảng màu trạng thái ngữ nghĩa (Xanh lá / Vàng / Đỏ / Đã thôi việc).
+*/
+
+/* 1. Nhúng chuẩn Font Be Vietnam Pro */
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap');
+
+:root {
+  --font-main: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Bảng màu Dark 3D Elevation */
+  --bg-deep-space: #070b14;
+  --bg-dark-slate: #0b1329;
+  --bg-card-dark: rgba(15, 23, 42, 0.88);
+  --border-card-dark: rgba(255, 255, 255, 0.1);
+  --border-card-highlight: rgba(255, 255, 255, 0.18);
+
+  /* Bảng màu ngữ nghĩa Dark Mode theo chuẩn yêu cầu:
+     - Xanh lá: Đang hoạt động, Hoàn thành, Ổn định, Tồn an toàn
+     - Vàng/Cam: Tạm dừng hoạt động, Đang chờ đợi, Cận ngưỡng cảnh báo
+     - Đỏ: Nghỉ sau ca làm, Báo động cạn kho nguy cấp, Lỗi nhập liệu
+     - Đỏ sẫm: Đã thôi việc (Tài khoản dừng vĩnh viễn)
+  */
+  --status-green-bg: rgba(16, 185, 129, 0.15);
+  --status-green-text: #34d399;
+  --status-green-border: rgba(16, 185, 129, 0.35);
+  --status-green-dot: #10b981;
+
+  --status-yellow-bg: rgba(245, 158, 11, 0.15);
+  --status-yellow-text: #fbbf24;
+  --status-yellow-border: rgba(245, 158, 11, 0.35);
+  --status-yellow-dot: #f59e0b;
+
+  --status-red-bg: rgba(239, 68, 68, 0.15);
+  --status-red-text: #f87171;
+  --status-red-border: rgba(239, 68, 68, 0.35);
+  --status-red-dot: #ef4444;
+
+  --status-terminated-bg: rgba(153, 27, 27, 0.25);
+  --status-terminated-text: #fca5a5;
+  --status-terminated-border: rgba(239, 68, 68, 0.45);
+  --status-terminated-dot: #b91c1c;
+}
+
+* {
+  font-family: var(--font-main);
+  box-sizing: border-box;
+}
+
+.material-symbols-outlined,
+.material-icons,
+.material-symbols {
+  font-family: 'Material Symbols Outlined', 'Material Icons' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-deep-space);
+  color: #f1f5f9;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(37, 99, 235, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 45%);
+  background-attachment: fixed;
+}
+
+header .text-zinc-800 {
+  color: #f1f5f9 !important;
+}
+
+/* 2. Thanh cuộn mượt mà tông tối */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 16, 30, 0.8);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(71, 85, 105, 1);
+}
+
+/* 3. Hiệu ứng 3D & Thẻ bo góc tông tối (Dark 3D Elevation & Glassmorphism) */
+.card-3d {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.88) 0%, rgba(10, 17, 33, 0.94) 100%);
+  border: 1px solid var(--border-card-dark);
+  border-top: 1px solid var(--border-card-highlight);
+  border-radius: 1rem; /* Bo góc 16px - rounded-2xl */
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7),
+              0 4px 6px -2px rgba(0, 0, 0, 0.4),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
+  position: relative;
+}
+
+.card-3d:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.85),
+              0 0 25px 2px rgba(37, 99, 235, 0.18),
+              inset 0 1px 2px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.card-3d-interactive {
+  cursor: pointer;
+}
+
+.card-3d-interactive:active {
+  transform: translateY(0px) scale(0.995);
+}
+
+/* Kính mờ tối cao cấp (Dark Glassmorphism) */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 35px 0 rgba(0, 0, 0, 0.65);
+}
+
+/* Nút bấm 3D xúc giác (3D Tactile Buttons) */
+.btn-3d-primary {
+  background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border-radius: 0.75rem; /* Bo góc 12px */
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.45),
+              0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-3d-primary:hover {
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+  box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.6),
+              0 3px 6px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-3d-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px 0 rgba(37, 99, 235, 0.3);
+}
+
+.btn-3d-secondary {
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+  color: #e2e8f0;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-3d-secondary:hover {
+  background: linear-gradient(180deg, rgba(51, 65, 85, 0.9) 0%, rgba(30, 41, 59, 0.95) 100%);
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.btn-3d-secondary:active {
+  transform: translateY(1px);
+}
+
+/* 4. Quy chuẩn Bảng màu Trạng thái Ngữ nghĩa (Status Badges & Indicators) */
+.status-badge-green {
+  background-color: var(--status-green-bg);
+  color: var(--status-green-text);
+  border: 1px solid var(--status-green-border);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.status-badge-green .dot-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--status-green-dot);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.status-badge-yellow {
+  background-color: var(--status-yellow-bg);
+  color: var(--status-yellow-text);
+  border: 1px solid var(--status-yellow-border);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.status-badge-yellow .dot-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--status-yellow-dot);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+}
+
+.status-badge-red {
+  background-color: var(--status-red-bg);
+  color: var(--status-red-text);
+  border: 1px solid var(--status-red-border);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.status-badge-red .dot-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--status-red-dot);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+}
+
+.status-badge-terminated {
+  background-color: var(--status-terminated-bg);
+  color: var(--status-terminated-text);
+  border: 1px solid var(--status-terminated-border);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.status-badge-terminated .dot-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--status-terminated-dot);
+}
+
+/* 5. Định dạng Báo lỗi Dòng Đỏ & Ràng buộc Biểu mẫu */
+.field-error-text {
+  color: #f87171;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  animation: fadeInDown 0.2s ease-out;
+}
+
+.field-error-input {
+  border-color: #ef4444 !important;
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3) !important;
+}
+
+.field-error-input:focus {
+  outline: none !important;
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4) !important;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 6. Typography mã định danh */
+.code-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  letter-spacing: -0.02em;
+}
+
+/* 7. Thông báo Toast nổi 3D */
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.toast-item {
+  animation: slideDownFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.7),
+              0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  border-radius: 0.875rem;
+  backdrop-filter: blur(16px);
+}
+
+/* 8. Spinner trạng thái tải */
+.loading-spinner {
+  border: 2.5px solid rgba(255, 255, 255, 0.15);
+  border-left-color: #3b82f6;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 9. Dropdown Gợi ý Tra cứu Linh kiện Thông minh (Auto-suggest Dropdown) */
+.autocomplete-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 0.75rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75);
+  max-height: 260px;
+  overflow-y: auto;
+  z-index: 60;
+  backdrop-filter: blur(16px);
+}
+
+.autocomplete-item {
+  padding: 0.625rem 0.875rem;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.15s ease;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover, .autocomplete-item.active {
+  background: rgba(37, 99, 235, 0.2);
+}
+
+/* 10. Định dạng in ấn tài liệu */
+@media print {
+  header,
+  aside,
+  footer,
+  button,
+  .no-print,
+  #toastContainer,
+  #loginModal,
+  #profileDropdownMenu {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+  }
+
+  .card-3d {
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: 1px solid #cccccc !important;
+  }
+
+  table {
+    border: 1px solid #000000 !important;
+    width: 100% !important;
+  }
+
+  th, td {
+    border: 1px solid #cccccc !important;
+    padding: 6px !important;
+    color: #000000 !important;
+  }
+}
+
+/* 8. Khắc phục hiện tượng Autofill trình duyệt và Định dạng Nút Con mắt Toggle Mật khẩu */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #090e1a inset !important;
+  -webkit-text-fill-color: #f1f5f9 !important;
+  caret-color: #f1f5f9 !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.eye-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: #94a3b8;
+  border-radius: 8px;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.eye-toggle-btn:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.eye-toggle-btn.is-active {
+  color: #38bdf8;
+}
+
+.eye-toggle-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  display: block;
+}
+
