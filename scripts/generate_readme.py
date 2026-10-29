@@ -59,7 +59,7 @@ Hệ thống được thiết kế theo kiến trúc 3 tầng (3-Tier Architectu
 ### 1.1. Cấu hình Chuỗi kết nối MongoDB Atlas
 Hệ thống sử dụng cơ sở dữ liệu MongoDB Atlas Cloud. Chuỗi kết nối đã được cấu hình sẵn trong tệp [.env](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/.env):
 ```env
-MONGO_URI=mongodb+srv://huynhnguyenbaongoc2k5:012092005Ngoc@cluster0.naw78.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+MONGO_URI=mongodb+srv://<db_username>:<db_password>@<ten-cluster>.mongodb.net/?retryWrites=true&w=majority
 DB_NAME=mekong_mobile_l5
 ENVIRONMENT=development
 PORT=8000
@@ -129,7 +129,7 @@ Mở cửa sổ PowerShell (hoặc Terminal) và thực hiện tuần tự các 
    *Màn hình hiển thị thông báo:*
    ```text
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-   [Repository] Connected to MongoDB: mekong_mobile_l5 at mongodb+srv://...
+   [Repository] Connected to MongoDB: mekong_mobile_l5 at mongodb+srv://<db_username>:<db_password>@<ten-cluster>.mongodb.net/?retryWrites=true&w=majority
    ```
 
 5. **Kiểm tra tài liệu API tương tác trực quan (Swagger UI):**

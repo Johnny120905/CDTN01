@@ -1267,13 +1267,13 @@ async function submitTechTransaction() {
       part_code: partCode,
       type: txType,
       quantity: quantity,
-      ticket_id: txType === "OUT" ? ticketId : null
+      ticket_id: (txType === "OUT" || txType === "RETURN") ? ticketId : null
     };
 
     const res = await apiCall("/inventory/transactions", "POST", payload);
 
     showToast(
-      `Giao dịch thành công! Mã GD: #${res.data.transaction_id} — Tồn kho mới: ${res.data.current_stock} cái.`,
+      `Giao dịch thành công! Mã GD: #${res.data.transaction_id} — Tồn kho mới: ${res.data.current_stock ?? Math.max(0, (cachedStocks.find(s => s.part_code === partCode)?.quantity ?? 0) + (txType === "OUT" ? -quantity : quantity))} cái.`,
       "success",
       4000
     );
@@ -1684,7 +1684,7 @@ async function submitStockInTransaction() {
     const res = await apiCall("/inventory/transactions", "POST", payload);
 
     showToast(
-      `Đã nhập kho thành công ${quantity} cái linh kiện ${partCode}. Tồn mới: ${res.data.current_stock} cái.`,
+      `Đã nhập kho thành công ${quantity} cái linh kiện ${partCode}. Tồn mới: ${res.data.current_stock ?? ((cachedStocks.find(s => s.part_code === partCode)?.quantity ?? 0) + quantity)} cái.`,
       "success",
       4000
     );
@@ -1844,11 +1844,11 @@ async function renderManagerDashboard(container) {
                 <tr class="hover:bg-red-950/20 transition-colors">
                   <td class="py-3 px-5 font-bold code-badge text-blue-400">${a.part_code}</td>
                   <td class="py-3 px-5 font-semibold text-slate-200">${a.part_name}</td>
-                  <td class="py-3 px-5 font-extrabold text-red-400">${a.current_stock} cái</td>
+                  <td class="py-3 px-5 font-extrabold text-red-400">${a.quantity ?? a.current_stock ?? 0} cái</td>
                   <td class="py-3 px-5 text-slate-300 font-bold">${a.min_threshold} cái</td>
                   <td class="py-3 px-5">
                     <span class="status-badge-red text-[10px]">
-                      <span class="dot-indicator"></span>Thiếu ${a.min_threshold - a.current_stock} cái
+                      <span class="dot-indicator"></span>Thiếu ${Math.max(0, (a.min_threshold ?? 0) - (a.quantity ?? a.current_stock ?? 0))} cái
                     </span>
                   </td>
                   <td class="py-3 px-5 text-right">
