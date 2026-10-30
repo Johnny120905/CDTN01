@@ -202,3 +202,23 @@ Sau khi hoàn tất chỉnh sửa thiết kế Bài tập 1 theo phản hồi c�
 
 ## 4. Kết luận và đánh giá tính toàn vẹn sau thay đổi
 Toàn bộ **5 hạng mục điều chỉnh thiết kế Bài tập 1 sau phản hồi của Giảng viên (`TD-01` → `TD-05`)** và **các cải tiến thực nghiệm trong Bài tập 2 (Sprint 2)** đã được đồng bộ xuyên suốt từ tài liệu đặc tả ([srs.md](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/docs/srs.md), [thietke.md](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/docs/thietke.md), [api-contract.md](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/docs/api-contract.md), sơ đồ `.drawio`) đến mã nguồn thực thi và bộ kiểm thử tự động (**43/43 Test Cases PASSED 100%**, không phát sinh lỗi hồi quy).
+
+
+---
+
+## PHẦN III: Nhật ký thay đổi và hoàn thiện hệ thống ở Bài tập 3 (Kiểm thử, Bảo mật & Đóng gói)
+
+Giai đoạn Bài tập 3 tập trung vào việc biến hệ thống từ mức hiện thực hóa ở Bài tập 2 thành sản phẩm bàn giao hoàn chỉnh đạt chuẩn kiểm chứng thực tế và đóng gói tái lập:
+
+### Bảng tóm tắt các cải tiến kỹ thuật trong Bài tập 3:
+
+| STT | Hạng mục cải tiến | Trạng thái ở BT2 | Cải tiến hoàn thiện ở BT3 | Căn cứ đánh giá BT3 |
+| :---: | :--- | :--- | :--- | :---: |
+| **1** | **Bảo mật lưu trữ mật khẩu (S3)** | Tài khoản đăng ký còn lưu trường `password` dạng thô trong CSDL và RAM. | Loại bỏ 100% trường `password` thô; chỉ lưu duy nhất `password_hash` (Bcrypt / SHA-256); xóa sạch secret khỏi kho mã nguồn. | Tiêu chí kỹ thuật `[SE] S3` & Checklist bảo mật mục 4. |
+| **2** | **Xác thực thời hạn OTP** | API Backend chưa kiểm tra thời hạn `otp_expires_at` của OTP khi gọi `/verify-otp`. | Bổ sung kiểm tra `datetime.utcnow() > exp_dt` ném mã lỗi HTTP 400 `ERR_OTP_EXPIRED`. | Tiêu chí kỹ thuật `S2` & Luồng khôi phục an toàn. |
+| **3** | **Đóng gói Docker Compose (C1)** | MongoDB container thiếu healthcheck; chưa tự động chạy seed khi dựng từ máy trắng. | Bổ sung healthcheck `mongosh --eval 'db.adminCommand("ping")'`, tự động chạy `seeds/seed.py` khi khởi động container; hệ thống lên bằng đúng $\le 2$ lệnh. | Tiêu chí Cốt lõi `C1` & Phép thử máy trắng. |
+| **4** | **Kiểm thử tự động đa tầng (C2, C3)** | Có 43 test cases tập trung vào luồng chính và giao diện. | Mở rộng lên **56 test cases** tự động; bổ sung đầy đủ test biên 2 bên ranh giới (`BR-01`, `BR-05`), test hoàn trả (`RETURN`), test xung đột đồng thời (*Optimistic Locking*), test lũy đẳng nạp seed (`C8`). | Tiêu chí Cốt lõi `C2, C3` & Rubric 4.2. |
+| **5** | **Ghim phiên bản phụ thuộc** | Tệp `requirements.txt` dùng toán tử `>=`. | Ghim chặt 100% phiên bản thư viện bằng toán tử `==` (`fastapi==0.162.0`, `pymongo==4.19.0`, v.v.). | Mục 3.2 Đề bài BT3 & Checklist bảo mật mục 7. |
+| **6** | **Tài liệu bàn giao tiếng Anh** | Tài liệu chủ yếu bằng tiếng Việt. | Biên soạn trọn bộ `deployment-guide.md` và `api-docs/README.md` bằng tiếng Anh chuẩn mực kỹ thuật. | Tiêu chí CLO4 & Mục 2.5, 2.6 BT3. |
+| **7** | **Dọn dẹp và tinh gọn thư mục Frontend** | Tồn tại các thư mục con rỗng `frontend/src/pages/Manager`, `Material`, `Tech` và `frontend/public/images` gây nhầm lẫn về cấu trúc phân quyền và vị trí file. | Xóa bỏ hoàn toàn các thư mục con rỗng thừa; đưa trực tiếp `AuthPortal.js` và `ManagerUsers.js` ra `frontend/src/pages/`. Toàn bộ giao diện 3 vai trò chạy tập trung và đồng bộ qua kiến trúc SPA (`src/static/app.js` và `frontend/public/app.js`). | Chuẩn hóa cấu trúc thư mục sạch, loại bỏ mã thừa, tăng tính bảo trì dự án. |
+| **8** | **Nguyên tắc 1 tài khoản - 1 vai trò duy nhất (RBAC)** | Tài khoản thử nghiệm dùng chung hoặc thiếu tài khoản chuyên biệt cho từng vai trò riêng biệt. | Thiết lập quy định bất biến: Mỗi tài khoản email chỉ được cấp đúng 1 vai trò duy nhất (`MATERIAL_STAFF`, `TECH_STAFF`, hoặc `MANAGER`). Nạp sẵn 3 tài khoản chuẩn mực độc lập tương ứng với 3 vai trò vào CSDL và hệ thống seed. | Bảo mật phân quyền RBAC, kiểm toán trách nhiệm pháp lý và truy vết giao dịch. |

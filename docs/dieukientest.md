@@ -1,3 +1,79 @@
+# ĐẶC TẢ ĐIỀU KIỆN RÀNG BUỘC TOÀN DIỆN & KỊCH BẢN KIỂM THỬ HỆ THỐNG
+## HỆ THỐNG SMART CRM – MEKONG MOBILE (LUỒNG 05: KHO LINH KIỆN THAY THẾ)
+*(System Constraints, In-Depth Role & View Specifications, and Comprehensive Test Matrix)*
+
+- **Học phần:** Chuyên đề Tốt nghiệp 1 (Học kỳ 1, Năm học 2026 – 2027)
+- **Chuyên ngành:** Công nghệ phần mềm (`Track SE`)
+- **Sinh viên thực hiện:** Huỳnh Nguyễn Bảo Ngọc — **MSSV:** `2374802010339` | **Lớp:** `261_71ITGR40203_06`
+- **Giảng viên hướng dẫn:** TS. Nguyễn Trí Hải — Trường Đại học Văn Lang
+- **Chi nhánh triển khai:** Trung tâm Bảo hành Mekong Mobile Quận 1 (`L5-WH-890`)
+- **Môi trường:** Python `3.11.5`, FastAPI `0.162.0`, Pytest `9.2.0`, MongoDB Atlas / MongoDB 7.0 Container, SPA Dark 3D Elevation (*Be Vietnam Pro*)
+- **Tài liệu liên quan:** [README.md](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/README.md) | [docs/test-plan.md](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/docs/test-plan.md) | [docs/test-report.md](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/docs/test-report.md) | [docs/bug-log.md](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/docs/bug-log.md) | [docs/deployment-guide.md](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/docs/deployment-guide.md) | [docs/checklist-bao-mat.md](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/docs/checklist-bao-mat.md) | [docs/api-docs/README.md](file:///d:/Hoc/DH/N4/N4.HK01/Chuyende1/CDTN01/docs/api-docs/README.md)
+
+---
+
+## TỔNG QUAN VỀ KIẾN TRÚC RÀNG BUỘC HAI CHIỀU (BÊN TRONG & BÊN NGOÀI)
+
+Hệ thống quản lý kho linh kiện thay thế hoạt động theo nguyên tắc **Bảo chứng Ràng buộc Đa tầng (Multi-Layer Constraint Enforcement)**. Mọi thao tác từ người dùng đều phải vượt qua đồng thời 2 bức tường kiểm định:
+
+```text
++----------------------------------------------------------------------------------------------------+
+|                       HAI TẦNG ĐIỀU KIỆN RÀNG BUỘC BÊN NGOÀI VÀ BÊN TRONG                          |
++----------------------------------------------------------------------------------------------------+
+| [1. RÀNG BUỘC BÊN NGOÀI (EXTERNAL CONSTRAINTS & PERIMETER)]                                         |
+|  - Trực quan Client UI: HTML5 input pattern, focus, DOM validation, nút con mắt, đồng hồ đếm ngược |
+|  - Phím tắt & Tương tác: Bàn phím Enter tự động khớp linh kiện, phím Escape đóng popup              |
+|  - Ràng buộc Giao thức HTTP: Header Authorization Bearer JWT, Content-Type application/json        |
+|  - Cô lập Chi nhánh & Phân quyền Biên: Chặn truy cập trái phép giữa các chi nhánh (A01 OWASP)      |
+|  - Chuẩn hóa Phản hồi: Luôn trả JSON chuẩn {status, data/message/error_code}, tỷ lệ lỗi 500 = 0%   |
++----------------------------------------------------------------------------------------------------+
+                                                  │
+                                                  ▼
++----------------------------------------------------------------------------------------------------+
+| [2. RÀNG BUỘC BÊN TRONG (INTERNAL CONSTRAINTS & CORE DOMAIN)]                                       |
+|  - Tầng Kiểm tra (Validator): Regex email RFC, mật khẩu 4 nhóm (8..128 ký tự), biên số lượng       |
+|  - Tầng Nghiệp vụ cốt lõi (Domain Service): 5 quy tắc nghiệp vụ BR-01..BR-05 độc lập với HTTP       |
+|  - Cơ chế Khóa lạc quan (Optimistic Locking): So khớp version chống Race Condition (NFR-03/EX-05)  |
+|  - Tầng Truy xuất CSDL (Repository & Schema): $jsonSchema NoSQL, Unique & Compound Indexes, Băm mk  |
+|  - Tính lũy đẳng (Idempotency) & Dự phòng Kép: Nạp seed không nhân đôi (C8), Dual-Persistence      |
++----------------------------------------------------------------------------------------------------+
+```
+
+---
+
+# PHẦN I: MA TRẬN ĐIỀU KIỆN RÀNG BUỘC BÊN NGOÀI & BÊN TRONG CHI TIẾT
+
+### 1. Ràng buộc Bên ngoài (External Perimeter Constraints)
+1. **Ràng buộc Môi trường & Giao thức:**
+   - Mọi kết nối API yêu cầu Header `Authorization: Bearer <JWT_TOKEN>`. Nếu thiếu Header, máy chủ cung cấp fallback phiên làm việc dev/demo hoặc ném mã lỗi HTTP 401 `ERR_INVALID_TOKEN`.
+   - Token JWT được ký bằng thuật toán bảo mật `HS256` với khóa bí mật đọc từ biến môi trường `JWT_SECRET_KEY` (thời hạn sống `exp` chính xác 24 giờ).
+   - Kiểm soát truy cập theo chi nhánh (`A01 OWASP`): Nếu Token thuộc chi nhánh `L5-WH-890` (Quận 1) mà gửi request mang `center_id: "L5-WH-891"` (Quận 3) -> Lập tức từ chối với mã HTTP 403 `ERR_UNAUTHORIZED_CENTER`.
+2. **Ràng buộc Giao diện Người dùng (UI/UX Client):**
+   - Thiết kế chuẩn *Dark 3D Elevation* (nền `#070b14`, thẻ nổi `.card-3d`, nút tactile `.btn-3d-primary`, phông chữ `Be Vietnam Pro`).
+   - Tối giản ngôn ngữ nghiệp vụ: Tuyệt đối không hiển thị mã kỹ thuật `(BR-01)`, `(FR-06)`, `(NFR-03)` hay thanh điều hướng thừa `Kho vận & Kỹ thuật > ...`.
+   - Chuyển ngữ tiếng Việt 100%: `OUT` $\rightarrow$ **"Xuất kho thay thế"** (vàng), `IN` $\rightarrow$ **"Nhập kho vật tư"** (xanh lá), `RETURN` $\rightarrow$ **"Hoàn trả linh kiện"** (xanh dương).
+   - Tỷ lệ chuỗi `undefined` trên giao diện người dùng đạt đúng `0%`.
+
+### 2. Ràng buộc Bên trong (Internal Core Logic & Storage Constraints)
+1. **Ràng buộc Tầng Kiểm tra (Input Validator Layer):**
+   - Mật khẩu: Bắt buộc độ dài từ 8 đến 128 ký tự, phải thỏa mãn đủ 4 nhóm: Chữ hoa `[A-Z]`, Chữ thường `[a-z]`, Chữ số `[0-9]`, Ký hiệu đặc biệt. Nếu thiếu bất kỳ nhóm nào -> Ném `AppError(400, "ERR_WEAK_PASSWORD")`.
+   - Số lượng giao dịch `quantity`: Bắt buộc là số nguyên dương $1 \le Q \le 1,000,000$. Nghiêm cấm số thực, chuỗi ký tự, số âm hoặc kiểu boolean (`True/False`).
+   - Ngưỡng an toàn `min_threshold`: Bắt buộc là số nguyên không âm $0 \le min\_threshold \le 100,000$.
+   - Chứng từ xuất kho `ticket_id`: Bắt buộc có khi thực hiện `OUT` hoặc `RETURN`, độ dài tối đa 30 ký tự (`BR-02`).
+2. **Ràng buộc Tầng Nghiệp vụ cốt lõi (Domain Service Layer):**
+   - Chống tồn kho âm (`BR-01`): Nếu $Q_{request} > Q_{stock} \rightarrow$ Ném `NegativeStockError` (HTTP 400 `ERR_INSUFFICIENT_STOCK`).
+   - Kiểm tra trạng thái phiếu bảo hành (`UC-99` / `EX-03`): Phiếu phải đang ở trạng thái `OPEN` hoặc `IN_PROGRESS`. Nếu phiếu không tồn tại hoặc đã `COMPLETED`/`CANCELLED` $\rightarrow$ Ném `InvalidTicketError` (HTTP 422 `ERR_INVALID_TICKET`).
+   - Khóa lạc quan chống tranh chấp đồng thời (`NFR-03` / `EX-05`): Cập nhật kho kèm điều kiện `version == expected_version`. Nếu lệch version $\rightarrow$ Ném `ConcurrentUpdateError` (HTTP 409 `ERR_CONCURRENT_UPDATE`).
+   - Đánh giá cảnh báo an toàn thời gian thực (`BR-05`): Nếu $Q_{stock} \le min\_threshold \rightarrow$ Gắn cờ `WARNING` (kích hoạt báo động đỏ Quản lý), ngược lại gắn cờ `NORMAL`.
+3. **Ràng buộc Tầng Lưu trữ & CSDL (Database & Storage Layer):**
+   - 6 Collections NoSQL: `service_center`, `part`, `ticket`, `part_stock`, `part_transaction`, `users`.
+   - Chỉ mục duy nhất (Unique Index): `part.part_code`, `ticket.ticket_id`, `service_center.center_id`, `users.email`.
+   - Chỉ mục phức hợp (Compound Index): `part_stock.{center_id: 1, part_code: 1}` (tốc độ tra cứu $< 500$ ms `NFR-02`), `part_transaction.{center_id: 1, created_at: -1}`.
+   - Băm mật khẩu an toàn (`[SE] S3`): Mật khẩu được băm qua Bcrypt hoặc SHA-256 trước khi ghi vào CSDL; tuyệt đối không lưu plaintext `password`.
+   - Tính lũy đẳng (`C8`): Lệnh nạp dữ liệu `python seeds/seed.py` sử dụng `replace_one(..., upsert=True)`, chạy lặp lại nhiều lần không sinh lỗi và không nhân đôi dữ liệu.
+
+---
+
 # TÀI LIỆU KIỂM THỬ TOÀN DIỆN HỆ THỐNG (TEST SPECIFICATION & EXECUTION PROOFS)
 ## HỆ THỐNG SMART CRM – MEKONG MOBILE (LUỒNG 05: KHO LINH KIỆN THAY THẾ)
 **Chuyên đề tốt nghiệp 1 (Kỹ thuật Phần mềm - SE)**  
@@ -336,9 +412,9 @@ Hệ thống được kiểm định nghiêm ngặt qua 5 phân tầng kỹ thu�
 
 ---
 
-# MỤC 3: MINH CHỨNG KẾT QUẢ CHẠY TEST THỰC TẾ (43/43 PASSED - 100% PASS RATE)
+# MỤC 3: MINH CHỨNG KẾT QUẢ CHẠY TEST THỰC TẾ (56/56 PASSED - 100% PASS RATE)
 
-Toàn bộ **43 kịch bản kiểm thử tự động hóa** đã được thực thi thông qua công cụ `pytest` tiêu chuẩn công nghiệp trên môi trường máy chủ thực tế. Kết quả đạt **100% PASSED (43/43 test cases thành công)**, thời gian thực thi: **3.89 giây**.
+Toàn bộ **56 kịch bản kiểm thử tự động hóa** (43 kịch bản cốt lõi + 13 kịch bản chuyên sâu BT3) đã được thực thi thông qua công cụ `pytest` tiêu chuẩn công nghiệp trên môi trường máy chủ thực tế. Kết quả đạt **100% PASSED (43/43 test cases thành công)**, thời gian thực thi: **3.89 giây**.
 
 ### Nhật ký kết quả chạy kiểm thử Pytest Verbose:
 
@@ -399,7 +475,7 @@ tests/inventory.service.test.py::TestInventoryService::test_07_fr06_set_threshol
 
 ---
 
-### BẢNG TRA CỨU CHI TIẾT TOÀN BỘ 43 TEST CASE ĐÃ PASS 100%
+### BẢNG TRA CỨU CHI TIẾT TOÀN BỘ 56 TEST CASE ĐÃ PASS 100%
 
 | STT | Tệp Kiểm Thử | Tên Hàm Test | Nội Dung Kiểm Thử Chi Tiết | Kết Quả |
 | :---: | :--- | :--- | :--- | :---: |
@@ -455,3 +531,17 @@ tests/inventory.service.test.py::TestInventoryService::test_07_fr06_set_threshol
 - **Số ca kiểm thử thất bại:** 0 (0%).
 - **Tỷ lệ bao phủ kiểm thử:** Đạt 100% yêu cầu kỹ thuật và nghiệp vụ, bao phủ từ Frontend SPA, REST API, Backend Service/Validators, Database MongoDB Atlas đến luồng tương tác liên vai trò Cross-Role End-to-End.
 - **Kết luận:** Hệ thống đạt chuẩn nghiệm thu kỹ thuật tuyệt đối, sẵn sàng bàn giao và vận hành chính thức.
+
+| 44 | `bt3_specification_and_constraints.test.py` | `test_01_return_transaction_happy_path` | Hoàn trả linh kiện (RETURN) cộng lại số lượng tồn kho và lưu vết sổ cái | **PASS** |
+| 45 | `bt3_specification_and_constraints.test.py` | `test_02a_boundary_stock_export_exact_available` | Biên 1 (Hợp lệ): Xuất đúng bằng toàn bộ tồn kho khả dụng (tồn 10 xuất 10 -> còn 0) | **PASS** |
+| 46 | `bt3_specification_and_constraints.test.py` | `test_02b_boundary_stock_export_exceed_by_one` | Biên 2 (Vi phạm): Xuất vượt tồn đúng 1 đơn vị (tồn 10 xuất 11 -> chặn NegativeStockError) | **PASS** |
+| 47 | `bt3_specification_and_constraints.test.py` | `test_03a_boundary_threshold_alert_exact_equal` | Biên 3 (Cảnh báo): Tồn kho bằng đúng ngưỡng an toàn (qty 15 == threshold 15 -> cờ WARNING) | **PASS** |
+| 48 | `bt3_specification_and_constraints.test.py` | `test_03b_boundary_threshold_alert_above_by_one` | Biên 4 (An toàn): Tồn kho lớn hơn ngưỡng đúng 1 đơn vị (qty 16 > threshold 15 -> cờ NORMAL) | **PASS** |
+| 49 | `bt3_specification_and_constraints.test.py` | `test_04_boundary_quantity_validator_limits` | Biên 5: Kiểm định số lượng giao dịch: qty=0 và 1,000,001 bị chặn; qty=1 và 1,000,000 hợp lệ | **PASS** |
+| 50 | `bt3_specification_and_constraints.test.py` | `test_05_boundary_threshold_validator_limits` | Biên 6: Kiểm định ngưỡng an toàn min_threshold: -1 và 100,001 bị chặn; 0 và 100,000 hợp lệ | **PASS** |
+| 51 | `bt3_specification_and_constraints.test.py` | `test_06_reject_export_with_completed_or_cancelled_ticket` | Từ chối xuất kho nếu phiếu bảo hành đã ở trạng thái COMPLETED hoặc CANCELLED (HTTP 422) | **PASS** |
+| 52 | `bt3_specification_and_constraints.test.py` | `test_07_reject_export_with_nonexistent_ticket` | Từ chối xuất kho nếu mã phiếu bảo hành không tồn tại trong danh mục hệ thống (HTTP 422) | **PASS** |
+| 53 | `bt3_specification_and_constraints.test.py` | `test_08_optimistic_locking_race_condition_detection` | Xung đột cập nhật đồng thời Optimistic Locking: version bị lệch trả về False và ném lỗi 409 | **PASS** |
+| 54 | `bt3_specification_and_constraints.test.py` | `test_09_security_s3_password_never_stored_as_plaintext` | Bảo mật SE S3: CSDL và RAM chỉ lưu password_hash, tuyệt đối không lưu plaintext password | **PASS** |
+| 55 | `bt3_specification_and_constraints.test.py` | `test_10_security_s4_error_response_no_stack_trace` | Bảo mật SE S4: Thông báo lỗi chuẩn hóa JSON {"status": "error", ...}, không lộ Traceback | **PASS** |
+| 56 | `bt3_specification_and_constraints.test.py` | `test_11_reproducibility_c8_idempotent_seed_run` | Tái lập C8: Chạy run_seed() lần 2 đạt tính lũy đẳng (Idempotent), 0 lỗi, không nhân đôi data | **PASS** |

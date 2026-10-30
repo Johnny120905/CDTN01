@@ -419,7 +419,6 @@ class InventoryRepository:
             "full_name": full_name,
             "phone": user_doc.get("phone", "0961570243"),
             "email": clean_email,
-            "password": user_doc.get("password", ""),
             "password_hash": user_doc["password_hash"],
             "role": user_doc["role"],
             "role_label": role_label,
@@ -466,12 +465,10 @@ class InventoryRepository:
         return updated
 
     def update_user_password(self, email: str, new_password_hash: str, new_plain_password: Optional[str] = None) -> bool:
-        """Đặt lại mật khẩu mới sau khi xác thực OTP thành công."""
+        """Đặt lại mật khẩu mới sau khi xác thực OTP thành công (Chỉ lưu password_hash - S3)."""
         clean_email = email.strip().lower()
         updated = False
         set_dict = {"password_hash": new_password_hash}
-        if new_plain_password:
-            set_dict["password"] = new_plain_password
 
         if self.is_connected and self.db is not None:
             res = self.db.users.update_one(
@@ -483,8 +480,7 @@ class InventoryRepository:
         for item in self._memory_store.get("users", []):
             if item.get("email", "").lower() == clean_email:
                 item["password_hash"] = new_password_hash
-                if new_plain_password:
-                    item["password"] = new_plain_password
+                item.pop("password", None)
                 item.pop("otp_code", None)
                 item.pop("otp_expires_at", None)
                 updated = True

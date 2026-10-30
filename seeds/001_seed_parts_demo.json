@@ -56,12 +56,17 @@
     {
       "_id": "6adf1714537e5d17773ef86f",
       "email": "vuthelong1009@gmail.com",
-      "password_hash": "$2b$12$M.p2R0.zGqIC3X.g2r0b.GZqL2P5v8Xw1z2X3c4v5b6n7m8",
+      "password_hash": "6eab64babc4b37fe6c1053b9edee6fde396aba87bb3d5960d86a4193d7a616b4",
       "full_name": "Vũ Thế Long",
       "role": "TECH_STAFF",
       "center_id": "L5-WH-890",
       "is_active": true,
-      "status": "OFF_SHIFT"
+      "status": "ONLINE",
+      "username": "vuthelong1009",
+      "phone": "0961570243",
+      "role_label": "Nhân viên kỹ thuật",
+      "active": 1,
+      "is_verified": true
     },
     {
       "_id": "6ae097d0af614e8aaf3299d3",
@@ -72,6 +77,36 @@
       "center_id": "L5-WH-890",
       "is_active": false,
       "status": "TERMINATED"
+    },
+    {
+      "_id": "6ade411795a49b374195643c",
+      "email": "huynhnguyenbaongoc2k5@gmail.com",
+      "username": "huynhnguyenbaongoc2k5",
+      "full_name": "Huỳnh Nguyễn Bảo Ngọc",
+      "phone": "0961570243",
+      "password_hash": "36bee337fd4d53836b7e5c68039dce8b45814edeb6692fd9742d95949e662fa0",
+      "role": "MATERIAL_STAFF",
+      "role_label": "Nhân viên vật tư",
+      "center_id": "L5-WH-890",
+      "active": 1,
+      "is_active": true,
+      "status": "ONLINE",
+      "is_verified": true
+    },
+    {
+      "_id": "6adf1577537e5d17773ef86e",
+      "email": "lethithuyngan985@gmail.com",
+      "username": "lethithuyngan985",
+      "full_name": "Lê Thị Thuỳ Ngân",
+      "phone": "0961570243",
+      "password_hash": "862f7043d5e6cbde494b536174636558a9cf1a8de580eb2706413178474d26e0",
+      "role": "MANAGER",
+      "role_label": "Quản lý kho",
+      "center_id": "L5-WH-890",
+      "active": 1,
+      "is_active": true,
+      "status": "ONLINE",
+      "is_verified": true
     }
   ],
   "part": [

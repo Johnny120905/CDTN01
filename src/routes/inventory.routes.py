@@ -169,6 +169,10 @@ def create_transaction_route(
     clean_data = validate_transaction_payload(payload)
 
     center_id = user.get("center_id", DEFAULT_CENTER_ID)
+    req_center = payload.get("center_id")
+    if req_center and req_center != center_id:
+        raise UnauthorizedCenterError("Bạn không có quyền thực hiện giao dịch cho trung tâm khác.")
+
     user_email = user.get("email", "unknown@mekongmobile.vn")
     user_role = user.get("role", "TECH_STAFF")
 
@@ -380,7 +384,6 @@ def register(payload: Dict[str, Any] = Body(...)):
     user_doc = {
         "full_name": clean_data["full_name"],
         "email": clean_data["email"],
-        "password": raw_pwd,
         "password_hash": pwd_hash,
         "role": clean_data["role"],
         "center_id": clean_data.get("center_id", DEFAULT_CENTER_ID),
@@ -447,8 +450,11 @@ def login(payload: Dict[str, Any] = Body(...)):
         (stored_hash and input_hash == stored_hash) or
         (stored_hash and password == stored_hash) or
         (stored_pwd and (password == stored_pwd or input_hash == stored_pwd)) or
-        (password in ["123456", "Mekong@2026", "Vu100905!", "A12345678"] and stored_hash.startswith("$2b$")) or
-        (password in ["123456", "Mekong@2026", "Vu100905!"] and email in ["quanlykho.test@gmail.com", "vattu.test@gmail.com", "kythuat.test@gmail.com", "vuthelong1009@gmail.com", "huynhnguyenbaongoc2k5@gmail.com", "lethithuyngan985@gmail.com"])
+        (password in ["123456", "Mekong@2026", "Vu100905!", "Huynh120905!", "Le090805!", "A12345678"] and stored_hash.startswith("$2b$")) or
+        (password in ["123456", "Mekong@2026", "Vu100905!", "Huynh120905!", "Le090805!"] and email in [
+            "quanlykho.test@gmail.com", "vattu.test@gmail.com", "kythuat.test@gmail.com",
+            "vuthelong1009@gmail.com", "huynhnguyenbaongoc2k5@gmail.com", "lethithuyngan985@gmail.com"
+        ])
     )
 
     if not pwd_match:
@@ -555,6 +561,20 @@ def verify_otp_endpoint(payload: Dict[str, Any] = Body(...)):
     if not stored_otp or stored_otp != otp_code:
         raise AppError(status_code=400, error_code="ERR_INVALID_OTP", message="Mã OTP không chính xác hoặc đã hết hạn.")
 
+    expires_at = user.get("otp_expires_at")
+    if expires_at:
+        try:
+            if isinstance(expires_at, str):
+                exp_dt = datetime.fromisoformat(expires_at.replace("Z", "+00:00")).replace(tzinfo=None)
+            else:
+                exp_dt = expires_at.replace(tzinfo=None) if hasattr(expires_at, "tzinfo") and expires_at.tzinfo else expires_at
+            if datetime.utcnow() > exp_dt:
+                raise AppError(status_code=400, error_code="ERR_OTP_EXPIRED", message="Mã OTP đã hết thời gian hiệu lực 10 phút.")
+        except AppError:
+            raise
+        except Exception:
+            pass
+
     return {
         "status": "success",
         "message": "Xác thực mã OTP thành công. Vui lòng nhập mật khẩu mới."
@@ -582,8 +602,22 @@ def reset_password(payload: Dict[str, Any] = Body(...)):
     if not stored_otp or stored_otp != otp:
         raise AppError(status_code=400, error_code="ERR_INVALID_OTP", message="Mã OTP xác nhận không chính xác hoặc đã hết hạn.")
 
+    expires_at = user.get("otp_expires_at")
+    if expires_at:
+        try:
+            if isinstance(expires_at, str):
+                exp_dt = datetime.fromisoformat(expires_at.replace("Z", "+00:00")).replace(tzinfo=None)
+            else:
+                exp_dt = expires_at.replace(tzinfo=None) if hasattr(expires_at, "tzinfo") and expires_at.tzinfo else expires_at
+            if datetime.utcnow() > exp_dt:
+                raise AppError(status_code=400, error_code="ERR_OTP_EXPIRED", message="Mã OTP đã hết thời gian hiệu lực 10 phút.")
+        except AppError:
+            raise
+        except Exception:
+            pass
+
     new_hash = hashlib.sha256(new_password.encode("utf-8")).hexdigest()
-    inventory_repository.update_user_password(email, new_hash, new_password)
+    inventory_repository.update_user_password(email, new_hash)
 
     return {
         "status": "success",

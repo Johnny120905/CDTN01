@@ -1,0 +1,82 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Smart CRM - Mekong Mobile | Spare Parts Inventory Subsystem (L5)",
+    "version": "1.0.0",
+    "description": "RESTful API specification for spare parts stock lookup, transactions, and role management."
+  },
+  "paths": {
+    "/api/v1/inventory/stock/{part_code}": {
+      "get": {
+        "summary": "Query stock by part code",
+        "parameters": [
+          {
+            "name": "part_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful stock retrieval"
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/inventory/transactions": {
+      "post": {
+        "summary": "Create inventory transaction",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Transaction created"
+          },
+          "400": {
+            "description": "Negative stock"
+          },
+          "422": {
+            "description": "Invalid ticket"
+          }
+        }
+      }
+    },
+    "/api/v1/inventory/parts/{part_code}/threshold": {
+      "put": {
+        "summary": "Update safety threshold",
+        "parameters": [
+          {
+            "name": "part_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Threshold updated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    }
+  }
+}

@@ -157,15 +157,15 @@ CDTN01/ (Yêu cầu tối thiểu Đề bài BT2 - Mục 3.2, phát triển nố
 CDTN01/ (Yêu cầu tối thiểu Đề bài BT3 - Mục 3.2, đóng gói hoàn chỉnh trên cùng Repo BT2)
 ├── docs/
 │   ├── test-plan.md               # [MỚI ở BT3] Kế hoạch kiểm thử rút gọn 4 mục
-│   ├── test-report.md             # [MỚI ở BT3] Báo cáo 10-12 test case chạy thật đủ 8 cột
+│   ├── test-report.md             # [MỚI ở BT3] Báo cáo test case chạy thật đủ 8 cột
 │   ├── bug-log.md                 # [MỚI ở BT3] Nhật ký >= 3 lỗi đã gỡ đủ 7 dòng kèm link commit
 │   ├── deployment-guide.md        # [MỚI ở BT3] Hướng dẫn triển khai 5 mục (Tiếng Anh)
 │   ├── checklist-bao-mat.md       # [MỚI ở BT3] Danh mục tự đánh giá bảo mật 7 mục kèm minh chứng
 │   ├── api-docs/                  # [Track SE] Tài liệu kỹ thuật đầy đủ mọi Endpoint (OpenAPI/Markdown)
-│   ├── thay-doi-thiet-ke.md       # Tiếp tục cập nhật nhật ký thay đổi từ BT2 sang BT3
+│   ├── thaydoithietke.md          # Tiếp tục cập nhật nhật ký thay đổi xuyên suốt từ BT1, BT2 sang BT3
 │   └── ai-disclosure.md           # Cập nhật bảng khai báo AI 4 cột cho giai đoạn BT3
 ├── src/                           # Mã nguồn phân lớp hoàn chỉnh đã sửa toàn bộ Bug Critical
-├── tests/                         # Bộ kiểm thử tự động chạy PASS 100% bằng 1 lệnh duy nhất
+├── tests/                         # Bộ kiểm thử tự động chạy PASS 100% bằng 1 lệnh duy nhất (56 tests)
 ├── Dockerfile & docker-compose.yml # [Bắt buộc Cốt lõi C1 ở BT3] Dựng lại từ máy trắng bằng <= 2 lệnh
 ├── .env.example                   # Đủ mọi biến môi trường, tuyệt đối không lộ secret thật
 ├── .gitignore                     # Chặn triệt để .env và dữ liệu nhạy cảm
@@ -193,14 +193,22 @@ CDTN01/                                           # THƯ MỤC GỐC CỦA KHO M
 ├── BT1_2374802010339_HuynhNguyenBaoNgoc.pdf      # Hồ sơ báo cáo hoàn chỉnh đã nộp của Giai đoạn 1 (Bài tập 1 - Phân tích & Thiết kế)
 ├── BT2_2374802010339_HuynhNguyenBaoNgoc.pdf      # Hồ sơ báo cáo hoàn chỉnh của Giai đoạn 2 (Bài tập 2 - Hiện thực hóa Module cốt lõi)
 │
-├── docs/                                         # THƯ MỤC TÀI LIỆU KỸ THUẬT, ĐẶC TẢ & BẢN VẼ GỐC DRAW.IO
+├── docs/                                         # THƯ MỤC TÀI LIỆU KỸ THUẬT, ĐẶC TẢ, KIỂM THỬ & BẢN VẼ GỐC DRAW.IO
+│   ├── test-plan.md                              # [MỚI ở BT3] Kế hoạch kiểm thử rút gọn 4 mục
+│   ├── test-report.md                            # [MỚI ở BT3] Báo cáo kết quả kiểm thử thực tế đủ 8 cột
+│   ├── bug-log.md                                # [MỚI ở BT3] Nhật ký theo dõi và gỡ lỗi (Bug Tracking Log)
+│   ├── deployment-guide.md                       # [MỚI ở BT3] Hướng dẫn triển khai 5 mục chuẩn mực (Tiếng Anh)
+│   ├── checklist-bao-mat.md                      # [MỚI ở BT3] Danh mục tự đánh giá an toàn bảo mật 7 mục kèm minh chứng
+│   ├── api-docs/                                 # [Track SE - MỚI ở BT3] Đặc tả kỹ thuật toàn diện Endpoints (OpenAPI/Markdown)
+│   │   ├── README.md                             # Tài liệu đặc tả API phân lớp bằng Markdown (Tiếng Anh)
+│   │   └── openapi.json                          # Hợp đồng chuẩn OpenAPI 3.0 / Swagger JSON
 │   ├── srs.md                                    # Bản đặc tả yêu cầu phần mềm SRS rút gọn 6 mục (7 FR, 4 NFR có ngưỡng số, 5 BR, RTM kín)
 │   ├── api-contract.md                           # Hợp đồng giao tiếp RESTful API chuẩn JSON (Endpoint, Header JWT, Payload, Bảng mã lỗi)
-│   ├── thaydoithietke.md                         # Nhật ký 7 thay đổi thiết kế từ BT1 sang BT2 (đủ 3 mục: Thay đổi gì · Vì sao · Ảnh hưởng)
+│   ├── thaydoithietke.md                         # Nhật ký thay đổi thiết kế duy nhất tích hợp đầy đủ 3 giai đoạn BT1 - BT2 - BT3
 │   ├── thietke.md                                # Đặc tả chi tiết giao diện Dark 3D Elevation từng màn hình/vai trò & bộ Prompt Google Stitch
-│   ├── test.md                                   # Kế hoạch kiểm thử, đặc tả 13 màn hình & báo cáo chi tiết 43 kịch bản kiểm thử tự động
-│   ├── ai-disclosure.md                          # Bảng khai báo sử dụng công cụ AI 4 cột minh bạch & cam kết liêm chính học thuật
-│   ├── layered clean architecture.drawio         # Bản vẽ gốc sơ đồ Kiến trúc Phân lớp 5 tầng ĐÃ HIỆN THỰC thực tế ở BT2
+│   ├── dieukientest.md                           # Bộ điều kiện kiểm thử, ràng buộc hệ thống và ma trận kịch bản kiểm thử toàn diện
+│   ├── ai-disclosure.md                          # Bảng khai báo sử dụng công cụ AI 4 cột minh bạch cho cả 3 giai đoạn BT1, BT2, BT3
+│   ├── layered clean architecture.drawio         # Bản vẽ gốc sơ đồ Kiến trúc Phân lớp 5 tầng ĐÃ HIỆN THỰC thực tế
 │   ├── architecture.drawio                       # Bản vẽ gốc sơ đồ Kiến trúc hệ thống thiết kế ban đầu ở BT1
 │   ├── erd.drawio                                # Bản vẽ gốc sơ đồ Mô hình dữ liệu 6 Collections MongoDB ($jsonSchema & Compound Index)
 │   └── usecase.drawio                            # Bản vẽ gốc sơ đồ Use Case tổng thể Luồng 05 (3 Actors, 7 Use Cases & <<include>> UC-99)
@@ -238,11 +246,12 @@ CDTN01/                                           # THƯ MỤC GỐC CỦA KHO M
 │   ├── .gitkeep                                  # Tệp giữ cấu trúc thư mục data/ trên hệ thống quản lý phiên bản Git
 │   └── users_store.json                          # Kho lưu trữ đồng bộ hồ sơ tài khoản, trạng thái ca trực và JWT xuống ổ cứng cục bộ
 │
-├── tests/                                        # BỘ 43 CA KIỂM THỬ TỰ ĐỘNG HÓA TOÀN DIỆN (CHẠY PASS 100% BẰNG 1 LỆNH)
+├── tests/                                        # BỘ 56 CA KIỂM THỬ TỰ ĐỘNG HÓA TOÀN DIỆN (CHẠY PASS 100% BẰNG 1 LỆNH)
 │   ├── inventory.service.test.py                 # 07 Unit Tests kiểm thử cô lập lớp InventoryService trên RAM (không phụ thuộc HTTP/DB)
 │   ├── inventory.routes.test.py                  # 06 Integration Tests kiểm thử hợp đồng API, phân quyền RBAC & mã lỗi chuẩn HTTP
 │   ├── auth_and_user.test.py                     # 15 Tests kiểm thử Đăng ký, mật khẩu 4 nhóm, OTP 10 phút, khóa vĩnh viễn TERMINATED
-│   └── cross_role_and_ui.test.py                 # 15 E2E & UI Tests kiểm thử luồng liên thông 3 vai trò & tính toàn vẹn giao diện SPA
+│   ├── cross_role_and_ui.test.py                 # 15 E2E & UI Tests kiểm thử luồng liên thông 3 vai trò & tính toàn vẹn giao diện SPA
+│   └── bt3_specification_and_constraints.test.py # 13 Tests [MỚI ở BT3] kiểm thử đặc tả & ràng buộc: RETURN, biên 2 phía (BR-01, BR-05), chặn phiếu đóng, Race Condition, bảo mật S3/S4, nạp seed C8
 │
 ├── frontend/                                     # KHÔNG GIAN MÃ NGUỒN FRONTEND ĐỘC LẬP (NGANG HÀNG VỚI BACKEND)
 │   ├── .gitignore                                # Quy tắc loại trừ thư mục node_modules/ riêng của gói Frontend
@@ -253,11 +262,13 @@ CDTN01/                                           # THƯ MỤC GỐC CỦA KHO M
 │       ├── api/ (client.js, inventory.api.js)    #   - Lớp khách gọi HTTP RESTful API tách riêng biệt
 │       ├── services/ (api.js)                    #   - Bộ hàm bọc dịch vụ truyền thông dữ liệu kho và nhân sự
 │       ├── components/ (DataState.jsx, Header.js, Footer.js) # - Thành phần hiển thị 3 trạng thái Loading/Empty/Error
-│       └── pages/ (AuthPortal.js, ManagerUsers.js)           # - Trang cổng xác thực & trang quản lý nhân sự chi nhánh
+│       └── pages/                                #   - Trang giao diện cốt lõi (đã dọn dẹp các thư mục rỗng Manager, Material, Tech):
+│           ├── AuthPortal.js                     #     + Cổng xác thực & phân luồng đăng nhập chung
+│           └── ManagerUsers.js                   #     + Trang quản lý nhân sự thuộc quyền của Quản lý kho
 │
 ├── backend/                                      # KHÔNG GIAN ĐÓNG GÓI DỊCH VỤ BACKEND ĐỘC LẬP (NGANG HÀNG VỚI FRONTEND)
 │   ├── .env.example, app.py, pytest.ini, requirements.txt # Cấu hình khởi chạy riêng cho gói Backend độc lập
-│   └── src/, migrations/, seeds/, data/, tests/  # Bản đồng bộ đầy đủ 5 tầng kiến trúc, kịch bản CSDL và bộ 43 ca kiểm thử của Backend
+│   └── src/, migrations/, seeds/, data/, tests/  # Bản đồng bộ đầy đủ 5 tầng kiến trúc, kịch bản CSDL và bộ 56 ca kiểm thử của Backend
 │
 ├── scripts/                                      # TẬP HỢP KỊCH BẢN TIỆN ÍCH NỘI BỘ HỖ TRỢ PHÁT TRIỂN & CHUẨN HÓA DỮ LIỆU
 │   └── add_33_parts.py, apply_adjustments.py, ...# Các script Python hỗ trợ mở rộng danh mục 40 linh kiện và kiểm tra liên kết tài liệu
@@ -281,45 +292,68 @@ Bảng dưới đây đối chiếu minh bạch từng hạng mục thư mục/t
 | 5 | Bộ tệp gốc `.drawio` (`architecture`, `usecase`, `erd`) | `BT1` | [`docs/architecture.drawio`](./docs/architecture.drawio), [`docs/usecase.drawio`](./docs/usecase.drawio), [`docs/erd.drawio`](./docs/erd.drawio) | **Đạt 100%** | Lưu trữ đầy đủ tệp XML `.drawio` gốc (không chỉ ảnh tĩnh), có ranh giới hệ thống, phần Ngoài phạm vi (`Out of Scope`) và bảng chú thích ký hiệu (`Legend`). |
 | 6 | `docs/api-contract.md` & `docs/wireframe.png` | `BT1` (`Track SE`) | [`docs/api-contract.md`](./docs/api-contract.md), [`docs/thietke.md`](./docs/thietke.md) | **Đạt 100% (Mở rộng)** | `api-contract.md` đặc tả đầy đủ chuẩn giao tiếp JSON & mã lỗi; `thietke.md` nâng cấp từ ảnh wireframe đơn lẻ thành hồ sơ đặc tả chi tiết toàn bộ 13 màn hình Dark 3D và bộ Prompt Google Stitch. |
 | 7 | Sơ đồ kiến trúc ĐÃ HIỆN THỰC (`architecture-thuc-te.*`) | `BT2` | [`docs/layered clean architecture.drawio`](./docs/layered%20clean%20architecture.drawio) | **Đạt 100%** | Phản ánh chính xác 100% sơ đồ 5 tầng thực tế đã lập trình trong `src/`, ghi rõ tên từng thư mục/tệp, luồng gọi một chiều và cơ chế lưu trữ kép `Dual-Persistence`. |
-| 8 | Nhật ký thay đổi thiết kế (`docs/thay-doi-thiet-ke.md`) | `BT2` · `BT3` | [`docs/thaydoithietke.md`](./docs/thaydoithietke.md) | **Đạt 100%** | Ghi chép đầy đủ 7 quyết định điều chỉnh từ thiết kế BT1 sang hiện thực BT2, mỗi mục tuân thủ nghiêm ngặt cấu trúc 3 phần: *Thay đổi gì · Vì sao · Ảnh hưởng tới thành phần nào*. |
-| 9 | Bảng khai báo AI (`docs/ai-disclosure.md`) | `BT1` · `BT2` · `BT3` | [`docs/ai-disclosure.md`](./docs/ai-disclosure.md) | **Đạt 100%** | Bảng khai báo minh bạch đủ 4 cột (*Công cụ · Dùng vào việc gì · Áp dụng ở tệp/hàm nào · Đã kiểm chứng thế nào*) kèm lời cam kết chịu trách nhiệm học thuật cá nhân. |
+| 8 | Nhật ký thay đổi thiết kế (`docs/thaydoithietke.md`) | `BT1` · `BT2` · `BT3` | [`docs/thaydoithietke.md`](./docs/thaydoithietke.md) | **Đạt 100% (Tập trung 1 tệp)** | Ghi chép đầy đủ toàn diện các quyết định điều chỉnh từ BT1 (5 hạng mục TD-01..TD-05), BT2 (13 hạng mục nâng cấp giao diện Dark 3D & 40 linh kiện) đến BT3 (8 hạng mục kiểm thử 56 tests, bảo mật S3, xóa thư mục rỗng frontend, phân quyền RBAC 1 tài khoản - 1 vai trò). |
+| 9 | Bảng khai báo AI (`docs/ai-disclosure.md`) | `BT1` · `BT2` · `BT3` | [`docs/ai-disclosure.md`](./docs/ai-disclosure.md) | **Đạt 100%** | Bảng khai báo minh bạch đủ 4 cột (*Công cụ · Dùng vào việc gì · Áp dụng ở tệp/hàm nào · Đã kiểm chứng thế nào*) cho cả 3 giai đoạn BT1, BT2, BT3 kèm lời cam kết chịu trách nhiệm học thuật cá nhân. |
 | 10 | Tách lớp mã nguồn `src/` (`routes/`, `validators/`, `services/`, `repositories/`) | `BT2` · `BT3` (`Track SE`) | [`src/routes/`](./src/routes), [`src/validators/`](./src/validators), [`src/services/`](./src/services), [`src/repositories/`](./src/repositories), [`src/errors/`](./src/errors), [`src/static/`](./src/static) *(đồng bộ tại `backend/` & `frontend/`)* | **Đạt 100% (Chuẩn Clean Arch)** | Tách bạch tuyệt đối trách nhiệm 5 tầng; `inventory.service.py` hoàn toàn độc lập với HTTP (tiêu chí `S2`); đồng thời tổ chức thêm `backend/` và `frontend/` ngang hàng để dễ dàng triển khai độc lập hoặc tích hợp. |
 | 11 | `migrations/` & `seeds/` (Dựng CSDL trống & nạp lặp bất biến) | `BT2` · `BT3` (`Track SE`) | [`migrations/001_create_collections.js`](./migrations/001_create_collections.js), [`migrations/002_create_indexes.js`](./migrations/002_create_indexes.js), [`seeds/001_seed_parts_demo.json`](./seeds/001_seed_parts_demo.json), [`seeds/seed.py`](./seeds/seed.py) | **Đạt 100% (`C5` & `S3`)** | Dựng 6 Collections kèm `$jsonSchema` & `Compound Index` từ CSDL rỗng; `seeds/seed.py` dùng `replace_one(..., upsert=True)` đảm bảo chạy lại lần thứ 2 không lỗi, không nhân đôi dữ liệu. |
-| 12 | `tests/` (Chạy PASS bằng 1 lệnh duy nhất) | `BT2` · `BT3` | [`tests/`](./tests) (4 tệp `.test.py` + [`pytest.ini`](./pytest.ini)) | **Đạt 100% (43/43 PASSED)** | Vượt xa mức tối thiểu 3 test của BT2 và 10–12 test của BT3 với **43 kịch bản kiểm thử tự động** phủ kín Luồng đúng (18), Giá trị biên (12), Ngoại lệ & Bảo mật RBAC (13). |
-| 13 | `Dockerfile` & `docker-compose.yml` (Chạy bằng `<= 2` lệnh) | Điểm cộng `BT2` · Cốt lõi `C1` `BT3` | [`Dockerfile`](./Dockerfile), [`docker-compose.yml`](./docker-compose.yml), [`.dockerignore`](./.dockerignore) | **Đạt 100% (Sẵn sàng cho BT3)** | Đóng gói hoàn chỉnh cả ứng dụng FastAPI/SPA và MongoDB 7.0 có `HEALTHCHECK` tự động và tự nạp dữ liệu mẫu khi khởi động, vượt qua trọn vẹn "Phép thử máy trắng". |
-| 14 | Hồ sơ mở rộng của `BT3` (`test-plan`, `test-report`, `bug-log`, `deployment-guide`, `checklist-bao-mat`, `api-docs`) | `BT3` (Giai đoạn tiếp theo) | Đã tích hợp nền tảng sẵn trong [`docs/test.md`](./docs/test.md), [`docs/api-contract.md`](./docs/api-contract.md), [`README.md`](./README.md) & Swagger `/docs` | **Đã chuẩn bị nền tảng cho BT3** | Hiện tại dự án đang ở mốc phát hành **Bài tập 2 (`Tag v0.2`)** nhưng đã hoàn thiện trước Kế hoạch & Báo cáo 43 test (`docs/test.md`), OpenAPI `/docs` và gói Docker; sang Giai đoạn 3 (`Tag v1.0`) sẽ tách thành các tệp tiếng Anh chuyên biệt theo đúng mẫu BT3. |
+| 12 | `tests/` (Chạy PASS bằng 1 lệnh duy nhất) | `BT2` · `BT3` | [`tests/`](./tests) (5 tệp `.test.py` + [`pytest.ini`](./pytest.ini)) | **Đạt 100% (56/56 PASSED)** | Vượt xa mức tối thiểu 3 test của BT2 và 10–12 test của BT3 với **56 kịch bản kiểm thử tự động** phủ kín Luồng đúng (19), Giá trị biên (16), Ngoại lệ & Bảo mật RBAC (21). |
+| 13 | `Dockerfile` & `docker-compose.yml` (Chạy bằng `<= 2` lệnh) | Cốt lõi `C1` `BT3` | [`Dockerfile`](./Dockerfile), [`docker-compose.yml`](./docker-compose.yml), [`.dockerignore`](./.dockerignore) | **Đạt 100% (Sẵn sàng BT3)** | Đóng gói hoàn chỉnh cả ứng dụng FastAPI/SPA và MongoDB 7.0 có `HEALTHCHECK` tự động và tự nạp dữ liệu mẫu khi khởi động, vượt qua trọn vẹn "Phép thử máy trắng". |
+| 14 | Trọn bộ hồ sơ kỹ thuật `BT3` (`test-plan`, `test-report`, `bug-log`, `deployment-guide`, `checklist-bao-mat`, `api-docs`, `dieukientest`) | `BT3` | [`docs/test-plan.md`](./docs/test-plan.md), [`docs/test-report.md`](./docs/test-report.md), [`docs/bug-log.md`](./docs/bug-log.md), [`docs/deployment-guide.md`](./docs/deployment-guide.md), [`docs/checklist-bao-mat.md`](./docs/checklist-bao-mat.md), [`docs/api-docs/`](./docs/api-docs/), [`docs/dieukientest.md`](./docs/dieukientest.md) | **Đạt 100% (Hoàn thiện bàn giao)** | Đã biên soạn trọn bộ tài liệu theo đúng chuẩn đề bài BT3: Kế hoạch kiểm thử rút gọn 4 mục, Báo cáo kết quả 56 test cases đủ 8 cột, Nhật ký gỡ lỗi bug log, Hướng dẫn triển khai tiếng Anh 5 mục, Danh mục kiểm tra an toàn bảo mật 7 tiêu chí và đặc tả OpenAPI/Markdown. |
 
 ---
 
-# PHẦN 2: CHUẨN BỊ MÔI TRƯỜNG & TẢI MÃ NGUỒN VỀ THƯ MỤC TRỐNG (BƯỚC KHỞI ĐẦU)
+# PHẦN 2: CHUẨN BỊ MÔI TRƯỜNG & HƯỚNG DẪN TÁI TẠO CHO MÁY TRẮNG CHƯA CÀI GÌ (TỪNG BƯỚC CHI TIẾT)
 
-Để tái tạo hệ thống trên bất kỳ máy tính nào (Windows, macOS hoặc Linux), trước tiên hãy kiểm tra các phần mềm nền tảng và tải mã nguồn dự án về một thư mục trống.
+Nếu bạn vừa cài lại hệ điều hành hoặc đang thao tác trên một **máy tính hoàn toàn mới (máy trắng - Bare Metal)** chưa cài đặt sẵn Python, Git hay Docker, hãy làm theo hướng dẫn cặn kẽ dưới đây để tái tạo hệ thống thành công 100%.
 
-### Bước 2.1: Cài đặt Công cụ Nền tảng (Nếu máy tính chưa có)
-1. **Python `3.10` hoặc `3.11+` (Bắt buộc khi chạy trực tiếp không dùng Docker):**
-   - Tải tại: https://www.python.org/downloads/
-   - **Lưu ý quan trọng trên Windows:** Khi cửa sổ cài đặt hiện ra, bắt buộc tích chọn ô **`[x] Add python.exe to PATH`** ở dưới cùng trước khi bấm *Install Now*.
-2. **Git (Bắt buộc để sao chép kho mã nguồn):**
-   - Tải tại: https://git-scm.com/downloads
-3. **Trình duyệt Web hiện đại:** Google Chrome, Microsoft Edge, Firefox hoặc Safari.
-4. **Công cụ tùy chọn (Không bắt buộc nhưng khuyến nghị để trải nghiệm tối đa):**
-   - **MongoDB Compass (Giao diện quản trị CSDL trực quan):** https://www.mongodb.com/try/download/compass
-   - **Docker Desktop (Nếu muốn dựng toàn bộ App + MongoDB chỉ bằng 2 lệnh):** https://www.docker.com/products/docker-desktop/
+> [!IMPORTANT]
+> **QUY TẮC BẢO MẬT & THÔNG TIN RIÊNG TƯ TRONG CẨM NANG HƯỚNG DẪN:**
+> - Toàn bộ các hướng dẫn cấu hình, lệnh chạy và ví dụ tương tác đều đã được chuẩn hóa, **không để lộ bất kỳ email, mật khẩu riêng tư hay bí mật thực tế của cá nhân**.
+> - Khi bạn tự đăng ký hoặc cấu hình kết nối của riêng bạn, vui lòng thay thế các chuỗi giữ chỗ mẫu dạng: `<email cá nhân của bạn>`, `<mật khẩu cá nhân của bạn>` (ví dụ: `<email cá nhân của bạn>@gmail.com`, `<mật khẩu cá nhân của bạn>`).
+> - Riêng để phục vụ việc **chấm bài, nghiệm thu và kiểm thử nhanh**, hệ thống đã tạo sẵn **3 tài khoản mẫu chuyên biệt cho 3 vai trò** (được cung cấp chi tiết tại **Mục 5.2**).
 
-### Bước 2.2: Sao chép (Clone) Kho Mã nguồn từ GitHub vào Thư mục Trống
-Mở cửa sổ **PowerShell** (trên Windows) hoặc **Terminal** (trên macOS/Linux), di chuyển đến ổ đĩa bạn muốn lưu dự án và chạy lần lượt 3 lệnh sau:
+---
+
+### Bước 2.1: Cài đặt Các Phần mềm Nền tảng Bắt buộc (Dành cho Máy Trắng)
+
+#### 1. Cài đặt Python 3.11 (Nền tảng chạy Backend API):
+- Truy cập trang chủ Python chính thức: https://www.python.org/downloads/
+- Tải bản cài đặt cho hệ điều hành của bạn (ví dụ trên Windows: `python-3.11.x-amd64.exe`).
+- **Thao tác cực kỳ quan trọng:** Khi mở tệp cài đặt, tại màn hình đầu tiên, bạn **BẮT BUỘC TÍCH CHỌN** ô tròn:
+  👉 **`[x] Add python.exe to PATH`** (nằm ở cạnh dưới cùng cửa sổ).
+- Bấm **Install Now** và đợi cài đặt hoàn tất.
+- *Kiểm tra:* Mở Terminal / PowerShell và gõ: `python --version` (kết quả hiện ra `Python 3.11.x` là thành công).
+
+#### 2. Cài đặt Git (Công cụ tải và quản trị mã nguồn):
+- Truy cập trang chủ Git: https://git-scm.com/downloads
+- Tải và cài đặt theo các tùy chọn mặc định (bấm *Next* liên tục cho đến khi hoàn tất).
+- *Kiểm tra:* Mở Terminal / PowerShell và gõ: `git --version` (hiển thị `git version 2.x.x`).
+- *(Lưu ý: Nếu máy không tiện cài Git, bạn hoàn toàn có thể vào liên kết GitHub của dự án https://github.com/Johnny120905/CDTN01, bấm nút **Code** màu xanh lá và chọn **Download ZIP**, sau đó giải nén ra thư mục `CDTN01` trên máy).*
+
+#### 3. Cài đặt Docker Desktop (Tùy chọn - Dành cho người muốn chạy tự động bằng 2 lệnh):
+- Nếu máy tính của bạn hỗ trợ ảo hóa và bạn muốn chạy Docker: Tải tại https://www.docker.com/products/docker-desktop/
+- Cài đặt và bật tính năng WSL 2 (trên Windows). Sau khi cài xong, mở Docker Desktop và đợi biểu tượng trạng thái ở góc dưới chuyển sang màu xanh (*Engine running*).
+- *(Nếu máy yếu hoặc chưa cài Docker, bạn **KHÔNG CẦN CÀI DOCKER** vì hệ thống hỗ trợ chạy thuần bằng Python ảo ở Cách A bên dưới rất nhẹ nhàng).*
+
+---
+
+### Bước 2.2: Tải Mã nguồn Dự án về Thư mục Máy tính
+
+Mở **PowerShell** (Windows) hoặc **Terminal** (macOS/Linux), di chuyển đến thư mục làm việc bạn muốn lưu dự án và chạy các lệnh:
 
 ```powershell
 git clone https://github.com/Johnny120905/CDTN01.git
 cd CDTN01
-git checkout v0.2
 ```
 
 > [!NOTE]
-> **Quy ước thư mục đứng gõ lệnh:** Kể từ bước này trở đi, **mọi câu lệnh trong tài liệu đều được gõ khi bạn đang đứng tại thư mục gốc `CDTN01`** (nơi đặt tệp `README.md`, `.env.example`, `requirements.txt`, ngang hàng với `backend/`, `frontend/` và `src/`).
+> **Quy ước thư mục làm việc:** Trong toàn bộ tài liệu này, **mọi câu lệnh đều được thực thi tại thư mục gốc `CDTN01`** (nơi chứa các tệp `README.md`, `.env.example`, `requirements.txt`, các thư mục `docs/`, `src/`, `tests/`, `seeds/`, `migrations/`).
 
-### Bước 2.3: Khởi tạo Tệp Cấu hình Biến Môi trường (`.env`) từ Tệp Mẫu (`.env.example`)
-Tuân thủ quy tắc bảo mật không lưu khóa bí mật cứng trong mã nguồn, bạn cần tạo tệp `.env` từ tệp mẫu `.env.example` đã có sẵn:
+---
+
+### Bước 2.3: Tạo Tệp Cấu hình Môi trường `.env` từ `.env.example`
+
+Để bảo đảm an toàn hệ thống, mã nguồn không lưu cứng các giá trị bí mật. Bạn chỉ cần sao chép tệp cấu hình mẫu `.env.example` thành `.env`:
 
 - **Trên Windows (PowerShell):**
   ```powershell
@@ -330,17 +364,17 @@ Tuân thủ quy tắc bảo mật không lưu khóa bí mật cứng trong mã n
   cp .env.example .env
   ```
 
-**Bảng giải thích chi tiết từng biến trong tệp `.env`:**
+**Bảng giải thích các biến môi trường trong tệp `.env`:**
 
-| Tên biến trong `.env` | Giá trị mặc định sẵn có | Ý nghĩa & Cách tùy chỉnh |
+| Tên biến trong `.env` | Giá trị mặc định định sẵn | Ý nghĩa cấu hình & Lưu ý bảo mật |
 | :--- | :--- | :--- |
-| `MONGO_URI` / `MONGODB_URI` | `mongodb://localhost:27017/mekong_mobile_l5` | Đường dẫn kết nối tới MongoDB cục bộ (cổng `27017`) hoặc chuỗi `mongodb+srv://...` của đám mây MongoDB Atlas. |
-| `DB_NAME` / `DATABASE_NAME` | `mekong_mobile_l5` | Tên cơ sở dữ liệu chứa 6 Collections nghiệp vụ của Luồng 05. |
-| `API_PORT` | `8000` | Cổng mạng chạy máy chủ Backend API và Website SPA (`http://localhost:8000`). |
-| `JWT_SECRET_KEY` | `mekong_mobile_secret_jwt_key_2026_cdtn01` | Khóa bí mật dùng để ký chữ ký số `HS256` cho Bearer JWT Token (hạn 24 giờ). |
-| `DEFAULT_CENTER_ID` | `L5-WH-890` | Mã định danh mặc định của Trung tâm Bảo hành Mekong Mobile Quận 1. |
+| `MONGO_URI` / `MONGODB_URI` | `mongodb://localhost:27017/mekong_mobile_l5` | Địa chỉ máy chủ MongoDB. Khi chạy trực tiếp không có MongoDB, hệ thống sẽ tự động chuyển sang cơ chế InMemory Fallback để bạn không bị lỗi. |
+| `DB_NAME` / `DATABASE_NAME` | `mekong_mobile_l5` | Tên cơ sở dữ liệu phân hệ kho. |
+| `API_PORT` | `8000` | Cổng dịch vụ Website & API (`http://localhost:8000`). |
+| `JWT_SECRET_KEY` | `mekong_mobile_secret_jwt_key_2026_cdtn01` | Khóa ký số JWT bảo mật cho phiên đăng nhập 24h. |
+| `DEFAULT_CENTER_ID` | `L5-WH-890` | Mã định danh Trung tâm Bảo hành Mekong Mobile Quận 1. |
 
-*(Bạn **không bắt buộc** phải sửa bất kỳ dòng nào trong tệp `.env` vừa tạo — hệ thống đã được thiết kế để chạy lên ngay lập tức với giá trị mặc định này!)*
+*(Người dùng **không cần thay đổi** bất kỳ thông số nào trong tệp `.env` — các giá trị mặc định đã được thiết lập sẵn sàng để chạy ngay lập tức!)*
 
 ---
 
@@ -362,17 +396,17 @@ Nếu bạn muốn kết nối hệ thống lên đám mây thật của riêng 
    - Bấm **`+ Create`** → Chọn gói **`M0` (Free)** → Nhà cung cấp **`AWS`** → Khu vực **`Singapore (ap-southeast-1)`** → Đặt tên Cluster là `MekongMobileCluster` → Bấm **`Create Deployment`**.
 2. **Tạo Tài khoản Quản trị Database (`Database Access`):**
    - Ở menu trái mục *SECURITY*, chọn **`Database Access`** → Bấm **`+ Add New Database User`**.
-   - Chọn phương thức **`Password`**, nhập Username (ví dụ: `mekong_admin`) và Password (ví dụ: `MekongAtlas2026` — chỉ dùng chữ và số để không phải mã hóa ký tự đặc biệt).
+   - Chọn phương thức **`Password`**, nhập Username (ví dụ: `mekong_admin`) và Password (ví dụ: `<mật khẩu cơ sở dữ liệu của bạn>` — khuyến nghị chỉ dùng chữ và số để không phải mã hóa URL ký tự đặc biệt).
    - Ở mục *Built-in Role*, chọn **`Read and write to any database`** → Bấm **`Add User`**.
 3. **Mở Tường lửa IP (`Network Access`) — *Bước bắt buộc để máy tính kết nối được*:**
    - Ở menu trái mục *SECURITY*, chọn **`Network Access`** → Bấm **`+ Add IP Address`**.
    - Bấm nút **`ALLOW ACCESS FROM ANYWHERE`** (`0.0.0.0/0`) → Bấm **`Confirm`** và đợi trạng thái chuyển sang **`Active`** (màu xanh lá).
 4. **Lấy Chuỗi kết nối dán vào tệp `.env`:**
    - Vào mục **`Clusters`** → Bấm **`Connect`** → Chọn **`Drivers`** → Chọn **`Python` (3.11 or later)**.
-   - Sao chép chuỗi URI, thay `<db_username>` và `<db_password>` của bạn vào rồi cập nhật vào tệp `.env`:
+   - Sao chép chuỗi URI, thay `<tên tài khoản database>` và `<mật khẩu database>` của bạn vào rồi cập nhật vào tệp `.env`:
      ```env
-     MONGO_URI=mongodb+srv://<db_username>:<db_password>@<ten-cluster>.mongodb.net/mekong_mobile_l5?retryWrites=true&w=majority
-     MONGODB_URI=mongodb+srv://<db_username>:<db_password>@<ten-cluster>.mongodb.net/mekong_mobile_l5?retryWrites=true&w=majority
+     MONGO_URI=mongodb+srv://<tên tài khoản database>:<mật khẩu database>@<ten-cluster>.mongodb.net/mekong_mobile_l5?retryWrites=true&w=majority
+     MONGODB_URI=mongodb+srv://<tên tài khoản database>:<mật khẩu database>@<ten-cluster>.mongodb.net/mekong_mobile_l5?retryWrites=true&w=majority
      DB_NAME=mekong_mobile_l5
      DATABASE_NAME=mekong_mobile_l5
      ```
@@ -430,7 +464,7 @@ python seeds/seed.py
 | STT | Tên Collection | Số bản ghi gốc | Chỉ mục định danh (Unique / Compound Index) | Vai trò dữ liệu trong phân hệ Kho linh kiện L5 |
 | :-: | :--- | :---: | :--- | :--- |
 | 1 | `service_center` | **2** | `{ center_id: 1 }` (Unique) | Danh mục 2 trung tâm bảo hành (`L5-WH-890` Quận 1 & `L5-WH-102` Cần Thơ) phục vụ cô lập vùng `BR-04`. |
-| 2 | `users` | **5** | `{ email: 1 }` (Unique) | Hồ sơ tài khoản mẫu phủ đủ 3 vai trò (`TECH_STAFF`, `MATERIAL_STAFF`, `MANAGER`) và đủ 4 trạng thái nhân sự (`ONLINE`, `AWAY`, `OFF_SHIFT`, `TERMINATED`). |
+| 2 | `users` | **8** | `{ email: 1 }` (Unique) | Hồ sơ tài khoản mẫu phủ đủ 3 vai trò (`TECH_STAFF`, `MATERIAL_STAFF`, `MANAGER`), tuân thủ nghiêm ngặt nguyên tắc 1 email chỉ gắn đúng 1 vai trò duy nhất, và đủ 4 trạng thái nhân sự (`ONLINE`, `AWAY`, `OFF_SHIFT`, `TERMINATED`). |
 | 3 | `part` | **40** | `{ part_code: 1 }` (Unique) | Danh mục 40 mã linh kiện thực tế (Apple, Samsung, Xiaomi...), đơn giá VNĐ và ngưỡng cảnh báo `min_threshold` (`BR-05`). |
 | 4 | `ticket` | **5** | `{ ticket_id: 1 }` (Unique) | Danh sách phiếu bảo hành hợp lệ (`TK-1092`, `TK-1093`, `TK-1095`, `TK-1098`, `TK-2026-8892`) phục vụ đối chiếu chứng từ `BR-02` / `UC-99`. |
 | 5 | `part_stock` | **75** | `{ center_id: 1, part_code: 1 }` (Unique) | Tồn kho vật lý theo thời gian thực tại từng chi nhánh (`quantity >= 0` theo `BR-01`) kèm trường `version` phục vụ `Optimistic Locking`. |
@@ -530,7 +564,7 @@ Giữ nguyên cửa sổ máy chủ đang chạy, mở **một cửa sổ PowerS
   👉 Mở trình duyệt Web và truy cập ngay: **http://localhost:8000/**
 
 - **Phương thức 2 – Chạy Tách biệt Thư mục `frontend/` trên Cổng `3000` (Tùy chọn khi có cài Node.js):**
-  Thư mục `frontend/` lưu trữ bản đồng bộ giao diện tĩnh tại `frontend/public/` cùng các mô-đun kiến trúc ReactJS tách lớp (`frontend/src/api/client.js`, `frontend/src/api/inventory.api.js`, `frontend/src/components/DataState.jsx`, `frontend/src/pages/AuthPortal.js`, `frontend/src/pages/ManagerUsers.js`). Nếu muốn bật máy chủ giao diện riêng tại cổng `3000`:
+  Thư mục `frontend/` lưu trữ bản đồng bộ giao diện tĩnh tại `frontend/public/` cùng các mô-đun kiến trúc ReactJS tách lớp (`frontend/src/api/client.js`, `frontend/src/api/inventory.api.js`, `frontend/src/components/DataState.jsx`, `frontend/src/pages/AuthPortal.js`, `frontend/src/pages/ManagerUsers.js`). *(Lưu ý: Các thư mục con rỗng không chứa file trước đây như `Manager/`, `Material/`, `Tech/` và `frontend/public/images/` đã được dọn dẹp loại bỏ triệt để; toàn bộ 3 vai trò được điều phối tập trung và thống nhất qua SPA).* Nếu muốn bật máy chủ giao diện riêng tại cổng `3000`:
   ```powershell
   cd frontend
   npm start
@@ -541,14 +575,18 @@ Giữ nguyên cửa sổ máy chủ đang chạy, mở **một cửa sổ PowerS
 
 ### 5.2. Bảng Tài khoản Mẫu Dựng sẵn trong Seed để Đăng nhập Kiểm chứng Ngay
 
-Tại màn hình Cổng xác thực (**http://localhost:8000/**), bạn có thể bấm nút con mắt để xem mật khẩu, tự đăng ký tài khoản mới (mật khẩu 8–128 ký tự đủ chữ hoa, chữ thường, số, ký tự đặc biệt), thử tính năng **Quên mật khẩu nhận OTP 6 số đếm ngược 10:00 → 00:00**, hoặc đăng nhập ngay bằng bộ tài khoản mẫu có sẵn dưới đây:
+> [!IMPORTANT]
+> **QUY TẮC PHÂN QUYỀN BẤT BIẾN TRÊN HỆ THỐNG (STRICT RBAC):**
+> Trong toàn bộ hệ thống Smart CRM – Mekong Mobile, **mỗi tài khoản email chỉ được đăng nhập đúng 1 vai trò (`role`) duy nhất**. Hệ thống phân định rạch ròi trách nhiệm nghiệp vụ và thẩm quyền dữ liệu, tuyệt đối không cho phép 1 tài khoản đăng nhập kiêm nhiệm nhiều vai trò hoặc đổi quyền chéo.
 
-| STT | Vai trò Nghiệp vụ (Actor) | Email Đăng nhập | Mật khẩu Mẫu | Trạng thái Gốc | Mục đích Kiểm chứng Thực tế |
+Tại màn hình Cổng xác thực (**http://localhost:8000/**), bạn có thể bấm nút con mắt để xem mật khẩu, tự đăng ký tài khoản mới (mật khẩu 8–128 ký tự đủ 4 nhóm: hoa, thường, số, ký hiệu), thử tính năng **Quên mật khẩu nhận OTP 6 số đếm ngược 10:00 → 00:00**, hoặc đăng nhập ngay bằng **3 tài khoản chuyên biệt đại diện cho 3 vai trò** được thiết lập sẵn:
+
+| STT | Vai trò Nghiệp vụ (Role) | Email Đăng nhập | Mật khẩu Hệ thống | Trạng thái | Nhiệm vụ & Thẩm quyền Nghiệp vụ Kiểm chứng |
 | :-: | :--- | :--- | :--- | :---: | :--- |
-| 1 | **Nhân viên kỹ thuật** (`ACT-01` – `TECH_STAFF`) | `kythuat.test@gmail.com` *(hoặc `vuthelong1009@gmail.com`)* | `Mekong@2026` *(hoặc `123456`)* | `ONLINE` / `OFF_SHIFT` | Tra cứu tồn kho thông minh `<= 3 clicks`, Xuất kho (`OUT`) & Hoàn trả (`RETURN`) gắn phiếu `TK-1092`, kiểm chứng chặn âm kho `BR-01`. |
-| 2 | **Nhân viên vật tư** (`ACT-02` – `MATERIAL_STAFF`) | `vattu.test@gmail.com` | `Mekong@2026` *(hoặc `123456`)* | `AWAY` → `ONLINE` | Tiếp nhận & Nhập kho lô linh kiện mới (`IN`, không cần mã phiếu) trên giao diện lưới 2 cột đối chiếu tồn kho 40 mặt hàng. |
-| 3 | **Quản lý kho** (`ACT-03` – `MANAGER`) | `quanlykho.test@gmail.com` | `Mekong@2026` *(hoặc `123456`)* | `ONLINE` | Xem Dashboard KPI & Bảng cảnh báo đỏ `FR-07`, sửa ngưỡng `min_threshold` `FR-06`, xuất CSV đối soát, xem Sổ cái bất biến `FR-05` & quản trị nhân sự. |
-| 4 | **Nhân sự đã thôi việc** *(Tài khoản kiểm thử chặn bảo mật)* | `anhpham712002@gmail.com` | `Anhpham712002@` | `TERMINATED` | Kiểm chứng chốt chặn thu hồi quyền vĩnh viễn: Cổng đăng nhập lập tức từ chối và báo lỗi đỏ **`HTTP 403 ERR_ACCOUNT_TERMINATED`**. |
+| **1** | **Nhân viên vật tư**<br>(`MATERIAL_STAFF`) | **`huynhnguyenbaongoc2k5@gmail.com`**<br>*(hoặc `vattu.test@gmail.com`)* | **`Huynh120905!`**<br>*(hoặc `Mekong@2026`)* | `ONLINE` | Tiếp nhận và Nhập kho vật tư mới (`IN`, không cần mã phiếu bảo hành) trên bố cục 2 cột song song; quan sát đối chiếu số dư tồn kho 40 mã hàng hóa. |
+| **2** | **Nhân viên kỹ thuật**<br>(`TECH_STAFF`) | **`vuthelong1009@gmail.com`**<br>*(hoặc `kythuat.test@gmail.com`)* | **`Vu100905!`**<br>*(hoặc `Mekong@2026`)* | `ONLINE` | Tra cứu tồn kho thông minh `<= 3 clicks`; lập yêu cầu Xuất kho thay thế (`OUT`) & Hoàn trả (`RETURN`) bắt buộc gắn mã phiếu bảo hành hợp lệ (`TK-1092`); kiểm chứng chốt chặn âm kho `BR-01`. |
+| **3** | **Quản lý kho**<br>(`MANAGER`) | **`lethithuyngan985@gmail.com`**<br>*(hoặc `quanlykho.test@gmail.com`)* | **`Le090805!`**<br>*(hoặc `Mekong@2026`)* | `ONLINE` | Giám sát Dashboard KPI thời gian thực; nhận bảng cờ cảnh báo đỏ thiếu hụt tồn kho; điều chỉnh ngưỡng an toàn `min_threshold` (`FR-06`); xuất báo cáo CSV; giám sát Sổ cái bất biến và quản lý hồ sơ nhân sự. |
+| **4** | **Nhân sự đã thôi việc**<br>*(Kiểm thử an toàn)* | `anhpham712002@gmail.com` | `Anhpham712002@` | `TERMINATED` | Kiểm chứng chốt chặn thu hồi quyền vĩnh viễn: Cổng đăng nhập lập tức từ chối và báo lỗi đỏ **`HTTP 403 ERR_ACCOUNT_TERMINATED`**. |
 
 ---
 
@@ -556,18 +594,18 @@ Tại màn hình Cổng xác thực (**http://localhost:8000/**), bạn có th�
 
 Để kiểm chứng hệ thống hoạt động khép kín đúng 100% thiết kế và đạt trọn vẹn **Tiêu chí S4** của chuyên ngành Công nghệ phần mềm, người đọc có thể thực hiện theo kịch bản 4 bước sau:
 
-1. **Nghiệm thu Vai trò 1 – Nhân viên kỹ thuật (`kythuat.test@gmail.com` / `Mekong@2026`):**
-   - Vào mục **Tra cứu & Giao dịch** trên thanh menu trái.
+1. **Nghiệm thu Vai trò 1 – Nhân viên kỹ thuật (`vuthelong1009@gmail.com` / `Vu100905!`):**
+   - Đăng nhập vào hệ thống, tự động được điều hướng đến giao diện **Tra cứu & Giao dịch**.
    - Gõ `SCR-IP14` vào ô tìm kiếm thông minh → Nhấn phím **`Enter`** để chọn ngay `SCR-IP14-01 - Màn hình OLED iPhone 14 Pro Max` (thẻ thông tin tồn kho thực tế và huy hiệu màu hiện ra tức thì).
    - **Thử trạng thái Lỗi (`Error State`):** Nhập số lượng `999` (lớn hơn tồn kho hiện tại) → Khung cảnh báo đỏ hiện ngay lập tức và nút *Xác nhận Giao dịch* tự động bị khóa để chặn âm kho (`BR-01`). Bấm **Đặt lại biểu mẫu** để xóa sạch về ban đầu.
    - **Thử luồng đúng (`<= 3 clicks`):** Chọn lại `SCR-IP14-01` → Nhập mã phiếu bảo hành hợp lệ `TK-1092` và số lượng `1` → Bấm **Xác nhận Giao dịch** → Thông báo xanh hiện lên và số lượng tồn kho giảm ngay `-1` cái.
 
-2. **Nghiệm thu Vai trò 2 – Nhân viên vật tư (`vattu.test@gmail.com` / `Mekong@2026`):**
-   - Bấm **Đăng xuất tài khoản** ở góc trên bên phải (trạng thái tài khoản Kỹ thuật tự động chuyển về `OFF_SHIFT`), sau đó đăng nhập bằng `vattu.test@gmail.com`.
+2. **Nghiệm thu Vai trò 2 – Nhân viên vật tư (`huynhnguyenbaongoc2k5@gmail.com` / `Huynh120905!`):**
+   - Bấm **Đăng xuất tài khoản** ở góc trên bên phải (trạng thái tài khoản Kỹ thuật tự động chuyển về `OFF_SHIFT`), sau đó đăng nhập bằng `huynhnguyenbaongoc2k5@gmail.com`.
    - Vào mục **Nhập kho linh kiện mới**: Quan sát bố cục 2 cột song song. Bấm nút **Chọn** ở dòng `SCR-IP14-01` bên bảng thống kê cột phải → Nhập số lượng nhập `10` ở cột trái → Quan sát thẻ đối chiếu *Tồn trước nhập / Ngưỡng an toàn / Dự kiến sau nhập* → Bấm **Ghi nhận Nhập kho** → Số dư kho cộng dồn ngay `+10` cái mà không cần mã phiếu bảo hành.
 
-3. **Nghiệm thu Vai trò 3 – Quản lý kho (`quanlykho.test@gmail.com` / `Mekong@2026`):**
-   - Trên **Dashboard Tổng quan**: Xem 4 thẻ KPI thời gian thực và bảng **Cảnh báo linh kiện dưới ngưỡng an toàn** (hiển thị chính xác số tồn thực tế, ngưỡng tối thiểu và số lượng thiếu hụt).
+3. **Nghiệm thu Vai trò 3 – Quản lý kho (`lethithuyngan985@gmail.com` / `Le090805!`):**
+   - Đăng nhập tài khoản Quản lý kho. Trên **Dashboard Tổng quan**: Xem 4 thẻ KPI thời gian thực và bảng **Cảnh báo linh kiện dưới ngưỡng an toàn** (hiển thị chính xác số tồn thực tế, ngưỡng tối thiểu và số lượng thiếu hụt).
    - Bấm nút **Xem Báo cáo Chi tiết** (hoặc nút *Sửa cấu hình ngưỡng*): Đổi số ngưỡng an toàn của một mã linh kiện bất kỳ rồi bấm **Lưu** → Huy hiệu trạng thái và bộ đếm cảnh báo tự động cập nhật tức thì (`FR-06`, `BR-05`). Bấm **Xuất dữ liệu** để tải tệp báo cáo `.csv` chuẩn tiếng Việt UTF-8 BOM.
    - Mở mục **Nhật ký Giao dịch Kho**: Kiểm tra các giao dịch `Xuất kho thay thế` và `Nhập kho vật tư` vừa tạo ở bước trên đều được ghi vết đầy đủ và tuyệt đối không có nút Sửa/Xóa (`BR-03`).
 
@@ -580,11 +618,11 @@ Tại màn hình Cổng xác thực (**http://localhost:8000/**), bạn có th�
 
 ---
 
-# PHẦN 6: HƯỚNG DẪN CHẠY BỘ KIỂM THỬ TỰ ĐỘNG (43/43 TESTS PASSED BẰNG 1 LỆNH)
+# PHẦN 6: HƯỚNG DẪN CHẠY BỘ KIỂM THỬ TỰ ĐỘNG (56/56 TESTS PASSED BẰNG 1 LỆNH)
 
-Bộ kiểm thử tự động của dự án gồm **43 kịch bản kiểm thử (`43 Automated Test Cases`)** đặt trong thư mục `tests/`. Toàn bộ các bài kiểm thử đều **tự khởi tạo và tự dọn dẹp dữ liệu thử nghiệm riêng (`setUp` / `tearDownClass`)** ngay trong bộ nhớ, tuyệt đối không phụ thuộc vào dữ liệu có sẵn trên máy cá nhân của người chạy.
+Bộ kiểm thử tự động của dự án gồm **56 kịch bản kiểm thử tự động (`56 Automated Test Cases`)** chia đều trên 5 tệp kiểm thử trong thư mục `tests/`. Toàn bộ các bài kiểm thử đều **tự khởi tạo và tự dọn dẹp dữ liệu thử nghiệm riêng (`setUp` / `tearDownClass`)** ngay trong bộ nhớ, độc lập và chạy lặp bất biến.
 
-### 6.1. Chạy Toàn bộ 43 Ca Kiểm thử Bằng Đúng 1 Câu Lệnh Duy nhất
+### 6.1. Chạy Toàn bộ 56 Ca Kiểm thử Bằng Đúng 1 Câu Lệnh Duy nhất
 
 Đứng tại thư mục gốc `CDTN01` (đã kích hoạt `venv`), chạy lệnh:
 
@@ -608,20 +646,23 @@ python -m pytest tests/auth_and_user.test.py -v
 
 # 4. Kiểm thử Luồng liên thông 3 Vai trò (E2E) & Toàn vẹn Cấu trúc Giao diện Dark 3D (15 tests):
 python -m pytest tests/cross_role_and_ui.test.py -v
+
+# 5. [MỚI ở BT3] Kiểm thử Đặc tả Hoàn trả, Giá trị biên 2 phía, Khóa lạc quan Race Condition, Bảo mật S3/S4, Nạp seed C8 (13 tests):
+python -m pytest tests/bt3_specification_and_constraints.test.py -v
 ```
 
-### 6.3. Bảng Phân bổ 43 Kịch bản Kiểm thử Theo 3 Nhóm Bắt buộc của Học phần
+### 6.3. Bảng Phân bổ 56 Kịch bản Kiểm thử Theo Các Nhóm Bắt buộc
 
 | Nhóm Kiểm thử | Số ca | Các kịch bản kiểm chứng tiêu biểu trong `tests/` | Kết quả Thực tế |
 | :--- | :---: | :--- | :---: |
-| **1. Luồng đúng (Happy Path)** | **18** | Tra cứu tồn kho `NORMAL`; Xuất kho hợp lệ kèm `ticket_id` trừ đúng số dư & ghi sổ cái; Nhập kho `IN` không cần `ticket_id`; Quản lý cập nhật `min_threshold`; Đăng ký, Đăng nhập JWT, Quên mật khẩu & Reset bằng OTP 6 số; Liên thông Vật tư nhập → Kỹ thuật xuất → Quản lý nhận cảnh báo. | **18/18 PASSED** |
-| **2. Giá trị biên (Boundary Value)** | **12** | Tồn kho giảm vừa chạm ngưỡng `quantity <= min_threshold` bật cờ `WARNING` (`BR-05`); Kiểm tra biên mật khẩu thiếu từng nhóm (chữ hoa, chữ thường, chữ số, ký tự đặc biệt, `< 8` ký tự); Biên độ dài tối đa của `full_name` (50), `email` (100), `part_code` (30); Phân trang & cô lập danh sách nhân sự cấp dưới. | **12/12 PASSED** |
-| **3. Dữ liệu sai & Ngoại lệ (Invalid Data & Exceptions)** | **13** | Xuất vượt tồn kho thực tế → `400 ERR_NEGATIVE_STOCK` (`BR-01`); Xuất kho bỏ trống `ticket_id` → `422 ERR_INVALID_TICKET` (`BR-02`); Vật tư cố tình gọi lệnh Xuất kho hoặc Kỹ thuật cố tình sửa ngưỡng → `403 ERR_UNAUTHORIZED_ROLE`; Đăng ký trùng Email; Đăng nhập tài khoản đã thôi việc `TERMINATED` → `403 ERR_ACCOUNT_TERMINATED`. | **13/13 PASSED** |
-| **TỔNG CỘNG** | **43** | **Toàn bộ 4 tệp kiểm thử chạy tự động bằng 1 lệnh duy nhất** | **43/43 PASSED (100%)** |
+| **1. Luồng đúng (Happy Path)** | **19** | Tra cứu tồn kho `NORMAL`; Xuất kho hợp lệ kèm `ticket_id` trừ đúng số dư & ghi sổ cái; Nhập kho `IN` không cần `ticket_id`; Quản lý cập nhật `min_threshold`; Hoàn trả linh kiện `RETURN` cộng bù tồn kho; Đăng ký, Đăng nhập JWT, Quên mật khẩu & Reset bằng OTP 6 số; Liên thông Vật tư nhập → Kỹ thuật xuất → Quản lý nhận cảnh báo; Nạp seed lặp bất biến `C8`. | **19/19 PASSED** |
+| **2. Giá trị biên 2 phía (Boundary Values)** | **16** | Tồn kho đúng bằng số lượng xuất (hết hàng về 0) vs vượt quá tồn 1 đơn vị (`BR-01`); Tồn kho bằng đúng `min_threshold` (bật cờ `WARNING`) vs cao hơn ngưỡng đúng 1 cái (cờ `NORMAL`) (`BR-05`); Biên số lượng nhập/xuất (`0`, `1`, `1.000.000`, `1.000.001`); Biên ngưỡng cảnh báo (`-1`, `0`, `100.000`, `100.001`); Biên mật khẩu thiếu từng nhóm và độ dài chuỗi tối đa (`full_name` 50, `email` 100, `part_code` 30). | **16/16 PASSED** |
+| **3. Ngoại lệ & An toàn Bảo mật (Exceptions & Security)** | **21** | Xuất vượt tồn kho thực tế → `400 ERR_NEGATIVE_STOCK`; Xuất kho bỏ trống `ticket_id` → `422 ERR_INVALID_TICKET`; Xuất kho với phiếu bảo hành đã đóng/hủy hoặc không tồn tại → `422 ERR_TICKET_CLOSED / ERR_TICKET_NOT_FOUND`; Phát hiện xung đột đồng thời *Optimistic Locking* → `409 ERR_OPTIMISTIC_LOCK_FAILED`; Bảo mật `S3` (mật khẩu không bao giờ lưu plaintext); Bảo mật `S4` (phản hồi lỗi không lộ stack trace thô); Đăng ký trùng Email; Đăng nhập tài khoản thôi việc `TERMINATED` → `403 ERR_ACCOUNT_TERMINATED`. | **21/21 PASSED** |
+| **TỔNG CỘNG** | **56** | **Toàn bộ 5 tệp kiểm thử chạy tự động đồng loạt bằng 1 lệnh duy nhất** | **56/56 PASSED (100%)** |
 
 ---
 
-# PHẦN 7: HƯỚNG DẪN ĐÓNG GÓI DOCKER (`<= 2` LỆNH), PHÉP THỬ MÁY TRẮNG & ĐẨY GITHUB TAG `v0.2`
+# PHẦN 7: HƯỚNG DẪN ĐÓNG GÓI DOCKER (`<= 2` LỆNH), PHÉP THỬ MÁY TRẮNG & ĐẨY GITHUB TAG `v0.2` & `v1.0`
 
 Toàn bộ ứng dụng đã được đóng gói tự động hóa hoàn chỉnh qua [`Dockerfile`](./Dockerfile) và [`docker-compose.yml`](./docker-compose.yml):
 - **Container 1 (`mekong_crm_l5_app`):** Đóng gói trên nền `python:3.11-slim`, tự động chạy `python seeds/seed.py` để nạp dữ liệu mẫu rồi khởi chạy máy chủ FastAPI + Giao diện SPA Dark 3D tại cổng `8000`, tích hợp `HEALTHCHECK` tự động mỗi 30 giây tại `/health`.
@@ -644,7 +685,7 @@ Ngay sau khi dòng `Container mekong_crm_l5_app Started` xuất hiện, mở tr�
 
 ### 7.2. Quy trình 5 Bước "Phép thử Máy trắng" Bằng Docker (Chuẩn Nghiệm thu Chấm Bài)
 
-Người đọc hoặc giảng viên có thể kiểm chứng trọn vẹn tính tái lập, tính bất biến dữ liệu (`C5`) và bộ 43 kiểm thử (`C4`) ngay bên trong môi trường Container cô lập:
+Người đọc hoặc giảng viên có thể kiểm chứng trọn vẹn tính tái lập, tính bất biến dữ liệu (`C5`) và bộ 56 kiểm thử (`C4`) ngay bên trong môi trường Container cô lập:
 
 ```powershell
 # Bước 1: Xóa sạch toàn bộ container và dữ liệu volume cũ để mô phỏng máy trắng 100%
@@ -659,7 +700,7 @@ docker compose ps
 # Bước 4: Kiểm chứng nạp dữ liệu mẫu lần thứ 2 liên tiếp không lỗi, không nhân đôi bản ghi (Tiêu chí C5)
 docker compose exec mekong-l5-app python seeds/seed.py
 
-# Bước 5: Thực thi toàn bộ 43 ca kiểm thử tự động ngay bên trong container (Kết quả: 43 passed)
+# Bước 5: Thực thi toàn bộ 56 ca kiểm thử tự động ngay bên trong container (Kết quả: 56 passed)
 docker compose exec mekong-l5-app pytest tests/ -v
 ```
 
@@ -667,9 +708,9 @@ docker compose exec mekong-l5-app pytest tests/ -v
 - Xem nhật ký hoạt động thời gian thực: `docker compose logs -f mekong-l5-app`
 - Tắt hệ thống container khi ngừng làm việc: `docker compose down`
 
-### 7.3. Quy trình Đẩy Mã nguồn lên GitHub & Đóng nhãn Phiên bản Phát hành (`Tag v0.2`)
+### 7.3. Quy trình Đẩy Mã nguồn lên GitHub & Đóng nhãn Phiên bản Phát hành (`Tag v0.2` & `Tag v1.0`)
 
-Theo đúng quy định tại Mục 3.2 của Đề bài Bài tập 2, bộ lệnh chuẩn để lưu thay đổi, gắn nhãn `v0.2` trỏ đúng vào bản commit mới nhất và đẩy lên kho GitHub công khai (`PUBLIC`) gồm các bước sau:
+Bộ lệnh chuẩn bằng tiếng Việt để lưu toàn bộ thay đổi, tạo commit rõ ràng, gắn nhãn phiên bản và đẩy lên kho GitHub công khai:
 
 ```powershell
 # Bước 1: Kiểm tra trạng thái tệp đã chỉnh sửa (đảm bảo không lộ tệp .env thật)
@@ -677,18 +718,20 @@ git status
 
 # Bước 2: Đưa toàn bộ tệp mã nguồn và tài liệu cập nhật vào vùng Staging & tạo Commit chuẩn
 git add .
-git commit -m "docs(readme): hoan thien README goc doi chieu BT1-BT2-BT3 va huong dan tai tao he thong (v0.2)"
+git commit -m "docs: hoan thien README goc tai tao tu may trang, dong bo thaydoithietke 3 giai doan va bo sung tai khoan 3 role"
 
 # Bước 3: Đẩy nhánh chính (main) lên kho GitHub từ xa
 git push origin main
 
-# Bước 4: Tạo mới (hoặc cập nhật với cờ -f nếu đã tạo trước đó) nhãn phát hành v0.2 vào commit mới nhất
-git tag -f -a v0.2 -m "Bai tap 2 - Hien thuc hoa module cot loi Luong 05 Kho linh kien (v0.2)"
-
-# Bước 5: Đẩy riêng nhãn v0.2 lên GitHub (lưu ý: git push origin main KHÔNG tự đẩy tag)
+# Bước 4: Tạo mới nhãn phát hành v0.2 (hoặc v1.0 khi nghiệm thu đóng gói Bài tập 3)
+git tag -f -a v0.2 -m "Phat hanh Bai tap 2 - Hien thuc hoa module cot loi Luong 05 Kho linh kien (v0.2)"
 git push -f origin v0.2
+
+# Khi ban giao hoan tat Bai tap 3:
+git tag -f -a v1.0 -m "Phat hanh Bai tap 3 - Kiem thu va Dong goi Prototype hoan chinh Luong 05 (v1.0)"
+git push -f origin v1.0
 ```
-👉 Kiểm tra trực tiếp trên cửa sổ trình duyệt ẩn danh tại: https://github.com/Johnny120905/CDTN01/releases/tag/v0.2
+👉 Kiểm tra trực tiếp trên cửa sổ trình duyệt tại: https://github.com/Johnny120905/CDTN01/releases
 
 ---
 
@@ -709,14 +752,20 @@ git push -f origin v0.2
 ### 8.2. Danh mục Hồ sơ Kỹ thuật Liên kết Khép kín trong Thư mục `docs/`
 - [`docs/srs.md`](./docs/srs.md) — Bản đặc tả yêu cầu phần mềm rút gọn (SRS 6 mục chuẩn hóa từ Bài tập 1).
 - [`docs/api-contract.md`](./docs/api-contract.md) — Đặc tả hợp đồng giao tiếp RESTful API chuẩn JSON.
-- [`docs/layered clean architecture.drawio`](./docs/layered%20clean%20architecture.drawio) — Sơ đồ Kiến trúc Phân lớp Sạch 5 tầng thực tế đã hiện thực (Bài tập 2).
+- [`docs/layered clean architecture.drawio`](./docs/layered%20clean%20architecture.drawio) — Sơ đồ Kiến trúc Phân lớp Sạch 5 tầng thực tế đã hiện thực.
 - [`docs/erd.drawio`](./docs/erd.drawio) & [`docs/usecase.drawio`](./docs/usecase.drawio) & [`docs/architecture.drawio`](./docs/architecture.drawio) — Bộ sơ đồ Mô hình dữ liệu MongoDB, Use Case và Kiến trúc gốc.
-- [`docs/thaydoithietke.md`](./docs/thaydoithietke.md) — Nhật ký chi tiết các thay đổi thiết kế từ Bài tập 1 sang Bài tập 2 (trình bày chuẩn 3 dòng: *Thay đổi gì · Vì sao · Ảnh hưởng tới thành phần nào*).
+- [`docs/thaydoithietke.md`](./docs/thaydoithietke.md) — Nhật ký thay đổi thiết kế duy nhất tập trung trọn vẹn 3 giai đoạn BT1, BT2 và BT3.
 - [`docs/thietke.md`](./docs/thietke.md) — Đặc tả chi tiết giao diện Dark 3D Elevation & Bộ Prompt Google Stitch tái tạo giao diện cho 3 vai trò.
-- [`docs/test.md`](./docs/test.md) — Kế hoạch kiểm thử, đặc tả ràng buộc 13 màn hình & Báo cáo chi tiết 43 kịch bản kiểm thử tự động.
-- [`docs/ai-disclosure.md`](./docs/ai-disclosure.md) — Bảng khai báo sử dụng công cụ AI 4 cột minh bạch và phương pháp tự kiểm chứng.
+- [`docs/dieukientest.md`](./docs/dieukientest.md) — Bộ điều kiện kiểm thử, ràng buộc hệ thống và ma trận kịch bản kiểm thử toàn diện.
+- [`docs/test-plan.md`](./docs/test-plan.md) — Kế hoạch kiểm thử rút gọn 4 mục theo đề bài BT3.
+- [`docs/test-report.md`](./docs/test-report.md) — Báo cáo kết quả kiểm thử thực tế 56 test cases đủ 8 cột.
+- [`docs/bug-log.md`](./docs/bug-log.md) — Nhật ký theo dõi và gỡ lỗi kèm link commit.
+- [`docs/deployment-guide.md`](./docs/deployment-guide.md) — Hướng dẫn triển khai kỹ thuật 5 mục bằng tiếng Anh.
+- [`docs/checklist-bao-mat.md`](./docs/checklist-bao-mat.md) — Danh mục tự đánh giá an toàn bảo mật 7 tiêu chuẩn.
+- [`docs/api-docs/`](./docs/api-docs/) — Tài liệu kỹ thuật API Endpoints chuẩn OpenAPI và Markdown tiếng Anh.
+- [`docs/ai-disclosure.md`](./docs/ai-disclosure.md) — Bảng khai báo sử dụng công cụ AI 4 cột minh bạch và phương pháp tự kiểm chứng cho cả 3 bài tập.
 
 ---
 
 ### 8.3. Cam kết Liêm chính Học thuật
-> *"Tôi tên là **Huỳnh Nguyễn Bảo Ngọc** (MSSV: `2374802010339`), sinh viên chuyên ngành Công nghệ phần mềm (`SE`) – Khoa Công nghệ Thông tin, Trường Đại học Văn Lang. Tôi xác nhận đã đọc, hiểu rõ từng dòng mã nguồn, từng quy tắc nghiệp vụ, thuật toán Khóa lạc quan (Optimistic Locking), cấu trúc cơ sở dữ liệu NoSQL, bộ 43 ca kiểm thử tự động cũng như quy trình đóng gói Docker trong dự án này, và hoàn toàn chịu trách nhiệm học thuật về toàn bộ sản phẩm bàn giao."*
+> *"Tôi tên là **Huỳnh Nguyễn Bảo Ngọc** (MSSV: `2374802010339`), sinh viên chuyên ngành Công nghệ phần mềm (`SE`) – Khoa Công nghệ Thông tin, Trường Đại học Văn Lang. Tôi xác nhận đã đọc, hiểu rõ từng dòng mã nguồn, từng quy tắc nghiệp vụ, thuật toán Khóa lạc quan (Optimistic Locking), cấu trúc cơ sở dữ liệu NoSQL, bộ 56 ca kiểm thử tự động cũng như quy trình đóng gói Docker trong dự án này, và hoàn toàn chịu trách nhiệm học thuật về toàn bộ sản phẩm bàn giao."*

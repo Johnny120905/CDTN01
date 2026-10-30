@@ -2,10 +2,7 @@
 # File: docker-compose.yml
 # Dự án: Hệ thống Smart CRM – Mekong Mobile (Luồng 05: Kho linh kiện thay thế)
 # Mục đích: Điều phối kiến trúc đa dịch vụ (Ứng dụng Web/API + MongoDB 7.0)
-# Hướng dẫn chạy:
-#   - Khởi chạy toàn bộ hệ thống: docker compose up -d --build
-#   - Chạy kiểm thử 43 test cases: docker compose exec mekong-l5-app pytest tests/ -v
-#   - Dừng hệ thống:              docker compose down
+# Tiêu chuẩn C1: Khởi dựng hoàn chỉnh hệ thống bằng <= 2 lệnh duy nhất
 # ==============================================================================
 
 services:
@@ -24,23 +21,21 @@ services:
       - .env
     environment:
       - API_PORT=8000
+      - MONGO_URI=mongodb://mongodb:27017/${DB_NAME:-mekong_mobile_l5}
       - DB_NAME=${DB_NAME:-mekong_mobile_l5}
       - DEFAULT_CENTER_ID=${DEFAULT_CENTER_ID:-L5-WH-890}
       - JWT_SECRET_KEY=${JWT_SECRET_KEY:-mekong_mobile_secret_jwt_key_2026_cdtn01}
     volumes:
-      # Đồng bộ dữ liệu người dùng và hạt giống 40 linh kiện bền vững trên máy chủ
       - ./data:/app/data
       - ./seeds:/app/seeds
     depends_on:
       mongodb:
-        condition: service_started
+        condition: service_healthy
     networks:
       - mekong_l5_network
 
   # ----------------------------------------------------------------------------
-  # 2. DỊCH VỤ CƠ SỞ DỮ LIỆU MONGODB CỤC BỘ DỰ PHÒNG (MONGODB 7.0)
-  # (Hệ thống ưu tiên kết nối MongoDB Atlas trong .env, đồng thời sẵn sàng
-  #  chuyển sang MongoDB Container cục bộ hoặc Dual-Persistence khi offline)
+  # 2. DỊCH VỤ CƠ SỞ DỮ LIỆU MONGODB 7.0 CỤC BỘ DỰ PHÒNG
   # ----------------------------------------------------------------------------
   mongodb:
     image: mongo:7.0
@@ -52,6 +47,12 @@ services:
       - MONGO_INITDB_DATABASE=mekong_mobile_l5
     volumes:
       - mongo_l5_data:/data/db
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --eval 'db.adminCommand(\"ping\")' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     networks:
       - mekong_l5_network
 
@@ -62,4 +63,3 @@ volumes:
 networks:
   mekong_l5_network:
     driver: bridge
-

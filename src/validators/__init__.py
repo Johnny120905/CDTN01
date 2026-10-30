@@ -19,7 +19,9 @@ validate_register_payload = getattr(_mod, "validate_register_payload")
 validate_login_payload = getattr(_mod, "validate_login_payload")
 validate_forgot_password_payload = getattr(_mod, "validate_forgot_password_payload")
 validate_reset_password_payload = getattr(_mod, "validate_reset_password_payload")
-validate_user_import_payload = getattr(_mod, "validate_user_import_payload")
+validate_user_import_payload = getattr(_mod, "validate_user_import_payload",
+    "validate_password_complexity")
+validate_password_complexity = getattr(_mod, "validate_password_complexity")
 
 __all__ = [
     "validate_stock_lookup",
@@ -29,6 +31,7 @@ __all__ = [
     "validate_login_payload",
     "validate_forgot_password_payload",
     "validate_reset_password_payload",
-    "validate_user_import_payload"
+    "validate_user_import_payload",
+    "validate_password_complexity"
 ]
 
